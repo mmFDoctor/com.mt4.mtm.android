@@ -13,6 +13,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.SuperscriptSpan;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,6 +34,7 @@ import activity.commt4mtmandroid.utils.UserFiled;
 
 /**
  * Created by Administrator on 2017/9/25.
+ * 行情适配器
  */
 
 public class MarketAdapt extends BaseAdapter {
@@ -76,9 +78,12 @@ public class MarketAdapt extends BaseAdapter {
             myHolder.name.getPaint().setAntiAlias(true);
 
             myHolder.adkPrice = (TextView) view.findViewById(R.id.askPrice);
+            //字体加粗设置
             myHolder.adkPrice.getPaint().setFlags(Paint.FAKE_BOLD_TEXT_FLAG);
             myHolder.adkPrice.getPaint().setAntiAlias(true);
+
             myHolder.bidPrice = (TextView) view.findViewById(R.id.pidPrice);
+            //字体加粗设置
             myHolder.bidPrice.getPaint().setFlags(Paint.FAKE_BOLD_TEXT_FLAG);
             myHolder.bidPrice.getPaint().setAntiAlias(true);
             myHolder.rela = (RelativeLayout) view.findViewById(R.id.rela);
@@ -102,6 +107,7 @@ public class MarketAdapt extends BaseAdapter {
         }
         if (moreStyle) {
             //设置上标
+
             changeTextStyle(myHolder.bidPrice, data.get(i).getAsk());
             changeTextStyle(myHolder.adkPrice, data.get(i).getBid());
             myHolder.minPrice.setVisibility(View.VISIBLE);
@@ -133,23 +139,30 @@ public class MarketAdapt extends BaseAdapter {
         return view;
     }
 
+
     private void changeTextStyle(TextView textView, String str) {
-
+        //小数点后只有两位 两位都大写显示 不显示上标
         SpannableString spannableString = new SpannableString(str);
+        int i = str.length()-str.indexOf(".");
+        if ((str.length()-str.indexOf("."))>3){
+            //设置最后两位大显示
+            if (str.length() > 3) {
+                RelativeSizeSpan sizeSpan1 = new RelativeSizeSpan(1.5f);
+                spannableString.setSpan(sizeSpan1, spannableString.length() - 3, spannableString.length() - 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+            }
+            //设置上标
+            SuperscriptSpan superscriptSpan = new SuperscriptSpan();
+            spannableString.setSpan(superscriptSpan, spannableString.length() - 1, spannableString.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+            //设置上标大小
+            RelativeSizeSpan sizeSpan = new RelativeSizeSpan(0.8f);
+            spannableString.setSpan(sizeSpan, spannableString.length() - 1, spannableString.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
 
-
-        //设置最后两位大显示
-        if (str.length() > 3) {
-            RelativeSizeSpan sizeSpan1 = new RelativeSizeSpan(1.5f);
-            spannableString.setSpan(sizeSpan1, spannableString.length() - 3, spannableString.length() - 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+        }else {
+            if (str.length() > 3) {
+                RelativeSizeSpan sizeSpan1 = new RelativeSizeSpan(1.5f);
+                spannableString.setSpan(sizeSpan1, spannableString.length() - 2, spannableString.length() - 0, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+            }
         }
-
-        //设置上标
-        SuperscriptSpan superscriptSpan = new SuperscriptSpan();
-        spannableString.setSpan(superscriptSpan, spannableString.length() - 1, spannableString.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
-        //设置上标大小
-        RelativeSizeSpan sizeSpan = new RelativeSizeSpan(0.5f);
-        spannableString.setSpan(sizeSpan, spannableString.length() - 1, spannableString.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
         textView.setText(spannableString);
     }
 

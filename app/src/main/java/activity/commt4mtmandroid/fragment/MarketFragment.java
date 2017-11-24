@@ -2,6 +2,7 @@ package activity.commt4mtmandroid.fragment;
 
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -82,6 +83,13 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
         super.init();
     }
 
+
+    //
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+    }
+
     @Override
     protected void initCondition() {
         reqDTO = new BaseReqDTO();
@@ -139,6 +147,7 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
                @Override
                public void success(String data) {
                    super.success(data);
+                   Log.i("tag", "success: ================>行情请求");
                    Message message = Message.obtain();
                    message.obj = data;
                    message.what = 1;

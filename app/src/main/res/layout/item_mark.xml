@@ -16,7 +16,7 @@
         android:layout_marginRight="10dp"
         android:text="NZDUSDv1"
         android:textColor="@color/color333"
-        android:textSize="16dp" />
+        android:textSize="20dp" />
     <TextView
         android:id="@+id/time"
         android:layout_marginLeft="10dp"
@@ -39,13 +39,13 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:gravity="right"
         android:text="NZDUSDv1"
         android:textColor="@color/color333"
-        android:textSize="16dp" />
+        android:textSize="20dp" />
     <TextView
         android:id="@+id/highPrice"
         android:layout_marginTop="5dp"
@@ -58,7 +58,7 @@
 
     <TextView
 
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:id="@+id/askPrice"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
         android:gravity="right"
         android:text="NZDUSDv1"
         android:textColor="@color/color333"
-        android:textSize="16dp" />
+        android:textSize="20dp" />
     <TextView
         android:layout_marginTop="5dp"
         android:textSize="13dp"

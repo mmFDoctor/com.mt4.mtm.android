@@ -50,6 +50,11 @@ public class TransactionFragment extends BaseFragment {
                     String transctionStr = (String) msg.obj;
                     TransctionRespDTO transctionRespDTO = JSONObject.parseObject(transctionStr, TransctionRespDTO.class);
                     title.setText(transctionRespDTO.getData().getLoginInfo().getTotalprofit() + "USD");
+                    //无价位时隐藏标题
+                    headTitle.setVisibility(transctionRespDTO.getData().getOrderList().size()>0?View.VISIBLE:View.GONE);
+                    //无订单和价位时隐藏顶部盈利
+                    title.setVisibility(transctionRespDTO.getData().getOrderList().size()+transctionRespDTO.getData().getUnOpenOrder().size()>0?View.VISIBLE:View.GONE);
+
                     blace.setText(transctionRespDTO.getData().getLoginInfo().getBalance());
                     equity.setText(transctionRespDTO.getData().getLoginInfo().getEquity());
                     margin_free.setText(transctionRespDTO.getData().getLoginInfo().getMargin_free());
@@ -96,6 +101,7 @@ public class TransactionFragment extends BaseFragment {
     private BaseReqDTO baseReqDTO;
     private ListView listView;
     private View headView;
+    private TextView headTitle;
 
     @Override
     protected int getLayoutId() {
@@ -132,6 +138,8 @@ public class TransactionFragment extends BaseFragment {
         listView = (ListView) mRootView.findViewById(R.id.transction_listView);
         headView = View.inflate(mAtivity, R.layout.item_trasction_head, null);
 
+
+        headTitle = (TextView) headView.findViewById(R.id.title);
         blace = (TextView) headView.findViewById(R.id.blace);
         equity = (TextView) headView.findViewById(R.id.equity);
         margin_free = (TextView) headView.findViewById(R.id.margin_free);

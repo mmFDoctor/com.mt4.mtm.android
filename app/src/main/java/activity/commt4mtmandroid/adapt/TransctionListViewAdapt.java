@@ -64,24 +64,42 @@ public class TransctionListViewAdapt extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return bodyData.size() + footData.size() + 1;
+        if (footData.size()>0) {
+            return bodyData.size() + footData.size() + 1;
+        }else {
+            return bodyData.size();
+        }
     }
 
     @Override
     public int getViewTypeCount() {
-        return 3;
+        if (footData.size()>0) {
+            return 3;
+        }else {
+            return 2;
+        }
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (position < bodyData.size()) {
-            //标题样式
-            return 0;
-        } else if (position == bodyData.size()) {
-            //
-            return 1;
-        } else {
-            return 2;
+        if (footData.size()>0) {
+            if (position < bodyData.size()) {
+                //标题样式
+                return 0;
+            } else if (position == bodyData.size()) {
+                //
+                return 1;
+            } else {
+                return 2;
+            }
+        }else {
+            if (position < bodyData.size()) {
+                //标题样式
+                return 0;
+            } else {
+                //
+                return 1;
+            }
         }
     }
 
@@ -131,10 +149,10 @@ public class TransctionListViewAdapt extends BaseAdapter {
                     holder.IDContent = (TextView) convertView.findViewById(R.id.IDContent);
                     convertView.setTag(holder);
                     break;
-                case 1:
+                case 2:
                     convertView = View.inflate(context, R.layout.item_transction_title, null);
                     break;
-                case 2:
+                case 1:
                     convertView = View.inflate(context, R.layout.item_transction_order, null);
                     orderHolder = new TransctionOrderHolder();
                     orderHolder.r1 = (RelativeLayout) convertView.findViewById(R.id.transction_rl);
@@ -183,7 +201,7 @@ public class TransctionListViewAdapt extends BaseAdapter {
                         : context.getResources().getColor(R.color.colorRed));
                 holder.cmdAndVolume.setText(bodyData.get(position).getCommand().equals("0") ? "buy " + bodyData.get(position).getVolume()
                         : "sell " + bodyData.get(position).getVolume());
-                holder.headTime.setText(bodyData.get(position).getCreate_time());
+                holder.headTime.setText(bodyData.get(position).getOpen_time());
                 holder.openAndClosePrice.setText(bodyData.get(position).getPrice() + "→" + bodyData.get(position).getNow_price());
                 holder.profit.setText(bodyData.get(position).getProfit());
                 if (Double.parseDouble(bodyData.get(position).getProfit()) >= 0) {
@@ -193,7 +211,7 @@ public class TransctionListViewAdapt extends BaseAdapter {
                 }
 
                 holder.slContent.setText(bodyData.get(position).getStoploss());
-                holder.storageContent.setText(bodyData.get(position).getPrice());
+                holder.storageContent.setText(bodyData.get(position).getStorage());
                 holder.tpContent.setText(bodyData.get(position).getTakeprofit());
                 holder.IDContent.setText(bodyData.get(position).getId());
                 final TransctionHolder finalHolder = holder;

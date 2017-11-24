@@ -23,7 +23,6 @@
         android:id="@+id/service_list_editText"
         android:paddingLeft="10dp"
         android:drawableLeft="@mipmap/service_list_search"
-        android:hint="寻找交易商"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"

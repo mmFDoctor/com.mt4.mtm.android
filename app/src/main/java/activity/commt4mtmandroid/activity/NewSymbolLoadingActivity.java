@@ -74,8 +74,6 @@ public class NewSymbolLoadingActivity extends BaseActivity implements View.OnCli
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void status(NewSymbolEventBean event){
         if (event.isSucced()){
-            SoundPoolUtil soundPoolUtil = SoundPoolUtil.getInstance(this);
-            soundPoolUtil.play(1);
             handler.sendEmptyMessageDelayed(1,1000);
         }else {
             SoundPoolUtil soundPoolUtil = SoundPoolUtil.getInstance(this);

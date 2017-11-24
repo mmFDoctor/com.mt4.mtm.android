@@ -19,8 +19,7 @@ public class DingDanSuccessActivity extends BaseActivity implements View.OnClick
         public boolean handleMessage(Message msg) {
             switch (msg.what){
                 case 1:
-                    SoundPoolUtil soundPoolUtil = SoundPoolUtil.getInstance(DingDanSuccessActivity.this);
-                    soundPoolUtil.play(1);
+
                     finish();
                     break;
             }
@@ -37,7 +36,6 @@ public class DingDanSuccessActivity extends BaseActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ding_dan_success);
-        Log.i("tag", "onCreate: ===========>");
 
     }
 
@@ -56,6 +54,8 @@ public class DingDanSuccessActivity extends BaseActivity implements View.OnClick
         ensure = (TextView) findViewById(R.id.ensure);
         content = (TextView) findViewById(R.id.text2);
         content.setText(des+"\n以"+price+"价格平仓");
+        SoundPoolUtil soundPoolUtil = SoundPoolUtil.getInstance(DingDanSuccessActivity.this);
+        soundPoolUtil.play(1);
         handler.sendEmptyMessageDelayed(1,2000);
     }
 

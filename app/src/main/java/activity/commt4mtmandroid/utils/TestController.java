@@ -1,17 +1,12 @@
 package activity.commt4mtmandroid.utils;
 
-
-import android.icu.text.DecimalFormat;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import activity.commt4mtmandroid.CandleDataDTO;
+
 import activity.commt4mtmandroid.bean.respDTO.ChartRespDTO;
 
 

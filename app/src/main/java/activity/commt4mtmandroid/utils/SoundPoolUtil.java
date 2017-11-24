@@ -19,7 +19,11 @@ public class SoundPoolUtil {
     //单例模式
     public static SoundPoolUtil getInstance(Context context) {
         if (soundPoolUtil == null)
-            soundPoolUtil = new SoundPoolUtil(context);
+            synchronized (SoundPoolUtil.class){
+                if (soundPoolUtil==null){
+                    soundPoolUtil = new SoundPoolUtil(context);
+                }
+            }
         return soundPoolUtil;
     }
 

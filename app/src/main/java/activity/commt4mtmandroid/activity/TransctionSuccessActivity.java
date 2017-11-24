@@ -18,7 +18,6 @@ public class TransctionSuccessActivity extends BaseActivity implements View.OnCl
         public boolean handleMessage(Message msg) {
             switch (msg.what){
                 case 1:
-
                     finish();
                     break;
             }
@@ -43,6 +42,9 @@ public class TransctionSuccessActivity extends BaseActivity implements View.OnCl
         Intent intent = getIntent();
         des = intent.getStringExtra(UserFiled.descrip);
         price = intent.getStringExtra(UserFiled.price);
+
+        SoundPoolUtil soundPoolUtil = SoundPoolUtil.getInstance(this);
+        soundPoolUtil.play(1);
 
     }
 

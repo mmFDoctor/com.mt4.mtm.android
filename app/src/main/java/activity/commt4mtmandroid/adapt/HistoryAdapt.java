@@ -100,13 +100,15 @@ public class HistoryAdapt extends BaseAdapter {
             }
         });
 
-        historyHolder.profit.setText(data.get(position).getProfit());
-        if (Double.parseDouble(data.get(position).getProfit())>=0){
-            historyHolder.profit.setTextColor(context.getResources().getColor(R.color.colorBlue));
-        }else {
-            historyHolder.profit.setTextColor(context.getResources().getColor(R.color.colorRed));
-        }
+
         if (data.get(position).getCmd().equals("0")||data.get(position).getCmd().equals("1")){
+
+            historyHolder.profit.setText(data.get(position).getProfit());
+            if (Double.parseDouble(data.get(position).getProfit())>=0){
+                historyHolder.profit.setTextColor(context.getResources().getColor(R.color.colorBlue));
+            }else {
+                historyHolder.profit.setTextColor(context.getResources().getColor(R.color.colorRed));
+            }
             // buy 或者 sell 将expandView 中的参数改为库存，税金，手续费
             historyHolder.historySwap.setText(context.getResources().getString(R.string.Swap));
             historyHolder.historyTaxes.setText(context.getResources().getString(R.string.Taxes));
@@ -118,12 +120,28 @@ public class HistoryAdapt extends BaseAdapter {
                     :"sell "+data.get(position).getVolume());
             historyHolder.openAndClosePrice.setText(data.get(position).getOpen_price()+"→"+data.get(position).getClose_price());
         }else if (data.get(position).getCmd().equals("6")){
+            historyHolder.profit.setText(data.get(position).getProfit());
+            if (Double.parseDouble(data.get(position).getProfit())>=0){
+                historyHolder.profit.setTextColor(context.getResources().getColor(R.color.colorBlue));
+            }else {
+                historyHolder.profit.setTextColor(context.getResources().getColor(R.color.colorRed));
+            }
             historyHolder.historySwap.setText(context.getResources().getString(R.string.Swap));
             historyHolder.historyTaxes.setText(context.getResources().getString(R.string.Taxes));
             historyHolder.historyCharges.setText(context.getResources().getString(R.string.Charges));
             historyHolder.symbol.setText("Balance");
+            historyHolder.cmdAndVolume.setText("");
+            historyHolder.openAndClosePrice.setText("");
         }else if (data.get(position).getCmd().equals("7")){
+            historyHolder.profit.setText(data.get(position).getProfit());
+            if (Double.parseDouble(data.get(position).getProfit())>=0){
+                historyHolder.profit.setTextColor(context.getResources().getColor(R.color.colorBlue));
+            }else {
+                historyHolder.profit.setTextColor(context.getResources().getColor(R.color.colorRed));
+            }
             historyHolder.symbol.setText("Credit");
+            historyHolder.cmdAndVolume.setText("");
+            historyHolder.openAndClosePrice.setText("");
             historyHolder.historySwap.setText(context.getResources().getString(R.string.Swap));
             historyHolder.historyTaxes.setText(context.getResources().getString(R.string.Taxes));
             historyHolder.historyCharges.setText(context.getResources().getString(R.string.Charges));
@@ -140,19 +158,31 @@ public class HistoryAdapt extends BaseAdapter {
             historyHolder.historySwap.setText(context.getResources().getString(R.string.Price));
             historyHolder.historyTaxes.setText(context.getResources().getString(R.string.Date));
             historyHolder.historyCharges.setText(context.getResources().getString(R.string.Time));
-            historyHolder.cmdAndVolume.setText("sell Limit");
+            historyHolder.cmdAndVolume.setText("buy Limit");
             historyHolder.cmdAndVolume.setTextColor(context.getResources().getColor(R.color.colorBlue));
             historyHolder.openAndClosePrice.setText(data.get(position).getVolume()+" at "+data.get(position).getOpen_price());
-            historyHolder.symbol.setText("buy Limit");
         }else if (data.get(position).getCmd().equals("4")){
+
+            historyHolder.profit.setText(data.get(position).getProfit());
+            if (Double.parseDouble(data.get(position).getProfit())>=0){
+                historyHolder.profit.setTextColor(context.getResources().getColor(R.color.colorBlue));
+            }else {
+                historyHolder.profit.setTextColor(context.getResources().getColor(R.color.colorRed));
+            }
             historyHolder.historySwap.setText(context.getResources().getString(R.string.Price));
             historyHolder.historyTaxes.setText(context.getResources().getString(R.string.Date));
             historyHolder.historyCharges.setText(context.getResources().getString(R.string.Time));
             historyHolder.symbol.setText(data.get(position).getSymbol()+",");
             historyHolder.cmdAndVolume.setTextColor(context.getResources().getColor(R.color.colorBlue));
             historyHolder.openAndClosePrice.setText(data.get(position).getVolume()+" at "+data.get(position).getOpen_price());
-            historyHolder.symbol.setText("buy Stop");
+            historyHolder.cmdAndVolume.setText("buy Stop");
         }else if (data.get(position).getCmd().equals("5")){
+            historyHolder.profit.setText(data.get(position).getProfit());
+            if (Double.parseDouble(data.get(position).getProfit())>=0){
+                historyHolder.profit.setTextColor(context.getResources().getColor(R.color.colorBlue));
+            }else {
+                historyHolder.profit.setTextColor(context.getResources().getColor(R.color.colorRed));
+            }
             historyHolder.historySwap.setText(context.getResources().getString(R.string.Price));
             historyHolder.historyTaxes.setText(context.getResources().getString(R.string.Date));
             historyHolder.historyCharges.setText(context.getResources().getString(R.string.Time));

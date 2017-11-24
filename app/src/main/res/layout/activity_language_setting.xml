@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="activity.commt4mtmandroid.activity.LanguageSettingActivity">
+
+    <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/tb_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorBlue"
+        android:elevation="2dp"
+        android:translationZ="2dp"
+        android:titleTextColor="@color/colorWhite"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+        app:theme="@style/ToolbarTheme"
+        app:title="@string/Language"
+        app:titleTextColor="@color/colorWhite">
+        <TextView
+            android:id="@+id/ensure"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:text="OK"
+            android:textColor="@color/colorWhite"
+            android:layout_gravity="right"
+            android:layout_width="56dp"
+            android:layout_height="match_parent" />
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#EFEFEF"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:text="@string/Language_Choose"
+        android:textColor="@color/color333"
+        android:textSize="18dp" />
+
+    <RelativeLayout
+        android:id="@+id/Chinese_rl"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:clickable="true"
+        android:foreground="?selectableItemBackground">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="中文"
+            android:textColor="@color/color333"
+            android:textSize="16dp" />
+        <ImageView
+            android:id="@+id/Chinese_iv"
+            android:layout_margin="20dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:background="@mipmap/language_right"
+            android:layout_width="24dp"
+            android:layout_height="24dp" />
+
+        <View
+            style="@style/line_1px"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="20dp"></View>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/English_rl"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:clickable="true"
+        android:foreground="?selectableItemBackground">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="English"
+            android:textColor="@color/color333"
+            android:textSize="16dp" />
+
+        <ImageView
+            android:id="@+id/English_iv"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="20dp"
+            android:background="@mipmap/language_right" />
+
+        <View
+            style="@style/line_1px"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="20dp"></View>
+    </RelativeLayout>
+</LinearLayout>

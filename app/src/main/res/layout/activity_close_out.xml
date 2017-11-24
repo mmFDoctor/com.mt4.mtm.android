@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="closeOutEntity"
+            type="activity.commt4mtmandroid.bindingEntity.CloseOutEntity" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="activity.commt4mtmandroid.activity.CloseOutActivity">
+
+
+        <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/tb_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorBlue"
+            android:elevation="2dp"
+            android:translationZ="2dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+            app:theme="@style/ToolbarTheme"
+            app:title=" "
+            app:titleTextColor="@color/colorWhite"></android.support.v7.widget.Toolbar>
+        <LinearLayout
+            android:id="@+id/lina"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:onClick="@{closeOutEntity.smallReduce}"
+                android:textColor="@{Double.parseDouble(closeOutEntity.closeVolum)>0.01?@color/colorBlue:@color/colorccc}"
+                android:text="-0.01"
+                android:textSize="14dp" />
+
+            <TextView
+                android:onClick="@{closeOutEntity.bigReduce}"
+                android:textColor="@{Double.parseDouble(closeOutEntity.closeVolum)>0.01?@color/colorBlue:@color/colorccc}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="-0.1"
+                android:textSize="14dp" />
+
+            <TextView
+                android:text="@{closeOutEntity.closeVolum}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/color333"
+                android:textSize="14dp" />
+
+            <TextView
+                android:textColor="@{Double.parseDouble(closeOutEntity.finalVolum)>Double.parseDouble(closeOutEntity.closeVolum)?@color/colorBlue:@color/colorccc}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="+0.1"
+                android:onClick="@{closeOutEntity.bigIncrease}"
+                android:textSize="14dp" />
+
+            <TextView
+                android:onClick="@{closeOutEntity.smallIncrease}"
+                android:layout_width="wrap_content"
+                android:textColor="@{Double.parseDouble(closeOutEntity.finalVolum)>Double.parseDouble(closeOutEntity.closeVolum)?@color/colorBlue:@color/colorccc}"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="+0.01"
+                android:textSize="14dp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorccc" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/ask"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:textColor="@color/colorBlue"
+                android:textSize="16dp" />
+
+            <View
+
+                android:layout_width="40dp"
+                android:layout_height="0dp" />
+
+            <TextView
+                android:id="@+id/bid"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:textColor="@color/colorBlue"
+                android:textSize="16dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="止损"
+                android:textColor="@color/color333"
+                android:textSize="16dp" />
+            <LinearLayout
+                android:layout_weight="1"
+                android:id="@+id/changeL1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="—"
+                    android:textColor="@color/colorccc"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:textSize="16dp"
+                    android:id="@+id/editText"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:text="0.00000"
+                    android:textColor="@color/color333" />
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
+                    android:gravity="center"
+                    android:text="+"
+                    android:textColor="@color/colorccc"
+                    android:textSize="20dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+        <View
+            style="@style/line_1px"
+            android:layout_below="@+id/changeL1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorccc" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="获利"
+                android:textColor="@color/color333"
+                android:textSize="16dp" />
+            <LinearLayout
+                android:layout_weight="1"
+                android:id="@+id/changeL2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="—"
+                    android:textColor="@color/colorccc"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:textSize="16dp"
+                    android:background="@null"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center|top"
+                    android:text="0.00000"
+                    android:textColor="@color/color333" />
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
+                    android:gravity="center"
+                    android:text="+"
+                    android:textColor="@color/colorccc"
+                    android:textSize="20dp" />
+            </LinearLayout>
+        </LinearLayout>
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/linechart"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"></com.github.mikephil.charting.charts.LineChart>
+        <TextView
+            android:textSize="14dp"
+            android:paddingLeft="20dp"
+            android:gravity="center"
+            android:text="注意：市价交易模式下的实际成交价格，可能会和请求价格有一定差异"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+        <View style="@style/line_1px"/>
+        <TextView
+            android:id="@+id/closeOutTextView"
+            android:background="@color/colorWhite"
+            android:translationZ="1dp"
+            android:elevation="1dp"
+            android:foreground="?selectableItemBackground"
+            android:clickable="true"
+            android:textSize="22dp"
+            android:gravity="center"
+            android:textColor="@color/colorBlue"
+            android:text="平仓"
+            android:layout_width="match_parent"
+            android:layout_height="60dp" />
+    </LinearLayout>
+
+</layout>

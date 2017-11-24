@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rela"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="5dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="NZDUSDv1"
+        android:textColor="@color/color333"
+        android:textSize="16dp" />
+    <TextView
+        android:id="@+id/time"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/name"
+        android:textSize="12dp"
+        android:text="11:26:02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/descrip"
+        android:textSize="13dp"
+        android:layout_marginLeft="10dp"
+        android:text="点差：64"
+        android:layout_below="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/pidPrice"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:gravity="right"
+        android:text="NZDUSDv1"
+        android:textColor="@color/color333"
+        android:textSize="16dp" />
+    <TextView
+        android:id="@+id/highPrice"
+        android:layout_marginTop="5dp"
+        android:textSize="13dp"
+        android:layout_alignRight="@+id/pidPrice"
+        android:layout_below="@+id/pidPrice"
+        android:text="最高：112.729"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+
+        android:layout_marginTop="10dp"
+        android:id="@+id/askPrice"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/pidPrice"
+        android:gravity="right"
+        android:text="NZDUSDv1"
+        android:textColor="@color/color333"
+        android:textSize="16dp" />
+    <TextView
+        android:layout_marginTop="5dp"
+        android:textSize="13dp"
+        android:text="最低：112.348"
+        android:gravity="right"
+        android:layout_alignRight="@+id/askPrice"
+        android:layout_below="@+id/askPrice"
+        android:id="@+id/minPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

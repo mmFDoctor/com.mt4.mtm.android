@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/color333"
+            android:textSize="14dp"
+            android:text="@string/Balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/blace"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/color333"
+            android:layout_alignParentRight="true"
+            android:textSize="14dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/color333"
+            android:textSize="14dp"
+            android:text="@string/Equity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            />
+        <TextView
+            android:id="@+id/equity"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/color333"
+            android:layout_alignParentRight="true"
+            android:textSize="14dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/color333"
+            android:textSize="14dp"
+            android:text="@string/Margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+
+            android:id="@+id/margin"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/color333"
+            android:layout_alignParentRight="true"
+            android:textSize="14dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/color333"
+            android:textSize="14dp"
+            android:text="@string/Free_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/margin_free"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/color333"
+            android:layout_alignParentRight="true"
+            android:textSize="14dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/color333"
+            android:textSize="14dp"
+            android:text="@string/Margin_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/margin_level"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/color333"
+            android:layout_alignParentRight="true"
+            android:textSize="14dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <View style="@style/line_1px" android:layout_height="1dp"
+        android:background="#ddd"/>
+    <TextView
+        android:background="#EFEFEF"
+        android:paddingLeft="10dp"
+        android:textSize="14dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:text="@string/Price"
+        android:textColor="@color/color999"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

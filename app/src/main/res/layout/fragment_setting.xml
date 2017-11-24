@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/colorWhite"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:id="@+id/r1"
+        android:background="@color/colorBlue"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragmentTopHeigh">
+        <TextView
+            android:text="@string/Settings"
+            android:layout_centerHorizontal="true"
+            android:textSize="20dp"
+            android:textColor="@color/colorWhite"
+            android:layout_centerVertical="true"
+            android:id="@+id/chart_symbolName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:clickable="true"
+        android:foreground="?selectableItemBackground"
+        android:background="@color/colorWhite"
+        android:id="@+id/r4"
+        android:layout_below="@+id/r1"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/service_name"
+            android:layout_marginRight="80dp"
+            android:layout_marginLeft="80dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="22dp"
+            android:lines="1"
+            android:ellipsize="end"
+            android:textColor="@color/color333"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/service_message"
+            android:textColor="@color/color333"
+            android:gravity="center"
+            android:textSize="18dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/service_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View style="@style/line_1px"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="15dp"
+            />
+        <ImageView
+            android:layout_marginRight="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/more"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorWhite"
+        android:clickable="true"
+        android:foreground="?selectableItemBackground"
+        android:layout_below="@+id/r4"
+        >
+
+        <com.joooonho.SelectableRoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/icon1"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/setting_user"
+            android:layout_centerVertical="true"
+            app:sriv_left_bottom_corner_radius="5dp"
+            app:sriv_left_top_corner_radius="5dp"
+            app:sriv_right_bottom_corner_radius="5dp"
+            app:sriv_right_top_corner_radius="5dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp" />
+        <ImageView
+            android:layout_marginRight="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/more"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+        <TextView
+            android:id="@+id/text1"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/icon1"
+            android:layout_centerVertical="true"
+            android:textSize="18dp"
+            android:textColor="@color/color333"
+            android:text="@string/New_Account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View style="@style/line_1px"
+            android:layout_alignParentBottom="true"
+            android:layout_alignLeft="@+id/text1"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_below="@id/login"
+        android:id="@+id/news"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorWhite"
+        android:clickable="true"
+        android:foreground="?selectableItemBackground"
+        >
+
+        <com.joooonho.SelectableRoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/createIcon"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/news"
+            android:layout_centerVertical="true"
+            app:sriv_left_bottom_corner_radius="5dp"
+            app:sriv_left_top_corner_radius="5dp"
+            app:sriv_right_bottom_corner_radius="5dp"
+            app:sriv_right_top_corner_radius="5dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp" />
+        <ImageView
+            android:layout_marginRight="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/more"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+        <TextView
+            android:id="@+id/text2"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/createIcon"
+            android:layout_centerVertical="true"
+            android:textSize="18dp"
+            android:textColor="@color/color333"
+            android:text="@string/News"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View style="@style/line_1px"
+            android:layout_alignParentBottom="true"
+            android:layout_alignLeft="@+id/text2"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_below="@id/news"
+        android:id="@+id/r5"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorWhite"
+        android:clickable="true"
+        android:foreground="?selectableItemBackground"
+        >
+
+        <com.joooonho.SelectableRoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/email_icon"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/email_icon"
+            android:layout_centerVertical="true"
+            app:sriv_left_bottom_corner_radius="5dp"
+            app:sriv_left_top_corner_radius="5dp"
+            app:sriv_right_bottom_corner_radius="5dp"
+            app:sriv_right_top_corner_radius="5dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp" />
+        <ImageView
+            android:layout_marginRight="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/more"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+        <TextView
+            android:id="@+id/text4"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/email_icon"
+            android:layout_centerVertical="true"
+            android:textSize="18dp"
+            android:textColor="@color/color333"
+            android:text="@string/Mailbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View style="@style/line_1px"
+            android:layout_alignParentBottom="true"
+            />
+
+    </RelativeLayout>
+    <View
+        android:id="@+id/view_bg"
+        android:background="@color/colorAAA"
+        android:layout_below="@+id/r5"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+    <RelativeLayout
+        android:layout_below="@id/view_bg"
+        android:id="@+id/r6"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorWhite"
+        android:clickable="true"
+        android:foreground="?selectableItemBackground"
+        >
+
+        <com.joooonho.SelectableRoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/language"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/language"
+            android:layout_centerVertical="true"
+            app:sriv_left_bottom_corner_radius="5dp"
+            app:sriv_left_top_corner_radius="5dp"
+            app:sriv_right_bottom_corner_radius="5dp"
+            app:sriv_right_top_corner_radius="5dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp" />
+        <ImageView
+            android:layout_marginRight="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/more"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+        <TextView
+            android:id="@+id/text5"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/language"
+            android:layout_centerVertical="true"
+            android:textSize="18dp"
+            android:textColor="@color/color333"
+            android:text="@string/Language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View style="@style/line_1px"
+            android:layout_alignParentBottom="true"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_below="@id/r6"
+        android:id="@+id/r7"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorWhite"
+        android:clickable="true"
+        android:foreground="?selectableItemBackground"
+        >
+
+        <com.joooonho.SelectableRoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/service"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/service"
+            android:layout_centerVertical="true"
+            app:sriv_left_bottom_corner_radius="5dp"
+            app:sriv_left_top_corner_radius="5dp"
+            app:sriv_right_bottom_corner_radius="5dp"
+            app:sriv_right_top_corner_radius="5dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp" />
+        <ImageView
+            android:layout_marginRight="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/more"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+        <TextView
+            android:id="@+id/text6"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/service"
+            android:layout_centerVertical="true"
+            android:textSize="18dp"
+            android:textColor="@color/color333"
+            android:text="@string/Service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View style="@style/line_1px"
+            android:layout_alignParentBottom="true"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/loginAgain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:clickable="true"
+        android:foreground="?selectableItemBackground"
+        android:padding="15dp">
+
+        <TextView
+
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="退出"
+            android:textColor="@color/colorRed"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+</RelativeLayout>

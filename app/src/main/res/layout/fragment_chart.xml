@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+
+        android:background="@color/colorBlue"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragmentTopHeigh">
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"
+            android:textColor="@color/colorWhite"
+            android:layout_centerVertical="true"
+            android:id="@+id/chart_symbolName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/time"
+            android:clickable="true"
+            android:foreground="?selectableItemBackground"
+            android:layout_toLeftOf="@+id/add"
+            android:padding="13dp"
+            android:src="@mipmap/time"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+        <ImageView
+            android:clickable="true"
+            android:foreground="?selectableItemBackground"
+            android:id="@+id/add"
+            android:padding="13dp"
+            android:src="@mipmap/chart_add"
+            android:layout_alignParentRight="true"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+        <ImageView
+            android:clickable="true"
+            android:foreground="?selectableItemBackground"
+            android:id="@+id/symbol_list"
+            android:padding="13dp"
+            android:src="@mipmap/symbol_list"
+            android:layout_toLeftOf="@+id/time"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+        <ImageView
+            android:clickable="true"
+            android:foreground="?selectableItemBackground"
+            android:id="@+id/chart_menu"
+            android:padding="13dp"
+            android:src="@mipmap/chart_menu"
+            android:layout_toLeftOf="@+id/symbol_list"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+    </RelativeLayout>
+
+    <com.kennyc.view.MultiStateView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/loadingView"
+        app:msv_emptyView="@layout/item_chart_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <activity.commt4mtmandroid.view.MyCombinChart
+        android:id="@+id/combineChart"
+        android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"></activity.commt4mtmandroid.view.MyCombinChart>
+    <com.github.mikephil.charting.charts.CombinedChart
+        android:id="@+id/linechart"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0px"></com.github.mikephil.charting.charts.CombinedChart>
+</LinearLayout>
+    </com.kennyc.view.MultiStateView>
+</LinearLayout>

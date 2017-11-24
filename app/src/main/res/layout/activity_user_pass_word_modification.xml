@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="activity.commt4mtmandroid.activity.UserPassWordModification">
+
+    <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/tb_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorWhite"
+        android:elevation="2dp"
+        android:translationZ="2dp"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:title="修改密码"
+        app:titleTextColor="@color/color333">
+        <TextView
+            android:gravity="center"
+            android:clickable="true"
+            android:foreground="?selectableItemBackground"
+            android:id="@+id/submit"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:text="更改"
+            android:textColor="@color/colorBlue"
+            android:textSize="18dp" />
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@mipmap/user_account_icon"
+            android:padding="3dp"
+            android:id="@+id/icon"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+        <TextView
+            android:lines="1"
+            android:ellipsize="end"
+            android:textColor="@color/color333"
+            android:textSize="16dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/icon"
+            android:text="MetaTrader 4 Demo"
+            android:layout_alignTop="@+id/icon"
+            android:id="@+id/serviceName"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:lines="1"
+            android:ellipsize="end"
+            android:text="247619974 - MetaQuotes - Demo"
+            android:textColor="@color/color333"
+            android:textSize="14dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/icon"
+            android:layout_alignBottom="@+id/icon"
+            android:id="@+id/serviceDescrp"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <RelativeLayout
+
+        android:background="@color/colorWhite"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <View style="@style/line_1px"></View>
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/color333"
+            android:textSize="18dp"
+            android:text="当前"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:maxLength="20"
+            android:id="@+id/oldPsw_editText"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorWhite"
+            android:paddingRight="20dp"
+            android:gravity="right"
+            android:hint="当前密码"
+            android:inputType="text"
+            android:layout_alignParentRight="true"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content" />
+        <View style="@style/line_1px"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentBottom="true" />
+
+    </RelativeLayout>
+    <TextView
+        android:background="@color/colorccc"
+        android:padding="10dp"
+        android:textSize="18dp"
+        android:gravity="center"
+        android:text="输入新密码"
+        android:textColor="@color/color333"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <RelativeLayout
+
+        android:background="@color/colorWhite"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <View style="@style/line_1px"></View>
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/color333"
+            android:textSize="18dp"
+            android:text="新的"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:maxLength="20"
+            android:id="@+id/newPsw_editText"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorWhite"
+            android:paddingRight="20dp"
+            android:gravity="right"
+            android:hint="新密码"
+            android:inputType="text"
+            android:layout_alignParentRight="true"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content" />
+        <View style="@style/line_1px"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentBottom="true" />
+
+    </RelativeLayout>
+    <RelativeLayout
+
+        android:background="@color/colorWhite"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <View style="@style/line_1px"></View>
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/color333"
+            android:textSize="18dp"
+            android:text="确认"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:maxLength="20"
+            android:id="@+id/comform_EditText"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorWhite"
+            android:paddingRight="20dp"
+            android:gravity="right"
+            android:hint="确认密码"
+            android:inputType="text"
+            android:layout_alignParentRight="true"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content" />
+        <View style="@style/line_1px"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentBottom="true" />
+
+    </RelativeLayout>
+</LinearLayout>

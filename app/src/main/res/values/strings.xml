@@ -1,0 +1,85 @@
+<resources>
+    <string name="app_name">MeraTrader4</string>
+
+    <string name="Quotes">行情</string>
+    <string name="Chart">图表</string>
+    <string name="Trade">交易</string>
+    <string name="History">历史</string>
+    <string name="Spread">点差</string>
+    //点差
+    <string name="Low">最低</string>
+    <string name="High">最高</string>
+    <string name="Add_Symbol">添加交易品种</string>
+    <string name="Select_Symbol">选定交易品种</string>
+
+    <string name="Equity">净值</string>
+    <string name="Margin">预付款</string>
+    <string name="Free_margin">可用预付款</string>
+    <string name="Margin_level">预付款比例（%）</string>
+
+    <string name="Profit">利润</string>
+    <string name="Credit">信用</string>
+    <string name="Deposit">入金</string>
+    <string name="Withdrawal">出金</string>
+    <string name="Balance">结余</string>
+
+
+    <string name="New_Account">新账户</string>
+    <string name="Mailbox">邮箱</string>
+    <string name="News">新闻</string>
+    <string name="Settings">设置</string>
+    <string name="Language">语言</string>
+    <string name="Language_Choose">语言选择</string>
+
+    <string name="SL">止损：</string>
+    <string name="TP">获利：</string>
+    <string name="Swap">库存费：</string>
+    <string name="Taxes">税费：</string>
+    <string name="Charges">手续费</string>
+
+    <string name="Day">日</string>
+    <string name="Week">周</string>
+    <string name="Month">月</string>
+    <string name="Custom">自定义</string>
+    <string name="ChangeLaguageDesc">重启应用以应用这些变化</string>
+    <string name="cancel">取消</string>
+
+    <string name="Details">详细情况</string>
+    <string name="Simple">简单模式</string>
+    <string name="Adcancd">高级模式</string>
+
+    <string name="Dights">小数位</string>
+    <string name="Stops_level">止损水平</string>
+    <string name="Pendings_GTC">挂单到结束</string>
+    <string name="Contract_size">合约数量</string>
+    <string name="Profit_calculation">利润计算模式</string>
+    <string name="Swap_type">库存费类型</string>
+    <string name="Swap_long">买入库存费</string>
+    <string name="Swap_short">卖出库存费</string>
+    <string name="Margin_Calculation">预付款计算</string>
+    <string name="Margin_hedge">预付款对冲</string>
+
+    <string name="Current_Account">当前账户</string>
+    <string name="Trade_Account">交易账户</string>
+
+    <string name="Swr">开始无需注册</string>
+    <string name="SwrDescp">一个匿名账户将自动登录</string>
+    <string name="Opda">打开一个匿名账户</string>
+    <string name="OpdaDesc">在128个交易商中选择并注册一个账户</string>
+    <string name="Laea">登录一个已有账户</string>
+    <string name="LaeaDesc">使用您的登录名/密码连接您选择的交易商</string>
+    <string name="Account">账户</string>
+
+    <string name="Close">平仓</string>
+    <string name="Modify">修改</string>
+    <string name="Service">客服</string>
+
+    <string name="Order">订单</string>
+    <string name="deleteMenu">删除</string>
+    <string name="author">作者：</string>
+
+    <string name="Index">指标</string>
+    <string name="Price">价位</string>
+    <string name="Date">日期</string>
+    <string name="Time">时间</string>
+</resources>

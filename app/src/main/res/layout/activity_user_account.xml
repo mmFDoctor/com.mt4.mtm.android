@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="activity.commt4mtmandroid.activity.UserAccountActivity">
+
+    <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/tb_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorWhite"
+        android:elevation="2dp"
+        android:translationZ="2dp"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:title="@string/Account"
+        app:titleTextColor="@color/color333">
+        <ImageView
+            android:id="@+id/userAccountAdd"
+            android:layout_width="56dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:clickable="true"
+            android:foreground="?selectableItemBackground"
+            android:padding="15dp"
+            android:src="@mipmap/add_blue" />
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAAA"
+        android:paddingLeft="15dp"
+        android:text="@string/Current_Account"
+        android:textColor="@color/color333"
+        android:textSize="20dp" />
+
+    <RelativeLayout
+        android:clickable="true"
+        android:foreground="?selectableItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@mipmap/user_account_icon"
+            android:padding="3dp"
+            android:id="@+id/icon"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+        <TextView
+            android:layout_toLeftOf="@+id/user_account_message"
+            android:lines="1"
+            android:ellipsize="end"
+            android:textColor="@color/color333"
+            android:textSize="16dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/icon"
+            android:text="MetaTrader 4 Demo"
+            android:layout_alignTop="@+id/icon"
+            android:id="@+id/serviceName"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_toLeftOf="@+id/user_account_message"
+            android:lines="1"
+            android:ellipsize="end"
+            android:text="247619974 - MetaQuotes - Demo"
+            android:textColor="@color/color333"
+            android:textSize="14dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/icon"
+            android:layout_alignBottom="@+id/icon"
+            android:id="@+id/serviceDescrp"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:foreground="?selectableItemBackground"
+            android:clickable="true"
+            android:padding="10dp"
+            android:src="@mipmap/user_account_more"
+            android:layout_alignParentRight="true"
+            android:id="@+id/user_account_message"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAAA"
+        android:paddingLeft="15dp"
+        android:text="@string/Trade_Account"
+        android:textColor="@color/color333"
+        android:textSize="20dp" />
+    <ListView
+        android:id="@+id/user_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
+</LinearLayout>

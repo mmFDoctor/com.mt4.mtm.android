@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="activity.commt4mtmandroid.activity.SymbolDetailsActivity">
+
+    <data>
+
+        <variable
+            name="symbolDetails"
+            type="activity.commt4mtmandroid.bean.respDTO.SymbolDetailsRespDTO" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/tb_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorBlue"
+            android:titleTextColor="@color/colorWhite"
+            android:elevation="2dp"
+            android:translationZ="2dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+            app:theme="@style/ToolbarTheme"
+            app:title=" "
+            app:subtitleTextColor="@color/colorWhite"
+            app:titleTextColor="@color/colorWhite"></android.support.v7.widget.Toolbar>
+
+        <ScrollView
+            android:background="@color/colorWhite"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:background="@color/colorWhite"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RelativeLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textColor="@color/color333"
+                        android:layout_margin="10dp"
+                        android:textSize="16dp"
+                        android:text="@{@string/Spread}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:textColor="@color/color333"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="10dp"
+                        android:text="浮动"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <View style="@style/line_1px"></View>
+                <RelativeLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textColor="@color/color333"
+                        android:layout_margin="10dp"
+                        android:textSize="16dp"
+                        android:text="@{@string/Dights}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:textColor="@color/color333"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="10dp"
+                        android:text="@{symbolDetails.data.symbolInfo.digits}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <View style="@style/line_1px"></View>
+                <RelativeLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textColor="@color/color333"
+                        android:layout_margin="10dp"
+                        android:textSize="16dp"
+                        android:text="@{@string/Stops_level}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:textColor="@color/color333"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="10dp"
+                        android:text="@{symbolDetails.data.symbolInfo.stops_level}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <View style="@style/line_1px"></View>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textColor="@color/color333"
+                        android:layout_margin="10dp"
+                        android:textSize="16dp"
+                        android:text="@{@string/Pendings_GTC}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:textColor="@color/color333"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="10dp"
+                        android:text="是的"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <View style="@style/line_1px"></View>
+                <RelativeLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textColor="@color/color333"
+                        android:layout_margin="10dp"
+                        android:textSize="16dp"
+                        android:text="@{@string/Contract_size}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:textColor="@color/color333"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="10dp"
+                        android:text="@{symbolDetails.data.symbolInfo.contract_size}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <View style="@style/line_1px"></View>
+
+                <RelativeLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="@{@string/Profit_calculation}"
+                        android:textColor="@color/color333"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="10dp"
+                        android:text="Forex"
+                        android:textColor="@color/color333" />
+                </RelativeLayout>
+
+                <View style="@style/line_1px"></View>
+                <RelativeLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textColor="@color/color333"
+                        android:layout_margin="10dp"
+                        android:textSize="16dp"
+                        android:text="@{@string/Swap_type}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:textColor="@color/color333"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="10dp"
+                        android:text="点"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <View style="@style/line_1px"></View>
+                <RelativeLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textColor="@color/color333"
+                        android:layout_margin="10dp"
+                        android:textSize="16dp"
+                        android:text="@{@string/Swap_long}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:textColor="@color/color333"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="10dp"
+                        android:text="@{symbolDetails.data.symbolInfo.swap_long}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <View style="@style/line_1px"></View>
+                <RelativeLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textColor="@color/color333"
+                        android:layout_margin="10dp"
+                        android:textSize="16dp"
+                        android:text="@{@string/Swap_short}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:textColor="@color/color333"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="10dp"
+                        android:text="@{symbolDetails.data.symbolInfo.swap_short}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <View style="@style/line_1px"></View>
+                <RelativeLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textColor="@color/color333"
+                        android:layout_margin="10dp"
+                        android:textSize="16dp"
+                        android:text="@{@string/Margin_Calculation}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:textColor="@color/color333"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="10dp"
+                        android:text="Forex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <View style="@style/line_1px"></View>
+                <RelativeLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textColor="@color/color333"
+                        android:layout_margin="10dp"
+                        android:textSize="16dp"
+                        android:text="@{@string/Margin_hedge}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:textColor="@color/color333"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="10dp"
+                        android:text="@{symbolDetails.data.symbolInfo.margin_head}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:clickable="true"
+    android:id="@+id/rela"
+    android:foreground="?selectableItemBackground"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/checkBox"
+        android:layout_marginLeft="10dp"
+        android:layout_centerVertical="true"
+        android:background="@mipmap/my_addtion_menu"
+        android:layout_width="24dp"
+        android:layout_height="24dp" />
+    <TextView
+        android:layout_toLeftOf="@+id/more"
+        android:lines="1"
+        android:ellipsize="end"
+        android:layout_toRightOf="@+id/checkBox"
+        android:id="@+id/name"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="8dp"
+        android:textColor="@color/color333"
+        android:textSize="14dp"
+        android:text="AUDUSDv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_toLeftOf="@+id/more"
+        android:lines="1"
+        android:ellipsize="end"
+        android:layout_toRightOf="@+id/checkBox"
+        android:textSize="12dp"
+        android:id="@+id/descrip"
+        android:text="Australian Dollar vs New Zealand Dollar（澳元兑换美元）"
+        android:layout_below="@+id/name"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:contentDescription="@null"
+        android:background="@null"
+        android:id="@+id/checkbox"
+        android:padding="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="40dp"
+        android:layout_height="40dp" />
+    <View style="@style/line_1px"></View>
+</RelativeLayout>

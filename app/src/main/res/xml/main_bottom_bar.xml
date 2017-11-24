@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/radioButton_market"
+        icon="@mipmap/market_null"
+        title="@string/Quotes" />
+    <tab
+        id="@+id/radioButton_chart"
+        icon="@mipmap/chart_null"
+        title="@string/Chart" />
+    <tab
+        id="@+id/radioButton_Transaction"
+        icon="@mipmap/transction_null"
+        title="@string/Trade" />
+    <tab
+        id="@+id/radioButton_History"
+        icon="@mipmap/history_null"
+        title="@string/History" />
+    <tab
+        id="@+id/radioButton_Settion"
+        icon="@mipmap/setting_null"
+        title="@string/Settings" />
+</tabs>

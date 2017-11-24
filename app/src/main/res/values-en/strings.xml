@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MeraTrader4</string>
+    <string name="Quotes">Quotes</string>
+    <string name="Chart">Chart</string>
+    <string name="Trade">Trade</string>
+    <string name="History">History</string>
+    <string name="Spread">Spred</string> //点差
+    <string name="Low">Low</string>
+    <string name="High">High</string>
+    <string name="Add_Symbol">Add Symbol</string>
+    <string name="Select_Symbol">Select Symbol</string>
+
+    <string name="Profit">Profit</string>
+    <string name="Credit">Credit</string>
+    <string name="Deposit">Deposit</string>
+    <string name="Withdrawal">Withdrawal</string>
+    <string name="Balance">Balance</string>
+
+    <string name="Equity">Equity</string>
+    <string name="Margin">Margin</string>
+    <string name="Free_margin">Free_margin</string>
+    <string name="Margin_level">Margin level（%）</string>
+
+    <string name="New_Account">New Account</string>
+    <string name="Mailbox">Mailbox</string>
+    <string name="News">News</string>
+    <string name="Settings">Settings</string>
+    <string name="Language">Language</string>
+    <string name="Language_Choose">Language Choose</string>
+    <string name="SL">S/L</string>
+    <string name="TP">T/P</string>
+    <string name="Swap">Swap</string>
+    <string name="Taxes">Taxes</string>
+    <string name="Charges">Charges</string>
+
+    <string name="Day">Day</string>
+    <string name="Week">Week</string>
+    <string name="Month">Month</string>
+    <string name="Custom">Custom</string>
+
+    <string name="ChangeLaguageDesc">Restart the application to apply the changes</string>
+    <string name="cancel">cancel</string>
+
+    <string name="Details">Details</string>
+    <string name="Simple">Simple</string>
+    <string name="Adcancd">Adcancd</string>
+
+    <string name="Dights">Dights</string>
+    <string name="Stops_level" >Stops level</string>
+    <string name="Pendings_GTC">Pendings GTC</string>
+    <string name="Contract_size">Contract size</string>
+    <string name="Profit_calculation">Profit calculation</string>
+    <string name="Swap_type">Swap type</string>
+    <string name="Swap_long">Swap long</string>
+    <string name="Swap_short">Swap short</string>
+    <string name="Margin_Calculation">Margin Calculation</string>
+    <string name="Margin_hedge">Margin hedge</string>
+
+    <string name="Current_Account">Current Account</string>
+    <string name="Trade_Account">Trade Account</string>
+
+    <string name="Swr">Start without registration</string>
+    <string name="SwrDescp">An anonymous account will be automatically created for you</string>
+    <string name="Opda">Open a personal demo account</string>
+    <string name="OpdaDesc">Choose among 1844 brokers and register an account</string>
+    <string name="Laea">Login to an existing account</string>
+    <string name="LaeaDesc">Use your login/password to connect to the broker of your choice</string>
+    <string name="Account">Account</string>
+
+    <string name="Close">Close</string>
+    <string name="Modify">Modify</string>
+
+    <string name="Service">Service</string>
+    <string name="Order">Order</string>
+    <string name="deleteMenu">Delete</string>
+    <string name="author">author：</string>
+
+    <string name="Index">Index</string>
+    <string name="Price">Price</string>
+    <string name="Date">Date</string>
+    <string name="Time">Time</string>
+</resources>

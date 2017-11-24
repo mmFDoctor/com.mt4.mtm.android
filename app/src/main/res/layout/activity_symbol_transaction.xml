@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="activity.commt4mtmandroid.activity.SymbolTransactionActivity">
+
+    <data>
+
+        <variable
+            name="symbolTransction"
+            type="activity.commt4mtmandroid.bean.reqDTO.SymbolTransctionReqDTO" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/tb_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorBlue"
+            android:elevation="2dp"
+            android:translationZ="2dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+            app:theme="@style/ToolbarTheme"
+            app:title=" "
+            app:titleTextColor="@color/colorWhite">
+            <ImageView
+                android:layout_marginRight="20dp"
+                android:layout_gravity="right"
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
+                android:id="@+id/symbol_list"
+                android:padding="13dp"
+                android:src="@mipmap/symbol_list"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+        </android.support.v7.widget.Toolbar>
+
+        <ScrollView
+            android:layout_weight="1"
+            android:fillViewport="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{symbolTransction.commandChoose}"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="@{symbolTransction.commandText}"
+                            android:textColor="@color/color333"
+                            android:textSize="16dp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <View
+                            android:id="@+id/more"
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:background="@mipmap/more_ccc" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:layout_below="@+id/more"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@color/colorccc" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lina"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:onClick="@{symbolTransction.smallReduce}"
+                        android:text="-0.01"
+                        android:textColor="@{Double.parseDouble(symbolTransction.volumn)>0.01?@color/colorBlue:@color/colorccc}"
+                        android:textSize="14dp" />
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:onClick="@{symbolTransction.bigReduce}"
+                        android:text="-0.1"
+                        android:textColor="@{Double.parseDouble(symbolTransction.volumn)>0.01?@color/colorBlue:@color/colorccc}"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@{symbolTransction.volumn}"
+                        android:textColor="@color/color333"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:onClick="@{symbolTransction.bigAdd}"
+                        android:text="+0.1"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:onClick="@{symbolTransction.smallAdd}"
+                        android:text="+0.01"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="14dp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorccc" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/bid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="16dp" />
+
+
+                    <View
+
+                        android:layout_width="40dp"
+                        android:layout_height="0dp" />
+
+                    <TextView
+                        android:id="@+id/ask"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="16dp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/priceLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="40dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:onClick="@{symbolTransction.priceReduce}"
+                            android:text="—"
+                            android:textColor="@color/colorBlue"
+                            android:textSize="20dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="价格："
+                                android:textColor="@color/color999" />
+
+                            <EditText
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:background="@null"
+                                android:gravity="center|top"
+                                android:inputType="numberDecimal"
+                                android:text="@={symbolTransction.price}"
+                                android:textColor="@color/color333" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="40dp"
+                            android:layout_height="20dp"
+                            android:gravity="center"
+                            android:onClick="@{symbolTransction.priceAdd}"
+                            android:text="+"
+                            android:textColor="@color/colorBlue"
+                            android:textSize="20dp" />
+                    </LinearLayout>
+
+                    <View
+                        style="@style/line_1px"
+                        android:layout_below="@+id/changeL1"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/colorccc" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:gravity="center_vertical"
+                        android:textColor="@color/color333"
+                        android:textSize="16dp"
+                        android:text="止损"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:id="@+id/changeL1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="40dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:onClick="@{symbolTransction.askReduce}"
+                            android:text="—"
+                            android:textColor="@color/colorBlue"
+                            android:textSize="20dp" />
+
+                        <EditText
+                            android:id="@+id/editText"
+                            android:layout_width="0dp"
+                            android:layout_height="20dp"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:gravity="center|top"
+                            android:inputType="numberDecimal"
+                            android:text="@={symbolTransction.askText}"
+                            android:textColor="@color/color333" />
+
+                        <TextView
+                            android:layout_width="40dp"
+                            android:layout_height="20dp"
+                            android:gravity="center"
+                            android:onClick="@{symbolTransction.askAdd}"
+                            android:text="+"
+                            android:textColor="@color/colorBlue"
+                            android:textSize="20dp" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+                <View
+                    android:layout_marginLeft="10dp"
+                    style="@style/line_1px"
+                    android:layout_below="@+id/changeL1"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:gravity="center_vertical"
+                        android:textColor="@color/color333"
+                        android:textSize="16dp"
+                        android:text="获利"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:id="@+id/changeL2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="40dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:onClick="@{symbolTransction.bidReduce}"
+                            android:text="—"
+                            android:textColor="@color/colorBlue"
+                            android:textSize="20dp" />
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="20dp"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:gravity="center|top"
+                            android:inputType="numberDecimal"
+                            android:text="@={symbolTransction.bidText}"
+                            android:textColor="@color/color333" />
+
+                        <TextView
+                            android:layout_width="40dp"
+                            android:layout_height="20dp"
+                            android:gravity="center"
+                            android:onClick="@{symbolTransction.bidAdd}"
+                            android:text="+"
+                            android:textColor="@color/colorBlue"
+                            android:textSize="20dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+                <View
+                    style="@style/line_1px"
+                    android:layout_below="@+id/changeL2"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/linechart"
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"
+                    ></com.github.mikephil.charting.charts.LineChart>
+
+                <TextView
+                    android:id="@+id/explain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="注意：市价交易模式下的实际成交价格，可能会和请求价格有一定差异！"
+                    android:textColor="@color/color999" />
+            </LinearLayout>
+        </ScrollView>
+
+        <View style="@style/line_1px" />
+
+        <LinearLayout
+            android:id="@+id/sellLL"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
+                android:gravity="center"
+                android:onClick="@{symbolTransction.sellClick}"
+                android:text="SELL\n通过市场"
+                android:textColor="@color/colorRed" />
+
+            <View
+
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorccc" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
+                android:gravity="center"
+                android:onClick="@{symbolTransction.buyClick}"
+                android:text="BUY\n通过市场"
+                android:textColor="@color/colorBlue" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/sellText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:clickable="true"
+            android:foreground="?selectableItemBackground"
+            android:gravity="center"
+            android:onClick="@{symbolTransction.sellTextClick}"
+            android:text="下单"
+            android:textColor="@color/color666"
+            android:textSize="20dp"
+            android:visibility="gone" />
+    </LinearLayout>
+</layout>

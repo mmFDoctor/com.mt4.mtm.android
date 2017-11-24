@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="orderTransction"
+            type="activity.commt4mtmandroid.bindingEntity.OrderModificationEntity" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="activity.commt4mtmandroid.activity.OrderModificationActivity">
+
+        <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/tb_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorBlue"
+            android:elevation="2dp"
+            android:titleTextColor="@color/colorWhite"
+            android:translationZ="2dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+            app:theme="@style/ToolbarTheme"
+            app:title=" "
+            app:titleTextColor="@color/colorWhite"></android.support.v7.widget.Toolbar>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fillViewport="true"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/lina"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="-0.1"
+                        android:textColor="@color/colorccc"
+                        android:textSize="14dp" />
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="-0.01"
+                        android:textColor="@color/colorccc"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@{orderTransction.orVolum}"
+                        android:textColor="@color/color333"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="+0.01"
+                        android:textColor="@color/colorccc"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="+0.1"
+                        android:textColor="@color/colorccc"
+                        android:textSize="14dp" />
+                </LinearLayout>
+
+                <View
+
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_below="@+id/lina"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorccc" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/bid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="16dp" />
+
+
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="0dp" />
+
+                    <TextView
+                        android:id="@+id/ask"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="16dp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/priceLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="价格"
+                        android:textColor="@color/color333"
+                        android:textSize="16dp" />
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_width="40dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:onClick="@{orderTransction.priceReduce}"
+                            android:text="—"
+                            android:textColor="@color/colorBlue"
+                            android:textSize="20dp" />
+
+                        <EditText
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="20dp"
+                            android:background="@null"
+                            android:gravity="center|top"
+                            android:inputType="numberDecimal"
+                            android:text="@={orderTransction.orNowPrice}"
+                            android:textColor="@color/color333" />
+
+                        <TextView
+                            android:layout_width="40dp"
+                            android:layout_height="20dp"
+                            android:gravity="center"
+                            android:onClick="@{orderTransction.priceAdd}"
+                            android:text="+"
+                            android:textColor="@color/colorBlue"
+                            android:textSize="20dp" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+                <View
+                    style="@style/line_1px"
+                    android:layout_below="@+id/changeL1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorccc" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="止损"
+                        android:textColor="@color/color333"
+                        android:textSize="16dp" />
+
+                    <LinearLayout
+                        android:id="@+id/changeL1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="40dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:onClick="@{orderTransction.askAdd}"
+                            android:text="—"
+                            android:textColor="@color/colorBlue"
+                            android:textSize="20dp" />
+
+                        <EditText
+                            android:id="@+id/editText"
+                            android:layout_width="0dp"
+                            android:layout_height="20dp"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:gravity="center|top"
+                            android:inputType="numberDecimal"
+                            android:text="@={orderTransction.orSl}"
+                            android:textColor="@color/color333" />
+
+                        <TextView
+                            android:layout_width="40dp"
+                            android:layout_height="20dp"
+                            android:gravity="center"
+                            android:onClick="@{orderTransction.askReduce}"
+                            android:text="+"
+                            android:textColor="@color/colorBlue"
+                            android:textSize="20dp" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <View
+                    style="@style/line_1px"
+                    android:layout_below="@+id/changeL1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="获利"
+                        android:textColor="@color/color333"
+                        android:textSize="16dp" />
+
+                    <LinearLayout
+                        android:id="@+id/changeL2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="40dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:onClick="@{orderTransction.bidReduce}"
+                            android:text="—"
+                            android:textColor="@color/colorBlue"
+                            android:textSize="20dp" />
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="20dp"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:gravity="center|top"
+                            android:inputType="numberDecimal"
+                            android:text="@={orderTransction.orTp}"
+                            android:textColor="@color/color333" />
+
+                        <TextView
+                            android:layout_width="40dp"
+                            android:layout_height="20dp"
+                            android:gravity="center"
+                            android:onClick="@{orderTransction.bidAdd}"
+                            android:text="+"
+                            android:textColor="@color/colorBlue"
+                            android:textSize="20dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/linechart"
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"></com.github.mikephil.charting.charts.LineChart>
+
+                <View style="@style/line_1px" />
+
+                <TextView
+                    android:id="@+id/explain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="止损价位和止赢价位的设定与现在市场价位相差200点.止损处理由交易商侧执行"
+                    android:textColor="@color/color999" />
+
+
+            </LinearLayout>
+        </ScrollView>
+
+        <View style="@style/line_1px" />
+
+        <TextView
+            android:id="@+id/sellText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:clickable="true"
+            android:foreground="?selectableItemBackground"
+            android:gravity="center"
+            android:onClick="@{orderTransction.modificationClick}"
+            android:text="修改"
+            android:textColor="@color/color333"
+            android:textSize="18dp" />
+    </LinearLayout>
+</layout>

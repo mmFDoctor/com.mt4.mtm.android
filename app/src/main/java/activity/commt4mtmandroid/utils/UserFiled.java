@@ -40,4 +40,7 @@ public interface UserFiled {
     final String TP = "TP";
     final String title = "title";
     final String content = "content";
+    final String loginType = "loginType";
+    final String serviceID ="serviceID";
+    final String name = "name";
 }

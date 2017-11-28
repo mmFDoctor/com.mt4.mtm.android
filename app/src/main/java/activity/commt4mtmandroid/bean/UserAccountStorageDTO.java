@@ -33,6 +33,24 @@ public class UserAccountStorageDTO {
         private String serviceName;
         private String serviceDes;
         private String blance;
+        private String serviceID;
+        private String serviceType;
+
+        public String getServiceType() {
+            return serviceType;
+        }
+
+        public void setServiceType(String serviceType) {
+            this.serviceType = serviceType;
+        }
+
+        public String getServiceID() {
+            return serviceID;
+        }
+
+        public void setServiceID(String serviceID) {
+            this.serviceID = serviceID;
+        }
 
         public String getServiceImg() {
             return serviceImg;

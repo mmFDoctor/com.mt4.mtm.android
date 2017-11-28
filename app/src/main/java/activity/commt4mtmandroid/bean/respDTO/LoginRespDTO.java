@@ -120,13 +120,31 @@ public class LoginRespDTO extends BaseRespDTO<LoginRespDTO.DataBean> {
              * serviceImg : http://oygoqpzpy.bkt.clouddn.com/mt4logo2.png
              */
 
+            private String serviceType;
+            private String serviceId;
             private String serviceDesc;
             private double balance;
             private String group_name;
             private String name;
-            private int id;
+            private String id;
             private String serviceName;
             private String serviceImg;
+
+            public String getServiceType() {
+                return serviceType;
+            }
+
+            public void setServiceType(String serviceType) {
+                this.serviceType = serviceType;
+            }
+
+            public String getServiceId() {
+                return serviceId;
+            }
+
+            public void setServiceId(String serviceId) {
+                this.serviceId = serviceId;
+            }
 
             public String getServiceDesc() {
                 return serviceDesc;
@@ -160,11 +178,11 @@ public class LoginRespDTO extends BaseRespDTO<LoginRespDTO.DataBean> {
                 this.name = name;
             }
 
-            public int getId() {
+            public String  getId() {
                 return id;
             }
 
-            public void setId(int id) {
+            public void setId(String id) {
                 this.id = id;
             }
 

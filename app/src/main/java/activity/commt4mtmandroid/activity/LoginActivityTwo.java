@@ -145,6 +145,7 @@ public class LoginActivityTwo extends BaseActivity implements View.OnClickListen
         accountMessage.setBlance(loginRespDTO.getData().getLoginInfo().getBalance()+"");
         accountMessage.setServiceName(loginRespDTO.getData().getLoginInfo().getServiceName());
         accountMessage.setServiceDes(loginRespDTO.getData().getLoginInfo().getServiceDesc());
+        accountMessage.setServiceID(loginRespDTO.getData().getLoginInfo().getId()+"");
         userAccount.put(loginRespDTO.getData().getLoginInfo().getId()+"",accountMessage);
         SpOperate.setString(this,UserFiled.USERACCOUNT,userAccountStorageDTO.convertToJson());
     }

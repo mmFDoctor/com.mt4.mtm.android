@@ -67,40 +67,24 @@ public class TransctionListViewAdapt extends BaseAdapter {
         if (footData.size()>0) {
             return bodyData.size() + footData.size() + 1;
         }else {
-            return bodyData.size();
+            return bodyData.size()+footData.size();
         }
     }
 
     @Override
     public int getViewTypeCount() {
-        if (footData.size()>0) {
-            return 3;
-        }else {
-            return 2;
-        }
+       return 2;
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (footData.size()>0) {
-            if (position < bodyData.size()) {
+            if (position == bodyData.size()) {
                 //标题样式
-                return 0;
-            } else if (position == bodyData.size()) {
-                //
                 return 1;
-            } else {
-                return 2;
-            }
-        }else {
-            if (position < bodyData.size()) {
-                //标题样式
+            }else {
                 return 0;
-            } else {
-                //
-                return 1;
             }
-        }
+
     }
 
     @Override
@@ -116,7 +100,7 @@ public class TransctionListViewAdapt extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         TransctionHolder holder = null;
-        TransctionOrderHolder orderHolder = null;
+        
         int itemViewType = getItemViewType(position);
         if (convertView == null) {
             switch (itemViewType) {
@@ -131,56 +115,29 @@ public class TransctionListViewAdapt extends BaseAdapter {
                     holder.symbol.getPaint().setFlags(Paint.FAKE_BOLD_TEXT_FLAG);
                     holder.symbol.getPaint().setAntiAlias(true);
                     holder.cmdAndVolume = (TextView) convertView.findViewById(R.id.cmdAndVolume);
-//            holder.cmdAndVolume.getPaint().setFlags(Paint.FAKE_BOLD_TEXT_FLAG);
-//            holder.cmdAndVolume.getPaint().setAntiAlias(true);
                     holder.headTime = (TextView) convertView.findViewById(R.id.time);
                     holder.headTime.getPaint().setFlags(Paint.FAKE_BOLD_TEXT_FLAG);
                     holder.headTime.getPaint().setAntiAlias(true);
                     holder.openAndClosePrice = (TextView) convertView.findViewById(R.id.openAndClosePrice);
                     holder.profit = (TextView) convertView.findViewById(R.id.profit);
-
                     holder.profit.getPaint().setFlags(Paint.FAKE_BOLD_TEXT_FLAG);
                     holder.profit.getPaint().setAntiAlias(true);
-
                     holder.contentTime = (TextView) convertView.findViewById(R.id.time);
                     holder.slContent = (TextView) convertView.findViewById(R.id.slContent);
                     holder.storageContent = (TextView) convertView.findViewById(R.id.storygeContent);
                     holder.tpContent = (TextView) convertView.findViewById(R.id.tpContent);
                     holder.IDContent = (TextView) convertView.findViewById(R.id.IDContent);
+
+                    // 根据不同类型 -- 订单还是价位 显示不同类别名
+                    holder.swagName = (TextView) convertView.findViewById(R.id.swap_name);
+                    holder.TaxesName = (TextView) convertView.findViewById(R.id.Taxes_name);
+                    holder.chargesName = (TextView) convertView.findViewById(R.id.Charges_name);
                     convertView.setTag(holder);
                     break;
-                case 2:
+                case 1:
                     convertView = View.inflate(context, R.layout.item_transction_title, null);
                     break;
-                case 1:
-                    convertView = View.inflate(context, R.layout.item_transction_order, null);
-                    orderHolder = new TransctionOrderHolder();
-                    orderHolder.r1 = (RelativeLayout) convertView.findViewById(R.id.transction_rl);
-                    ExpandableLinearLayout expandableLinearLayout1 = (ExpandableLinearLayout) convertView.findViewById(R.id.expand);
-                    orderHolder.expandableLinearLayout = expandableLinearLayout1;
-                    orderHolder.symbol = (TextView) convertView.findViewById(R.id.name);
-                    //加粗 去锯齿
-                    orderHolder.symbol.getPaint().setFlags(Paint.FAKE_BOLD_TEXT_FLAG);
-                    orderHolder.symbol.getPaint().setAntiAlias(true);
-                    orderHolder.cmdAndVolume = (TextView) convertView.findViewById(R.id.cmdAndVolume);
-//            holder.cmdAndVolume.getPaint().setFlags(Paint.FAKE_BOLD_TEXT_FLAG);
-//            holder.cmdAndVolume.getPaint().setAntiAlias(true);
-                    orderHolder.headTime = (TextView) convertView.findViewById(R.id.time);
-                    orderHolder.headTime.getPaint().setFlags(Paint.FAKE_BOLD_TEXT_FLAG);
-                    orderHolder.headTime.getPaint().setAntiAlias(true);
-                    orderHolder.openAndClosePrice = (TextView) convertView.findViewById(R.id.openAndClosePrice);
-                    orderHolder.profit = (TextView) convertView.findViewById(R.id.profit);
-
-                    orderHolder.profit.getPaint().setFlags(Paint.FAKE_BOLD_TEXT_FLAG);
-                    orderHolder.profit.getPaint().setAntiAlias(true);
-
-                    orderHolder.contentTime = (TextView) convertView.findViewById(R.id.time);
-                    orderHolder.slContent = (TextView) convertView.findViewById(R.id.slContent);
-                    orderHolder.storageContent = (TextView) convertView.findViewById(R.id.storygeContent);
-                    orderHolder.tpContent = (TextView) convertView.findViewById(R.id.tpContent);
-                    orderHolder.IDContent = (TextView) convertView.findViewById(R.id.IDContent);
-                    convertView.setTag(orderHolder);
-                    break;
+               
             }
 
         } else {
@@ -188,114 +145,123 @@ public class TransctionListViewAdapt extends BaseAdapter {
                 case 0:
                     holder = (TransctionHolder) convertView.getTag();
                     break;
-                case 2:
-                    orderHolder = (TransctionOrderHolder) convertView.getTag();
-                    break;
+                
             }
         }
         switch (itemViewType) {
             case 0:
+                if (position<bodyData.size()) {
 
-                holder.symbol.setText(bodyData.get(position).getSymbol() + ",");
-                holder.cmdAndVolume.setTextColor(bodyData.get(position).getCommand().equals("0") ? context.getResources().getColor(R.color.colorBlue)
-                        : context.getResources().getColor(R.color.colorRed));
-                holder.cmdAndVolume.setText(bodyData.get(position).getCommand().equals("0") ? "buy " + bodyData.get(position).getVolume()
-                        : "sell " + bodyData.get(position).getVolume());
-                holder.headTime.setText(bodyData.get(position).getOpen_time());
-                holder.openAndClosePrice.setText(bodyData.get(position).getPrice() + "→" + bodyData.get(position).getNow_price());
-                holder.profit.setText(bodyData.get(position).getProfit());
-                if (Double.parseDouble(bodyData.get(position).getProfit()) >= 0) {
-                    holder.profit.setTextColor(context.getResources().getColor(R.color.colorBlue));
+                    //价位下 显示名称为 库存费 税费 手续费
+                    holder.swagName.setText(context.getResources().getString(R.string.Swap));
+                    holder.TaxesName.setText(context.getResources().getString(R.string.Taxes));
+                    holder.chargesName.setText(context.getResources().getString(R.string.Charges));
+
+
+                    holder.symbol.setText(bodyData.get(position).getSymbol() + ",");
+                    holder.cmdAndVolume.setTextColor(bodyData.get(position).getCommand().equals("0") ? context.getResources().getColor(R.color.colorBlue)
+                            : context.getResources().getColor(R.color.colorRed));
+                    holder.cmdAndVolume.setText(bodyData.get(position).getCommand().equals("0") ? "buy " + bodyData.get(position).getVolume()
+                            : "sell " + bodyData.get(position).getVolume());
+                    holder.headTime.setText(bodyData.get(position).getOpen_time());
+                    holder.openAndClosePrice.setText(bodyData.get(position).getPrice() + "→" + bodyData.get(position).getNow_price());
+                    holder.profit.setText(bodyData.get(position).getProfit());
+                    if (Double.parseDouble(bodyData.get(position).getProfit()) >= 0) {
+                        holder.profit.setTextColor(context.getResources().getColor(R.color.colorBlue));
+                    } else {
+                        holder.profit.setTextColor(context.getResources().getColor(R.color.colorRed));
+                    }
+
+                    holder.slContent.setText(bodyData.get(position).getStoploss());
+                    holder.storageContent.setText(bodyData.get(position).getStorage());
+                    holder.tpContent.setText(bodyData.get(position).getTakeprofit());
+                    holder.IDContent.setText(bodyData.get(position).getId());
+                    final TransctionHolder finalHolder = holder;
+                    holder.r1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            finalHolder.expandableLinearLayout.toggle();
+                        }
+                    });
+                    holder.r1.setOnLongClickListener(new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View v) {
+                            showPopmenu(v, position);
+                            return true;
+                        }
+                    });
                 } else {
-                    holder.profit.setTextColor(context.getResources().getColor(R.color.colorRed));
+                    //订单下的名称 为价位，日期，时间
+                    holder.swagName.setText(context.getResources().getString(R.string.Price));
+                    holder.TaxesName.setText(context.getResources().getString(R.string.Taxes));
+                    holder.chargesName.setText(context.getResources().getString(R.string.Charges));
+                    holder.symbol.setText(footData.get(position-bodyData.size()-1).getSymbol() + ",");
+
+                    /*
+                    根绝不同订单类型进行分类 --buy limit, sell limit, buy stop ,sell stop, balance ,credit
+                     */
+                    switch (footData.get(position-bodyData.size()-1).getCommand()){
+                        case "2":
+                            holder.cmdAndVolume.setTextColor(context.getColor(R.color.colorBlue));
+                            holder.cmdAndVolume.setText("buy limit");
+                            break;
+                        case "3":
+                            holder.cmdAndVolume.setTextColor(context.getColor(R.color.colorRed));
+                            holder.cmdAndVolume.setText("sell limit");
+                            break;
+                        case "4":
+                            holder.cmdAndVolume.setTextColor(context.getColor(R.color.colorBlue));
+                            holder.cmdAndVolume.setText("buy stop");
+                            break;
+                        case "5":
+                            holder.cmdAndVolume.setTextColor(context.getColor(R.color.colorRed));
+                            holder.cmdAndVolume.setText("sell stop");
+                            break;
+                        case "6":
+                            holder.cmdAndVolume.setTextColor(context.getColor(R.color.colorBlue));
+                            holder.cmdAndVolume.setText("balance");
+                            break;
+                        case "7":
+                            holder.cmdAndVolume.setTextColor(context.getColor(R.color.colorBlue));
+                            holder.cmdAndVolume.setText("credit");
+                            break;
+                    }
+
+                    holder.headTime.setText(footData.get(position-bodyData.size()-1).getOpen_time());
+                    holder.openAndClosePrice.setText(footData.get(position-bodyData.size()-1).getVolume() + " at " + footData.get(position-bodyData.size()-1).getPrice());
+                    holder.profit.setText(footData.get(position-bodyData.size()-1).getNow_price());
+                    holder.profit.setTextColor(context.getResources().getColor(R.color.color999));
+
+                    holder.slContent.setText(footData.get(position-bodyData.size()-1).getStoploss());
+                    holder.storageContent.setText(footData.get(position-bodyData.size()-1).getStorage());
+                    holder.tpContent.setText(footData.get(position-bodyData.size()-1).getTakeprofit());
+                    holder.IDContent.setText(footData.get(position-bodyData.size()-1).getId());
+
+
+                    final TransctionHolder finalHolder1 = holder;
+                    holder.r1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            finalHolder1.expandableLinearLayout.toggle();
+                        }
+                    });
+                    holder.r1.setOnLongClickListener(new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View v) {;
+                            showPpomenuOrder(v,position);
+                            return true;
+                        }
+                    });
                 }
 
-                holder.slContent.setText(bodyData.get(position).getStoploss());
-                holder.storageContent.setText(bodyData.get(position).getStorage());
-                holder.tpContent.setText(bodyData.get(position).getTakeprofit());
-                holder.IDContent.setText(bodyData.get(position).getId());
-                final TransctionHolder finalHolder = holder;
-                holder.r1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        finalHolder.expandableLinearLayout.toggle();
-                    }
-                });
-                holder.r1.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View v) {
-                        showPopmenu(v, position);
-                        return true;
-                    }
-                });
-
                 break;
-            case 2:
 
-                orderHolder.symbol.setText(footData.get(position-bodyData.size()-1).getSymbol() + ",");
-//                orderHolder.cmdAndVolume.setTextColor(footData.get(position-bodyData.size()-1).getCommand().equals("0") ? context.getResources().getColor(R.color.colorBlue)
-//                        : context.getResources().getColor(R.color.colorRed));
-                switch (footData.get(position-bodyData.size()-1).getCommand()){
-                    case "2":
-                        orderHolder.cmdAndVolume.setTextColor(context.getColor(R.color.colorBlue));
-                        orderHolder.cmdAndVolume.setText("buy limit");
-                        break;
-                    case "3":
-                        orderHolder.cmdAndVolume.setTextColor(context.getColor(R.color.colorRed));
-                        orderHolder.cmdAndVolume.setText("sell limit");
-                        break;
-                    case "4":
-                        orderHolder.cmdAndVolume.setTextColor(context.getColor(R.color.colorBlue));
-                        orderHolder.cmdAndVolume.setText("buy stop");
-                        break;
-                    case "5":
-                        orderHolder.cmdAndVolume.setTextColor(context.getColor(R.color.colorRed));
-                        orderHolder.cmdAndVolume.setText("sell stop");
-                        break;
-                    case "6":
-                        orderHolder.cmdAndVolume.setTextColor(context.getColor(R.color.colorBlue));
-                        orderHolder.cmdAndVolume.setText("balance");
-                        break;
-                    case "7":
-                        orderHolder.cmdAndVolume.setTextColor(context.getColor(R.color.colorBlue));
-                        orderHolder.cmdAndVolume.setText("credit");
-                        break;
-                }
-//                orderHolder.cmdAndVolume.setText(footData.get(position-bodyData.size()-1).getCommand().equals("0") ? "buy " + footData.get(position-bodyData.size()-1).getVolume()
-//                        : "sell " + footData.get(position-bodyData.size()-1).getVolume());
-                orderHolder.headTime.setText(footData.get(position-bodyData.size()-1).getCreate_time());
-                orderHolder.openAndClosePrice.setText(footData.get(position-bodyData.size()-1).getVolume() + " at " + footData.get(position-bodyData.size()-1).getPrice());
-                orderHolder.profit.setText(footData.get(position-bodyData.size()-1).getProfit());
-                orderHolder.profit.setTextColor(context.getResources().getColor(R.color.color999));
-
-                orderHolder.slContent.setText(footData.get(position-bodyData.size()-1).getStoploss());
-                orderHolder.storageContent.setText(footData.get(position-bodyData.size()-1).getStorage());
-                orderHolder.tpContent.setText(footData.get(position-bodyData.size()-1).getTakeprofit());
-                orderHolder.IDContent.setText(footData.get(position-bodyData.size()-1).getId());
-
-                final TransctionOrderHolder finalOrderHolder = orderHolder;
-                orderHolder.r1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        finalOrderHolder.expandableLinearLayout.toggle();
-                    }
-                });
-                orderHolder.r1.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View v) {
-//                    showPopmenu(v,position);
-                        showPpomenuOrder(v,position);
-                        return true;
-                    }
-                });
-                break;
         }
 
         return convertView;
     }
 
     //订单长按事件显示菜单
-
     private void showPpomenuOrder(View view, final int position) {
         PopupMenu menu = new PopupMenu(context, view, Gravity.RIGHT);
         Menu menu1 = menu.getMenu();
@@ -397,6 +363,8 @@ public class TransctionListViewAdapt extends BaseAdapter {
         menu.show();
     }
 
+
+    //价位长按 点击显示菜单
     private void showPopmenu(View v, final int position) {
         PopupMenu menu = new PopupMenu(context, v, Gravity.RIGHT);
         Menu menu1 = menu.getMenu();
@@ -471,20 +439,10 @@ public class TransctionListViewAdapt extends BaseAdapter {
         TextView tpContent;
         TextView IDContent;
         ExpandableLinearLayout expandableLinearLayout;
+        TextView swagName;
+        TextView TaxesName;
+        TextView chargesName;
     }
 
-    private class TransctionOrderHolder {
-        RelativeLayout r1;
-        TextView symbol;
-        TextView cmdAndVolume;
-        TextView headTime;
-        TextView openAndClosePrice;
-        TextView profit;
-        TextView contentTime;
-        TextView slContent;
-        TextView storageContent;
-        TextView tpContent;
-        TextView IDContent;
-        ExpandableLinearLayout expandableLinearLayout;
-    }
+    
 }

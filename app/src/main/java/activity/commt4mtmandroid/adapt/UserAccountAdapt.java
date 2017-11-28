@@ -10,13 +10,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import activity.commt4mtmandroid.R;
-import activity.commt4mtmandroid.activity.LoginActivityTwo;
+import activity.commt4mtmandroid.activity.LoginActivity;
 import activity.commt4mtmandroid.bean.UserAccountStorageDTO;
 import activity.commt4mtmandroid.utils.UserFiled;
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -63,12 +64,14 @@ public class UserAccountAdapt extends BaseAdapter {
             holder.userMessage = (TextView) convertView.findViewById(R.id.serviceDescrp);
             holder.information = (ImageView) convertView.findViewById(R.id.information);
             holder.rela = (RelativeLayout) convertView.findViewById(R.id.rela);
+            holder.icon = (ImageView) convertView.findViewById(R.id.icon);
             convertView.setTag(holder);
         }else {
             holder = (UserAccountHolder) convertView.getTag();
         }
         holder.srviceName.setText(dataMessage.get(position).getServiceName());
         holder.userMessage.setText(dataID.get(position)+" - "+ dataMessage.get(position).getServiceDes());
+        Glide.with(context).load(dataMessage.get(position).getServiceImg()).into(holder.icon);
         holder.information.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,10 +86,11 @@ public class UserAccountAdapt extends BaseAdapter {
         holder.rela.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, LoginActivityTwo.class);
+                Intent intent = new Intent(context, LoginActivity.class);
+                intent.putExtra(UserFiled.serviceID,dataMessage.get(position).getServiceID());
                 intent.putExtra(UserFiled.account,dataID.get(position));
                 intent.putExtra(UserFiled.passWord,dataMessage.get(position).getPsw());
-                intent.putExtra("type","1");
+                intent.putExtra(UserFiled.loginType,dataMessage.get(position).getServiceType());
                 context.startActivity(intent);
             }
         });
@@ -98,6 +102,6 @@ public class UserAccountAdapt extends BaseAdapter {
         private TextView userMessage;
         private ImageView information;
         private RelativeLayout rela;
-
+        private ImageView icon;
     }
 }

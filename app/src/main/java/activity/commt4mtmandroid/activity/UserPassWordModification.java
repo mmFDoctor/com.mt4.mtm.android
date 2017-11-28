@@ -8,8 +8,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.bean.reqDTO.UserPassWordModificationReqDTO;
@@ -40,6 +43,8 @@ public class UserPassWordModification extends BaseActivity implements View.OnCli
     private EditText newPswEditText;
     private EditText conformPswEditText;
     private TextView submit;
+    private String serviceImg;
+    private ImageView serviceIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +58,7 @@ public class UserPassWordModification extends BaseActivity implements View.OnCli
         Intent intent = getIntent();
         serviceName = intent.getStringExtra("serviceName");
         serviceDescrip = intent.getStringExtra("serviceDescrip");
+        serviceImg = intent.getStringExtra(UserFiled.serviceImg);
     }
 
     @Override
@@ -60,7 +66,7 @@ public class UserPassWordModification extends BaseActivity implements View.OnCli
         super.initView();
         serviceNameTv = (TextView) findViewById(R.id.serviceName);
         serviceDescrpTv = (TextView) findViewById(R.id.serviceDescrp);
-
+        serviceIcon = (ImageView) findViewById(R.id.icon);
         oldPswEditText = (EditText) findViewById(R.id.oldPsw_editText);
         newPswEditText = (EditText) findViewById(R.id.newPsw_editText);
         conformPswEditText = (EditText) findViewById(R.id.comform_EditText);
@@ -72,6 +78,7 @@ public class UserPassWordModification extends BaseActivity implements View.OnCli
         super.initData();
         serviceNameTv.setText(serviceName);
         serviceDescrpTv.setText(serviceDescrip);
+        Glide.with(this).load(serviceImg).into(serviceIcon);
     }
 
     @Override

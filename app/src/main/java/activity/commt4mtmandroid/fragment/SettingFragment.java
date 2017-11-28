@@ -56,8 +56,8 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
         serviceRl.setVisibility(SpOperate.getIsLogin(mAtivity, UserFiled.IsLog) ? View.VISIBLE : View.GONE);
         TextView serviceName = (TextView) mRootView.findViewById(R.id.service_name);
         TextView serviceMessage = (TextView) mRootView.findViewById(R.id.service_message);
-        serviceName.setText(SpOperate.getString(mAtivity, UserFiled.serviceName));
-        serviceMessage.setText(SpOperate.getString(mAtivity, UserFiled.serviceDesc));
+        serviceName.setText(SpOperate.getString(mAtivity, UserFiled.name));
+        serviceMessage.setText(SpOperate.getString(mAtivity, UserFiled.ID)+"--"+SpOperate.getString(mAtivity,UserFiled.serviceName));
         emial = (RelativeLayout) mRootView.findViewById(R.id.r5);
         languageRl = (RelativeLayout) mRootView.findViewById(R.id.r6);
         serviceRl1 = (RelativeLayout) mRootView.findViewById(R.id.r7);

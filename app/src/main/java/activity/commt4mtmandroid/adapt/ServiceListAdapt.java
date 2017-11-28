@@ -17,6 +17,7 @@ import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.activity.LoginActivity;
 import activity.commt4mtmandroid.activity.UserRegestActivity;
 import activity.commt4mtmandroid.bean.reqDTO.ServiceListRespDTO;
+import activity.commt4mtmandroid.utils.SpOperate;
 import activity.commt4mtmandroid.utils.UserFiled;
 
 /**
@@ -72,13 +73,15 @@ public class ServiceListAdapt extends BaseAdapter {
             public void onClick(View v) {
                 if (type.equals("0")){
                     Intent intent = new Intent(context, UserRegestActivity.class);
-                    intent.putExtra("type",data.get(position).getType());
+                    intent.putExtra(UserFiled.loginType,data.get(position).getType()+"");
+                    intent.putExtra(UserFiled.serviceID,data.get(position).getId()+"");
                     context.startActivity(intent);
                 }else {
                     Intent intent = new Intent(context, LoginActivity.class);
-                    intent.putExtra(UserFiled.ID,data.get(position).getId());
-                    intent.putExtra("type",type);
-                    intent.putExtra("loginType",data.get(position).getType()+"");
+                    intent.putExtra(UserFiled.serviceID,data.get(position).getId()+"");
+                    intent.putExtra(UserFiled.loginType,data.get(position).getType()+"");
+                    intent.putExtra(UserFiled.account, SpOperate.getString(context,UserFiled.account));
+                    intent.putExtra(UserFiled.passWord,SpOperate.getString(context,UserFiled.passWord));
                     context.startActivity(intent);
                 }
             }

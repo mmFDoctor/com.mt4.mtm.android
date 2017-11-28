@@ -40,10 +40,11 @@ public class UserRegestActivity extends BaseActivity implements View.OnClickList
                 case 2:
                     String regestStr = (String) msg.obj;
                     UserRegestRespDTO userRegestRespDTO = JSONObject.parseObject(regestStr, UserRegestRespDTO.class);
-                    Intent intent = new Intent(UserRegestActivity.this, LoginActivityTwo.class);
+                    Intent intent = new Intent(UserRegestActivity.this, LoginActivity.class);
                     intent.putExtra(UserFiled.account, userRegestRespDTO.getData().getInfo().getId() + "");
                     intent.putExtra(UserFiled.passWord, userRegestRespDTO.getData().getInfo().getPwd() + "");
-                    intent.putExtra("type", "1");
+                    intent.putExtra(UserFiled.loginType, type);
+                    intent.putExtra(UserFiled.serviceID,serviceID);
                     startActivity(intent);
                     break;
                 case 3:
@@ -85,6 +86,7 @@ public class UserRegestActivity extends BaseActivity implements View.OnClickList
     private TextView ganganTextView;
     private TextView dingjinTextView;
     private int smsTimeSecond = 0;
+    private String serviceID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,13 +98,15 @@ public class UserRegestActivity extends BaseActivity implements View.OnClickList
     protected void initIntnet() {
         super.initIntnet();
         Intent intent = getIntent();
-        type = intent.getStringExtra("type");
+        type = intent.getStringExtra(UserFiled.loginType);
+        serviceID = intent.getStringExtra(UserFiled.serviceID);
     }
 
     @Override
     protected void initCondition() {
         super.initCondition();
         reqDTO = new UserRegistReqDTO();
+        reqDTO.setMoney(100000);
         codeReqDTO = new MessageCodeReqDTO();
     }
 
@@ -161,7 +165,6 @@ public class UserRegestActivity extends BaseActivity implements View.OnClickList
                 reqDTO.setPhone(phone.getText().toString());
                 reqDTO.setQqnum(qq.getText().toString());
                 reqDTO.setEmail(email.getText().toString());
-                reqDTO.setMoney(100000);
                 reqDTO.setCode_token(codeToken);
                 reqDTO.setCode(messageCode.getText().toString());
                 OkhttBack okhttBack1 = new OkhttBack(reqDTO.convertToJson(), LocalUrl.baseUrl + LocalUrl.reg);
@@ -169,6 +172,7 @@ public class UserRegestActivity extends BaseActivity implements View.OnClickList
                     @Override
                     public void success(String data) {
                         super.success(data);
+                        Log.i("tag", "success: ============>"+data);
                         Message message = Message.obtain();
                         message.what = 2;
                         message.obj = data;

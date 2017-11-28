@@ -3,7 +3,6 @@ package activity.commt4mtmandroid.activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -106,6 +105,7 @@ public class ServiceListActivity extends BaseActivity {
                     @Override
                     public void success(String data) {
                         super.success(data);
+                        Log.i("tag", "success: ===========>"+data);
                         Message message =Message.obtain();
                         message.what = 1;
                         message.obj = data;

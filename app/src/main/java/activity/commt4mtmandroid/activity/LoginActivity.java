@@ -45,6 +45,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private String type;
     private LoginReqDTO loginReqDTO;
     private String id;
+    private String accout;
+    private String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +57,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @Override
     protected void initIntnet() {
         Intent intent = getIntent();
-        type = intent.getStringExtra("loginType");
-        id = intent.getStringExtra(UserFiled.ID);
+        type = intent.getStringExtra(UserFiled.loginType);
+        id = intent.getStringExtra(UserFiled.serviceID);
+        accout = intent.getStringExtra(UserFiled.account);
+        password = intent.getStringExtra(UserFiled.passWord);
     }
 
     @Override
@@ -65,6 +69,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         loginReqDTO = new LoginReqDTO();
         loginReqDTO.setType(type);
         loginReqDTO.setServiceid(id);
+
     }
 
     @Override
@@ -72,10 +77,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         submit = (TextView) findViewById(R.id.submit);
         word = (TextInputEditText) findViewById(R.id.login_word);
         psw = (TextInputEditText) findViewById(R.id.login_paw);
-        word.setText(SpOperate.getString(this,UserFiled.account));
-        word.setSelection(SpOperate.getString(this,UserFiled.account).length());
-        psw.setText(SpOperate.getString(this,UserFiled.passWord));
-        psw.setSelection(SpOperate.getString(this,UserFiled.passWord).length());
+
+        word.setText(accout);
+        word.setSelection(accout.length());
+        psw.setText(password);
+        psw.setSelection(password.length());
     }
 
     @Override
@@ -96,12 +102,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
         loginReqDTO.setLoginid(word.getText().toString());
         loginReqDTO.setPwd(psw.getText().toString());
+        Log.i("tag", "userLogin: --------->"+loginReqDTO.convertToJson());
         OkhttBack okhttBack = new OkhttBack(loginReqDTO.convertToJson(), LocalUrl.baseUrl+LocalUrl.login);
         okhttBack.post(new RequestCallBackToastImpl(this,handler){
             @Override
             public void success(String data) {
                 super.success(data);
-                Log.i("tag", "success: =================>"+data);
                 LoginRespDTO loginRespDTO = JSONObject.parseObject(data, LoginRespDTO.class);
                 //存入账号信息
                 userAccountSava(loginRespDTO);
@@ -109,6 +115,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 SpOperate.setString(LoginActivity.this,UserFiled.serviceName,loginRespDTO.getData().getLoginInfo().getServiceName());
                 SpOperate.setString(LoginActivity.this,UserFiled.serviceDesc,loginRespDTO.getData().getLoginInfo().getServiceDesc());
                 SpOperate.setString(LoginActivity.this,UserFiled.serviceImg,loginRespDTO.getData().getLoginInfo().getServiceImg());
+                SpOperate.setString(LoginActivity.this,UserFiled.serviceID,loginRespDTO.getData().getLoginInfo().getServiceId());
+                SpOperate.setString(LoginActivity.this,UserFiled.name,loginRespDTO.getData().getLoginInfo().getName());
                 //存入账号密码和ID
                 SpOperate.setString(LoginActivity.this,UserFiled.ID,loginRespDTO.getData().getLoginInfo().getId()+"");
                 SpOperate.setString(LoginActivity.this,UserFiled.account,word.getText().toString());
@@ -144,6 +152,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         Map<String, Object> userAccount = userAccountStorageDTO.getUserAccount();
         UserAccountStorageDTO.UserAccountMessage accountMessage = new UserAccountStorageDTO.UserAccountMessage();
         accountMessage.setPsw(psw.getText().toString());
+        accountMessage.setServiceType(loginRespDTO.getData().getLoginInfo().getServiceType());
+        accountMessage.setServiceID(loginRespDTO.getData().getLoginInfo().getServiceId());
         accountMessage.setName(loginRespDTO.getData().getLoginInfo().getName());
         accountMessage.setServiceImg(loginRespDTO.getData().getLoginInfo().getServiceImg());
         accountMessage.setBlance(loginRespDTO.getData().getLoginInfo().getBalance()+"");

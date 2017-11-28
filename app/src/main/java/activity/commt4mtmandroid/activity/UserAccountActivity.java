@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
+import com.bumptech.glide.Glide;
 
 import java.util.Map;
 
@@ -66,7 +67,8 @@ public class UserAccountActivity extends BaseActivity implements View.OnClickLis
         presentAccount = SpOperate.getString(this, UserFiled.account);
         String presentPsw = SpOperate.getString(this,UserFiled.passWord);
 
-        //数据绑定
+        //数据当前登录账号 信息
+        Glide.with(this).load(SpOperate.getString(this,UserFiled.serviceImg)).into(icon);
         accountMessage = JSONObject.parseObject(userAccountStorageDTO.getUserAccount().get(id).toString(), UserAccountStorageDTO.UserAccountMessage.class);
         serviceName.setText(accountMessage.getServiceName());
         serviceDescrip.setText(presentAccount + " - "+ accountMessage.getServiceDes());
@@ -107,6 +109,7 @@ public class UserAccountActivity extends BaseActivity implements View.OnClickLis
                                 Intent intent = new Intent(UserAccountActivity.this, UserPassWordModification.class);
                                 intent.putExtra("serviceName",accountMessage.getServiceName());
                                 intent.putExtra("serviceDescrip",presentAccount + " - "+ accountMessage.getServiceDes());
+                                intent.putExtra(UserFiled.serviceImg,SpOperate.getString(UserAccountActivity.this,UserFiled.serviceImg));
                                 startActivity(intent);
                             }
                         })

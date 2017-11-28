@@ -226,7 +226,7 @@
                                 android:textColor="@color/color999" />
 
                             <EditText
-                                android:layout_width="wrap_content"
+                                android:layout_width="100dp"
                                 android:layout_height="20dp"
                                 android:background="@null"
                                 android:gravity="center|top"
@@ -381,7 +381,7 @@
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/linechart"
                     android:layout_width="match_parent"
-                    android:layout_height="350dp"
+                    android:layout_height="300dp"
                     ></com.github.mikephil.charting.charts.LineChart>
 
                 <TextView

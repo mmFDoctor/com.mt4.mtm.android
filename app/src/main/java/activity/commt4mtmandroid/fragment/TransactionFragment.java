@@ -164,7 +164,6 @@ public class TransactionFragment extends BaseFragment {
                 @Override
                 public void success(String data) {
                     super.success(data);
-
                     Message message = Message.obtain();
                     message.what = 1;
                     message.obj = data;

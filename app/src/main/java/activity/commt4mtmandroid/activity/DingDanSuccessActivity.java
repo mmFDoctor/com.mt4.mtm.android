@@ -19,7 +19,6 @@ public class DingDanSuccessActivity extends BaseActivity implements View.OnClick
         public boolean handleMessage(Message msg) {
             switch (msg.what){
                 case 1:
-
                     finish();
                     break;
             }

@@ -237,7 +237,6 @@ public class TransctionListViewAdapt extends BaseAdapter {
                     holder.tpContent.setText(footData.get(position-bodyData.size()-1).getTakeprofit());
                     holder.IDContent.setText(footData.get(position-bodyData.size()-1).getId());
 
-
                     final TransctionHolder finalHolder1 = holder;
                     holder.r1.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -399,7 +398,6 @@ public class TransctionListViewAdapt extends BaseAdapter {
                         intent1.putExtra(UserFiled.DIGITS, bodyData.get(position).getDigits());
                         intent1.putExtra(UserFiled.type, bodyData.get(position).getCommand().equals("0") ? "buy" : "sell");
                         context.startActivity(intent1);
-
                         break;
                     case 3:
                         startNewTransction(position);

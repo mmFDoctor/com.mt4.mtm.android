@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.Locale;
 
@@ -35,6 +37,7 @@ public abstract class BaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //注册EventBus
         mRootView = inflater.inflate(getLayoutId(), container, false);
+        EventBus.getDefault().register(this);
         LanguageUtils.changeAppLanguage(mAtivity,false);
         init();
         initCondition();
@@ -74,4 +77,10 @@ public abstract class BaseFragment extends Fragment {
     //返回页面布局
     // TODO: 2017/11/17
     protected abstract int getLayoutId();
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void pub(String event){
+
+    }
 }

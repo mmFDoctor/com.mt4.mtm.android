@@ -82,4 +82,10 @@
     <string name="Price">价位</string>
     <string name="Date">日期</string>
     <string name="Time">时间</string>
+    <string name="ErrorMessage">加载失败，点击重新尝试</string>
+    <string name="Servers">服务器</string>
+    <string name="Login">登录</string>
+    <string name="AccountMessage">请输入账号</string>
+    <string name="PasswordMessage">请输入密码</string>
+    <string name="Loading">加载中</string>
 </resources>

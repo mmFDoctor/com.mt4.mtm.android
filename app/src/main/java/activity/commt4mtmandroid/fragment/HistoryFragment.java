@@ -16,9 +16,14 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONObject;
 import com.borax12.materialdaterangepicker.date.DatePickerDialog;
 import com.kennyc.view.MultiStateView;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
+
 import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.adapt.HistoryAdapt;
 import activity.commt4mtmandroid.bean.reqDTO.HistoryReqDTO;
@@ -39,19 +44,38 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
     Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message msg) {
-            switch (msg.what){
+            switch (msg.what) {
                 case 1:
-                    if (dialog!=null)
+                    if (dialog != null)
                         dialog.dismiss();
                     loadingView.setViewState(MultiStateView.VIEW_STATE_CONTENT);
                     String historyStr = (String) msg.obj;
                     HistoryRespDTO historyRespDTO = JSONObject.parseObject(historyStr, HistoryRespDTO.class);
-                    historyAdapt = new HistoryAdapt(mAtivity,historyRespDTO.getData().getHistoryList());
+                    historyAdapt = new HistoryAdapt(mAtivity, historyRespDTO.getData().getHistoryList());
                     listView.setAdapter(historyAdapt);
                     profitContnet.setText(historyRespDTO.getData().getProfit());
                     inOfGoldContent.setText(historyRespDTO.getData().getInOfGold());
                     outOfGoldContent.setText(historyRespDTO.getData().getOutOfGold());
                     balanceContent.setText(historyRespDTO.getData().getBalance());
+                    break;
+                case UserFiled.LINKFAIL:
+                    if (dialog != null)
+                        dialog.dismiss();
+
+                    //是否为第一次进入页面 第一次进入页面时 无任何数据 显示错误页面让用户重新点击 加载
+                    if (!IS_FIRST_LOAD_ERROR) {
+                        loadingView.setViewState(MultiStateView.VIEW_STATE_ERROR);
+                        IS_FIRST_LOAD_ERROR = true;
+                    }
+                    break;
+                case UserFiled.NONET:
+                    if (dialog != null)
+                        dialog.dismiss();
+
+                    if (!IS_FIRST_LOAD_ERROR) {
+                        loadingView.setViewState(MultiStateView.VIEW_STATE_ERROR);
+                        IS_FIRST_LOAD_ERROR = true;
+                    }
                     break;
             }
             return true;
@@ -68,6 +92,8 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
     private RadioGroup radioGroup;
     private HistoryAdapt historyAdapt;
     private MyDialog dialog;
+    private View errroStatusView;
+    private boolean IS_FIRST_LOAD_ERROR = false;
 
 
     @Override
@@ -75,6 +101,14 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
         return R.layout.fragment_history;
     }
 
+
+    //接受广播 需要更新时重新刷新 列表数据
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void FreshHistory(String event) {
+        if (event.equals(UserFiled.HistoryFresh)) {
+            initData();
+        }
+    }
 
     @Override
     protected void initView() {
@@ -88,14 +122,15 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
         balanceContent = (TextView) headView.findViewById(R.id.balanceContent);
         listView.addHeaderView(headView);
         radioGroup = (RadioGroup) mRootView.findViewById(R.id.history_radioGroup);
+        errroStatusView = loadingView.getView(MultiStateView.VIEW_STATE_ERROR);
 
         initDialog();
     }
 
+    //初始化 用于加载的 Dialog
     private void initDialog() {
         dialog = MyDialog.showDialog(mAtivity);
     }
-
 
 
     private void initLoading() {
@@ -103,7 +138,7 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
         loadingView.setViewState(MultiStateView.VIEW_STATE_LOADING);
     }
 
-    //默认输出7天的历史订单
+    //默认输出1天的历史订单
     @Override
     protected void initCondition() {
         super.initCondition();
@@ -131,20 +166,18 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
         return dft.format(endDate);
     }
 
+
     @Override
     protected void initData() {
         super.initData();
-        if (SpOperate.getIsLogin(mAtivity,UserFiled.IsLog)){
-            OkhttBack okhttBack = new OkhttBack(reqDTO.convertToJson(), LocalUrl.baseUrl+LocalUrl.history);
-            okhttBack.post(new RequestCallBackToastImpl(mAtivity,handler){
+        if (SpOperate.getIsLogin(mAtivity, UserFiled.IsLog)) {
+            OkhttBack okhttBack = new OkhttBack(reqDTO.convertToJson(), LocalUrl.baseUrl + LocalUrl.history);
+            okhttBack.post(new RequestCallBackToastImpl(mAtivity, handler) {
                 @Override
                 public void success(String data) {
                     super.success(data);
-                    Message message =Message.obtain();
+                    Message message = Message.obtain();
                     message.obj = data;
-                    if (historyAdapt!=null){
-
-                    }
                     message.what = 1;
                     handler.sendMessage(message);
                 }
@@ -156,34 +189,45 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
     protected void initListner() {
         super.initListner();
         radioGroup.setOnCheckedChangeListener(this);
+        // 显示错误页面时  点击事件 用于让用户重新加载 数据
+        errroStatusView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initData();
+                //加载数据 显示等待页面
+                if (dialog!=null)
+                    dialog.show();
+            }
+        });
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
 
         }
     }
 
+    //菜单切换的 监听事件
     @Override
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-        switch (checkedId){
+        switch (checkedId) {
             case R.id.radioButton_day:
-                if (dialog!=null)
+                if (dialog != null)
                     dialog.show();
                 reqDTO.setEndTime(getOldDate(0));
                 reqDTO.setBeginTime(getOldDate(-1));
                 initData();
                 break;
             case R.id.radioButton_week:
-                if (dialog!=null)
+                if (dialog != null)
                     dialog.show();
                 reqDTO.setEndTime(getOldDate(0));
                 reqDTO.setBeginTime(getOldDate(-7));
                 initData();
                 break;
             case R.id.radioButton_month:
-                if (dialog!=null)
+                if (dialog != null)
                     dialog.show();
                 reqDTO.setEndTime(getOldDate(0));
                 reqDTO.setBeginTime(getOldDate(-30));
@@ -197,21 +241,22 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
                         now.get(Calendar.DAY_OF_MONTH));
                 pickerDialog.setAutoHighlight(true);
                 pickerDialog.setAccentColor(getResources().getColor(R.color.colorBlue));
-                pickerDialog.show(mAtivity.getFragmentManager(),"Datepickerdialog");
+                pickerDialog.show(mAtivity.getFragmentManager(), "Datepickerdialog");
                 break;
         }
     }
 
+    // 日期选择器的点击事件
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int yearEnd, int monthOfYearEnd, int dayOfMonthEnd) {
-        Log.i("tag", "You picked the following date: From- "+haoAddOne(dayOfMonth)+"/"+haoAddOne((++monthOfYear))+"/"+year+" To "+haoAddOne(dayOfMonthEnd)+"/"+haoAddOne((++monthOfYearEnd))+"/"+yearEnd );
-        if (dialog!=null)
+        if (dialog != null)
             dialog.show();
-        reqDTO.setBeginTime(year+haoAddOne((++monthOfYear))+haoAddOne(dayOfMonth));
-        reqDTO.setEndTime(yearEnd+haoAddOne((++monthOfYearEnd))+haoAddOne(dayOfMonthEnd));
+        reqDTO.setBeginTime(year + haoAddOne((++monthOfYear)) + haoAddOne(dayOfMonth));
+        reqDTO.setEndTime(yearEnd + haoAddOne((++monthOfYearEnd)) + haoAddOne(dayOfMonthEnd));
         initData();
     }
-    public static String haoAddOne(int liuShuiHao){
+
+    public static String haoAddOne(int liuShuiHao) {
         DecimalFormat df = new DecimalFormat("00");
         return df.format(liuShuiHao);
     }

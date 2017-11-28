@@ -6,8 +6,11 @@ import android.support.v7.widget.CardView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -53,13 +56,14 @@ public class NewsListAdapt extends BaseAdapter {
             holder.title = (TextView) convertView.findViewById(R.id.title);
             holder.author = (TextView) convertView.findViewById(R.id.author);
             holder.cardView = (CardView) convertView.findViewById(R.id.card);
+            holder.icon  = (ImageView) convertView.findViewById(R.id.icon);
             convertView.setTag(holder);
         }else {
             holder = (MyNewsListHolder) convertView.getTag();
         }
         holder.title.setText(data.get(position).getTitle());
         holder.author.setText(data.get(position).getAuthor());
-
+        Glide.with(context).load(data.get(position).getTitle_img()).into(holder.icon);
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,5 +80,6 @@ public class NewsListAdapt extends BaseAdapter {
         private TextView title;
         private TextView author;
         private CardView cardView;
+        private ImageView icon ;
     }
 }

@@ -35,7 +35,6 @@ public class OkhttBack {
     public OkhttBack(String json, String url) {
         this.json = json;
         this.url = url;
-
     }
 
     public void post(final IRequestCallBack callBack){

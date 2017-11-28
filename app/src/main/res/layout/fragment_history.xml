@@ -11,6 +11,7 @@
         android:id="@+id/loadingView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:msv_errorView="@layout/layout_status_error"
         app:msv_loadingView="@layout/item_history_empty">
         <LinearLayout
             android:orientation="vertical"

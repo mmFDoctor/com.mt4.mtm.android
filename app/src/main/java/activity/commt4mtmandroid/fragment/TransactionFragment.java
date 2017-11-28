@@ -78,7 +78,9 @@ public class TransactionFragment extends BaseFragment {
                     EventBus.getDefault().post(new SymbolChangeBean(symbolS, "chart"));
                     break;
                 case 101:
+                    //定单成功关闭后 Toast 提醒用户 并且发广播更新历史页面
                     Toast.makeText(mAtivity,"订单关闭",Toast.LENGTH_SHORT).show();
+                    EventBus.getDefault().post(UserFiled.HistoryFresh);
                     break;
 
             }
@@ -137,8 +139,6 @@ public class TransactionFragment extends BaseFragment {
         title = (TextView) mRootView.findViewById(R.id.transctionName);
         listView = (ListView) mRootView.findViewById(R.id.transction_listView);
         headView = View.inflate(mAtivity, R.layout.item_trasction_head, null);
-
-
         headTitle = (TextView) headView.findViewById(R.id.title);
         blace = (TextView) headView.findViewById(R.id.blace);
         equity = (TextView) headView.findViewById(R.id.equity);

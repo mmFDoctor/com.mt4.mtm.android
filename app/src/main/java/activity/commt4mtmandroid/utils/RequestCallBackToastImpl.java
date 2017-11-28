@@ -35,15 +35,12 @@ public class RequestCallBackToastImpl implements IRequestCallBack {
     //todo
     @Override
     public void fail(BaseRespDTO dto) {
-        Log.i("tag", "fail: ");
-
         if (handler != null) {
             handler.sendEmptyMessage(UserFiled.LINKFAIL);
         }
         Looper.prepare();
         Toast.makeText(context, dto.getMessage(), Toast.LENGTH_SHORT).show();
         Looper.loop();
-
     }
 
     @Override
@@ -52,7 +49,7 @@ public class RequestCallBackToastImpl implements IRequestCallBack {
             handler.sendEmptyMessage(UserFiled.NONET);
         }
         Looper.prepare();
-        Toast.makeText(context,"网络不给力", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context,"网络不给力，请检查后重新尝试!", Toast.LENGTH_SHORT).show();
         Looper.loop();
     }
 }

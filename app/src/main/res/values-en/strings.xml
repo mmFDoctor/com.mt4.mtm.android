@@ -80,4 +80,9 @@
     <string name="Price">Price</string>
     <string name="Date">Date</string>
     <string name="Time">Time</string>
+    <string name="ErrorMessage">Load failure, click retry</string>
+    <string name="Servers">Servers</string>
+    <string name="Login">Login</string>
+    <string name="AccountMessage">Please enter your account number</string>
+    <string name="PasswordMessage">Please enter your password</string>
 </resources>

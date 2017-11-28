@@ -97,7 +97,6 @@ public class ChartFragment extends BaseFragment implements View.OnClickListener 
                     lineDataSet(rsiLine);
                     break;
                 case 3:
-
                     String chartS1 = (String) msg.obj;
                     ChartRespDTO chartRespDTO1 = JSONObject.parseObject(chartS1, ChartRespDTO.class);
                     ChartDataSet(chartRespDTO1);
@@ -108,14 +107,12 @@ public class ChartFragment extends BaseFragment implements View.OnClickListener 
                     lineDataSet(rsiLine1);
                     break;
                 case 2:
-
                     if (!isJump){
                         String singleS = (String) msg.obj;
                         singleSymbolDetailsRespDTO = JSONObject.parseObject(singleS, SingleSymbolDetailsRespDTO.class);
                         SingleSymbolDetailsRespDTO.DataBean.InfoBean info = singleSymbolDetailsRespDTO.getData().getInfo();
                         float bid = Float.parseFloat(info.getBid());
                         candleDataSet = (CandleDataSet) combinedData.getDataSetByIndex(0);
-
 
                         CandleEntry entryForIndex2 = candleDataSet.getEntryForIndex(candleDataSet.getEntryCount()-1);
                         ChartRespDTO.DataBean.InfoBean infoBean = new ChartRespDTO.DataBean.InfoBean();
@@ -314,7 +311,6 @@ public class ChartFragment extends BaseFragment implements View.OnClickListener 
 
     @Override
     protected int getLayoutId() {
-        EventBus.getDefault().register(this);
         return R.layout.fragment_chart;
     }
 

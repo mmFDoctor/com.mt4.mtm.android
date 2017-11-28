@@ -50,7 +50,6 @@ public class OrderModificationActivity extends BaseActivity {
                     ChangeTextStyleUtil.changeTextStyle(binding.bid,respDTO.getData().getInfo().getBid());
                     ChangeTextStyleUtil.changeTextStyle(binding.ask,respDTO.getData().getInfo().getAsk());
 
-
                     //渲染图标数据
                     LineData data = binding.linechart.getData();
 

@@ -77,6 +77,8 @@ public class CloseOutActivity extends BaseActivity implements View.OnClickListen
                     symbolCount++;
                     break;
                 case 100:
+                    //关闭订单成功后 发送广播 更新历史页面
+                    EventBus.getDefault().post(UserFiled.HistoryFresh);
                     EventBus.getDefault().post(new DingDanStatusBean(true));
                     break;
                 case UserFiled.NONET:

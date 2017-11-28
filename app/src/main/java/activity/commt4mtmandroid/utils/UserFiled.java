@@ -43,4 +43,6 @@ public interface UserFiled {
     final String loginType = "loginType";
     final String serviceID ="serviceID";
     final String name = "name";
+    final String HistoryFresh = "HistoryFresh";
+    final String ServiceType = "ServiceType";
 }

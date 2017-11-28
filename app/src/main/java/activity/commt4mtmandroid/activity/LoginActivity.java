@@ -1,4 +1,5 @@
 package activity.commt4mtmandroid.activity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
 
@@ -25,15 +27,27 @@ import activity.commt4mtmandroid.utils.RequestCallBackDefaultImpl;
 import activity.commt4mtmandroid.utils.RequestCallBackToastImpl;
 import activity.commt4mtmandroid.utils.SpOperate;
 import activity.commt4mtmandroid.utils.UserFiled;
+import activity.commt4mtmandroid.view.MyDialog;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
     private Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message message) {
-            switch (message.what){
-
-
-
+            switch (message.what) {
+                case 1:
+                    Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                    //请求成功 关闭dialog
+                    if (dialog != null)
+                        dialog.dismiss();
+                    break;
+                case UserFiled.LINKFAIL: // 请求失败 和无网络时 关闭 等待弹窗 提示用户
+                    if (dialog != null)
+                        dialog.dismiss();
+                    break;
+                case UserFiled.NONET:
+                    if (dialog != null)
+                        dialog.dismiss();
+                    break;
             }
             return true;
         }
@@ -47,6 +61,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private String id;
     private String accout;
     private String password;
+    private MyDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +97,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         word.setSelection(accout.length());
         psw.setText(password);
         psw.setSelection(password.length());
+
+        initDialog();
+    }
+
+    //初始化加载等待的Dialog
+    private void initDialog() {
+        dialog = MyDialog.showDialog(this);
+
     }
 
     @Override
@@ -91,7 +114,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.submit:
                 userLogin();
                 break;
@@ -100,42 +123,48 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     private void userLogin() {
 
+        //登录请求显示 加载等待 Dialog
+        if (dialog != null)
+            dialog.show();
+
         loginReqDTO.setLoginid(word.getText().toString());
         loginReqDTO.setPwd(psw.getText().toString());
-        Log.i("tag", "userLogin: --------->"+loginReqDTO.convertToJson());
-        OkhttBack okhttBack = new OkhttBack(loginReqDTO.convertToJson(), LocalUrl.baseUrl+LocalUrl.login);
-        okhttBack.post(new RequestCallBackToastImpl(this,handler){
+        OkhttBack okhttBack = new OkhttBack(loginReqDTO.convertToJson(), LocalUrl.baseUrl + LocalUrl.login);
+        okhttBack.post(new RequestCallBackToastImpl(this, handler) {
             @Override
             public void success(String data) {
                 super.success(data);
+                //登录请求完成 异步到主线程 关闭Dialog显示
+                handler.sendEmptyMessage(1);
                 LoginRespDTO loginRespDTO = JSONObject.parseObject(data, LoginRespDTO.class);
                 //存入账号信息
                 userAccountSava(loginRespDTO);
                 //存入登录信息
-                SpOperate.setString(LoginActivity.this,UserFiled.serviceName,loginRespDTO.getData().getLoginInfo().getServiceName());
-                SpOperate.setString(LoginActivity.this,UserFiled.serviceDesc,loginRespDTO.getData().getLoginInfo().getServiceDesc());
-                SpOperate.setString(LoginActivity.this,UserFiled.serviceImg,loginRespDTO.getData().getLoginInfo().getServiceImg());
-                SpOperate.setString(LoginActivity.this,UserFiled.serviceID,loginRespDTO.getData().getLoginInfo().getServiceId());
-                SpOperate.setString(LoginActivity.this,UserFiled.name,loginRespDTO.getData().getLoginInfo().getName());
+                SpOperate.setString(LoginActivity.this, UserFiled.serviceName, loginRespDTO.getData().getLoginInfo().getServiceName());
+                SpOperate.setString(LoginActivity.this, UserFiled.serviceDesc, loginRespDTO.getData().getLoginInfo().getServiceDesc());
+                SpOperate.setString(LoginActivity.this, UserFiled.serviceImg, loginRespDTO.getData().getLoginInfo().getServiceImg());
+                SpOperate.setString(LoginActivity.this, UserFiled.serviceID, loginRespDTO.getData().getLoginInfo().getServiceId());
+                SpOperate.setString(LoginActivity.this, UserFiled.name, loginRespDTO.getData().getLoginInfo().getName());
+                SpOperate.setString(LoginActivity.this, UserFiled.ServiceType, loginRespDTO.getData().getLoginInfo().getServiceType());
                 //存入账号密码和ID
-                SpOperate.setString(LoginActivity.this,UserFiled.ID,loginRespDTO.getData().getLoginInfo().getId()+"");
-                SpOperate.setString(LoginActivity.this,UserFiled.account,word.getText().toString());
-                SpOperate.setString(LoginActivity.this,UserFiled.passWord,psw.getText().toString());
+                SpOperate.setString(LoginActivity.this, UserFiled.ID, loginRespDTO.getData().getLoginInfo().getId() + "");
+                SpOperate.setString(LoginActivity.this, UserFiled.account, word.getText().toString());
+                SpOperate.setString(LoginActivity.this, UserFiled.passWord, psw.getText().toString());
                 LoginRespDTO loginResp_dto = JSONObject.parseObject(data, LoginRespDTO.class);
 
                 //存入融云相关
-                SpOperate.setString(LoginActivity.this,UserFiled.RongToken,loginRespDTO.getData().getRongyunInfo().getToken().getToken());
-                SpOperate.setString(LoginActivity.this,UserFiled.ServiceToken,loginRespDTO.getData().getRongyunInfo().getAdmin()+"");
+                SpOperate.setString(LoginActivity.this, UserFiled.RongToken, loginRespDTO.getData().getRongyunInfo().getToken().getToken());
+                SpOperate.setString(LoginActivity.this, UserFiled.ServiceToken, loginRespDTO.getData().getRongyunInfo().getAdmin() + "");
 
 
                 int code = loginResp_dto.getCode();
-                if (code==0){
+                if (code == 0) {
                     //存入登录状态
-                    SpOperate.setString(LoginActivity.this,UserFiled.token,loginResp_dto.getData().getLogin_token());
-                    SpOperate.setIsLogin(LoginActivity.this, UserFiled.IsLog,true);
+                    SpOperate.setString(LoginActivity.this, UserFiled.token, loginResp_dto.getData().getLogin_token());
+                    SpOperate.setIsLogin(LoginActivity.this, UserFiled.IsLog, true);
                     //发送消息关闭登录页面
                     EventBus.getDefault().post(UserFiled.EXIT);
-                    startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
                 }
             }
@@ -146,7 +175,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private void userAccountSava(LoginRespDTO loginRespDTO) {
         String userAccountJson = SpOperate.getString(this, UserFiled.USERACCOUNT);
         UserAccountStorageDTO userAccountStorageDTO = JSONObject.parseObject(userAccountJson, UserAccountStorageDTO.class);
-        if (userAccountStorageDTO==null){
+        if (userAccountStorageDTO == null) {
             userAccountStorageDTO = new UserAccountStorageDTO();
         }
         Map<String, Object> userAccount = userAccountStorageDTO.getUserAccount();
@@ -156,10 +185,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         accountMessage.setServiceID(loginRespDTO.getData().getLoginInfo().getServiceId());
         accountMessage.setName(loginRespDTO.getData().getLoginInfo().getName());
         accountMessage.setServiceImg(loginRespDTO.getData().getLoginInfo().getServiceImg());
-        accountMessage.setBlance(loginRespDTO.getData().getLoginInfo().getBalance()+"");
+        accountMessage.setBlance(loginRespDTO.getData().getLoginInfo().getBalance() + "");
         accountMessage.setServiceName(loginRespDTO.getData().getLoginInfo().getServiceName());
         accountMessage.setServiceDes(loginRespDTO.getData().getLoginInfo().getServiceDesc());
-        userAccount.put(loginRespDTO.getData().getLoginInfo().getId()+"",accountMessage);
-        SpOperate.setString(this,UserFiled.USERACCOUNT,userAccountStorageDTO.convertToJson());
+        userAccount.put(loginRespDTO.getData().getLoginInfo().getId() + "", accountMessage);
+        SpOperate.setString(this, UserFiled.USERACCOUNT, userAccountStorageDTO.convertToJson());
     }
 }

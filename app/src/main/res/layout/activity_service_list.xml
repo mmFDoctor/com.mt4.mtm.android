@@ -11,13 +11,13 @@
         android:id="@+id/tb_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorWhite"
+        android:background="@color/colorBlue"
         android:elevation="2dp"
         android:translationZ="2dp"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:title="服务器"
-        app:titleTextColor="@color/color333">
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+        app:theme="@style/ToolbarTheme"
+        app:title="@string/Servers"
+        app:titleTextColor="@color/colorWhite">
     </android.support.v7.widget.Toolbar>
     <EditText
         android:id="@+id/service_list_editText"

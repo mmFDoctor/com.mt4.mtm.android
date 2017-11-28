@@ -3,6 +3,7 @@ package activity.commt4mtmandroid.fragment;
 
 import android.content.Intent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,11 +38,11 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
     private RelativeLayout languageRl;
     private RelativeLayout serviceRl1;
     private RelativeLayout newsRl;
+    private ImageView tagImg;
 
 
     @Override
     protected int getLayoutId() {
-        EventBus.getDefault().register(this);
         return R.layout.fragment_setting;
     }
 
@@ -62,6 +63,10 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
         languageRl = (RelativeLayout) mRootView.findViewById(R.id.r6);
         serviceRl1 = (RelativeLayout) mRootView.findViewById(R.id.r7);
         newsRl = (RelativeLayout) mRootView.findViewById(R.id.news);
+        tagImg = (ImageView) mRootView.findViewById(R.id.tag);
+
+        //获取本地存储服务器类型 判断是否显示demo 表示
+        tagImg.setVisibility(SpOperate.getString(mAtivity,UserFiled.ServiceType).equals("3")?View.GONE:View.VISIBLE);
     }
 
     @Override

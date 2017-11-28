@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 
 import com.alibaba.fastjson.JSONObject;
@@ -64,6 +65,7 @@ public class NewsListActivity extends BaseActivity {
             @Override
             public void success(String data) {
                 super.success(data);
+                Log.i("tag", "success: =============>"+data);
                 Message message = Message.obtain();
                 message.what = 1;
                 message.obj = data;

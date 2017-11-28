@@ -10,13 +10,13 @@
         android:id="@+id/tb_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorWhite"
+        android:background="@color/colorBlue"
         android:elevation="2dp"
         android:translationZ="2dp"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+        app:theme="@style/ToolbarTheme"
         app:title="@string/Account"
-        app:titleTextColor="@color/color333">
+        app:titleTextColor="@color/colorWhite">
         <ImageView
             android:id="@+id/userAccountAdd"
             android:layout_width="56dp"
@@ -25,7 +25,7 @@
             android:clickable="true"
             android:foreground="?selectableItemBackground"
             android:padding="15dp"
-            android:src="@mipmap/add_blue" />
+            android:src="@mipmap/add_white" />
     </android.support.v7.widget.Toolbar>
 
     <TextView

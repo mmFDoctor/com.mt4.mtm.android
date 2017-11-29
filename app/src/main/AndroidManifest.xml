@@ -177,7 +177,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.DingDanSuccessActivity"
-            android:launchMode="singleTop"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.LanguageSettingActivity"

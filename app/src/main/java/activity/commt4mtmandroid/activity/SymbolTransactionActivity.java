@@ -141,8 +141,6 @@ public class SymbolTransactionActivity extends BaseActivity implements View.OnCl
                     mToolbarTb.setTitle(respDTO.getData().getInfo().getSymbol());
                     mToolbarTb.setSubtitle(respDTO.getData().getInfo().getSymboldesc());
                     popupWindow.dismiss();
-
-
                     break;
 
             }

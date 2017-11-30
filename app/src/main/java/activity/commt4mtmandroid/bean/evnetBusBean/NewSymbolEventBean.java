@@ -6,6 +6,15 @@ package activity.commt4mtmandroid.bean.evnetBusBean;
 
 public class NewSymbolEventBean {
     private boolean isSucced ;
+    private String orderId ;
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
 
     public NewSymbolEventBean(boolean isSucced) {
         this.isSucced = isSucced;

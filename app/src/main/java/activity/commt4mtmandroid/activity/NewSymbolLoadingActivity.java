@@ -32,9 +32,11 @@ public class NewSymbolLoadingActivity extends BaseActivity implements View.OnCli
         public boolean handleMessage(Message msg) {
             switch (msg.what){
                 case 1:
+                    String orderId = (String) msg.obj;
                     Intent intent = new Intent(NewSymbolLoadingActivity.this, TransctionSuccessActivity.class);
                     intent.putExtra(UserFiled.descrip,content1);
                     intent.putExtra(UserFiled.price,price);
+                    intent.putExtra(UserFiled.ID,orderId);
                     startActivity(intent);
                     finish();
                     break;
@@ -74,7 +76,10 @@ public class NewSymbolLoadingActivity extends BaseActivity implements View.OnCli
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void status(NewSymbolEventBean event){
         if (event.isSucced()){
-            handler.sendEmptyMessageDelayed(1,1000);
+            Message message = Message.obtain();
+            message.obj = event.getOrderId();
+            message.what = 1;
+            handler.sendMessageDelayed(message,1000);
         }else {
             SoundPoolUtil soundPoolUtil = SoundPoolUtil.getInstance(this);
             soundPoolUtil.play(2);

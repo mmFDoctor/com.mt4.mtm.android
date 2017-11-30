@@ -105,8 +105,11 @@ public class SymbolTransactionActivity extends BaseActivity implements View.OnCl
                     symbolCount++;
                     break;
                 case 100:
+                    String orderID = (String) msg.obj;
                     EventBus.getDefault().post(new SymbolChangeBean("","transction"));
-                    EventBus.getDefault().post(new NewSymbolEventBean(true));
+                    NewSymbolEventBean newSymbolEventBean = new NewSymbolEventBean(true);
+                    newSymbolEventBean.setOrderId(orderID);
+                    EventBus.getDefault().post(newSymbolEventBean);
                     finish();
                     break;
                 case 20:

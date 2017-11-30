@@ -13,10 +13,14 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.alibaba.fastjson.JSONObject;
+
 import activity.commt4mtmandroid.BR;
 import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.activity.NewSymbolLoadingActivity;
 import activity.commt4mtmandroid.activity.SymbolTransactionActivity;
+import activity.commt4mtmandroid.bean.respDTO.TransctionRespDTO;
+import activity.commt4mtmandroid.bean.respDTO.TransctionSuccesDTO;
 import activity.commt4mtmandroid.utils.LocalUrl;
 import activity.commt4mtmandroid.utils.OkhttBack;
 import activity.commt4mtmandroid.utils.RequestCallBackToastImpl;
@@ -175,7 +179,11 @@ public class SymbolTransctionReqDTO extends  BaseObservable{
             @Override
             public void success(String data) {
                 super.success(data);
-                handler.sendEmptyMessage(100);
+                TransctionSuccesDTO transctionSuccesDTO = JSONObject.parseObject(data, TransctionSuccesDTO.class);
+                Message message =Message.obtain();
+                message.what = 100;
+                message.obj = transctionSuccesDTO.getData().getOrder_id();
+                handler.sendMessage(message);
             }
         });
     }
@@ -227,6 +235,28 @@ public class SymbolTransctionReqDTO extends  BaseObservable{
 
     //下单点击事件
     public void sellTextClick(View view){
+
+        //根据不同订单显示 不同等待页面和 下单成功页面
+        String descrip = "buy limit";
+        switch (command){
+            case "2":
+                descrip = "buy limit";
+                break;
+            case "3":
+                descrip = "sell limit";
+                break;
+            case "4":
+                descrip = "buy stop";
+                break;
+            case "5":
+                descrip = "sell stop";
+                break;
+        }
+        //跳转等待页面
+        Intent intent = new Intent(view.getContext(), NewSymbolLoadingActivity.class);
+        intent.putExtra(UserFiled.descrip,descrip+" "+digits+" "+symbol+" at "+price+"\nsl:"+askText+" tp:"+bidText);
+        view.getContext().startActivity(intent);
+
         SymbolTraReqDTO reqDTO = new SymbolTraReqDTO();
         reqDTO.setLogin_token(SpOperate.getString(view.getContext(), UserFiled.token));
         reqDTO.setSymbol(symbol);
@@ -235,13 +265,16 @@ public class SymbolTransctionReqDTO extends  BaseObservable{
         reqDTO.setVolumn(volumn);
         reqDTO.setCommand(command);
         reqDTO.setPrice(price);
-
         OkhttBack okhttBack = new OkhttBack(reqDTO.convertToJson(), LocalUrl.baseUrl+LocalUrl.addOrder);
         okhttBack.post(new RequestCallBackToastImpl(view.getContext(),handler){
             @Override
             public void success(String data) {
                 super.success(data);
-                handler.sendEmptyMessage(100);
+                TransctionSuccesDTO transctionSuccesDTO = JSONObject.parseObject(data, TransctionSuccesDTO.class);
+                Message message =Message.obtain();
+                message.what = 100;
+                message.obj = transctionSuccesDTO.getData().getOrder_id();
+                handler.sendMessage(message);
             }
         });
     }
@@ -264,7 +297,11 @@ public class SymbolTransctionReqDTO extends  BaseObservable{
             @Override
             public void success(String data) {
                 super.success(data);
-                handler.sendEmptyMessage(100);
+                TransctionSuccesDTO transctionSuccesDTO = JSONObject.parseObject(data, TransctionSuccesDTO.class);
+                Message message =Message.obtain();
+                message.what = 100;
+                message.obj = transctionSuccesDTO.getData().getOrder_id();
+                handler.sendMessage(message);
             }
         });
     }

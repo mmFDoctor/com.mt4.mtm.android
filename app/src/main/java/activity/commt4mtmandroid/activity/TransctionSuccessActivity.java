@@ -29,6 +29,8 @@ public class TransctionSuccessActivity extends BaseActivity implements View.OnCl
     private String des;
     private TextView content;
     private TextView ensure;
+    private String id;
+    private TextView idText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +44,7 @@ public class TransctionSuccessActivity extends BaseActivity implements View.OnCl
         Intent intent = getIntent();
         des = intent.getStringExtra(UserFiled.descrip);
         price = intent.getStringExtra(UserFiled.price);
-
+        id = intent.getStringExtra(UserFiled.ID);
         SoundPoolUtil soundPoolUtil = SoundPoolUtil.getInstance(this);
         soundPoolUtil.play(1);
 
@@ -52,6 +54,8 @@ public class TransctionSuccessActivity extends BaseActivity implements View.OnCl
     protected void initView() {
         super.initView();
         ensure = (TextView) findViewById(R.id.ensure);
+        idText = (TextView) findViewById(R.id.text3);
+        idText.setText(id);
         content = (TextView) findViewById(R.id.text2);
         content.setText(des+"\n以"+price);
         handler.sendEmptyMessageDelayed(1,2000);

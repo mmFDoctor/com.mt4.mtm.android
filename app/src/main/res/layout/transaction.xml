@@ -16,6 +16,15 @@
             android:id="@+id/transctionName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+        <ImageView
+            android:clickable="true"
+            android:foreground="?selectableItemBackground"
+            android:id="@+id/add"
+            android:padding="13dp"
+            android:src="@mipmap/chart_add"
+            android:layout_alignParentRight="true"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
     </RelativeLayout>
     <com.kennyc.view.MultiStateView
         android:id="@+id/loadingView"

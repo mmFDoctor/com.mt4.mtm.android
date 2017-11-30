@@ -147,7 +147,6 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
                @Override
                public void success(String data) {
                    super.success(data);
-//                   Log.i("tag", "success: ================>行情请求");
                    Message message = Message.obtain();
                    message.obj = data;
                    message.what = 1;

@@ -117,12 +117,15 @@
                         android:textColor="@{Double.parseDouble(symbolTransction.volumn)>0.01?@color/colorBlue:@color/colorccc}"
                         android:textSize="14dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <EditText
+                        android:maxLength="6"
+                        android:id="@+id/edit_volume"
+                        android:inputType="numberDecimal"
+                        android:layout_width="50dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:background="@null"
                         android:gravity="center"
-                        android:text="@{symbolTransction.volumn}"
+                        android:text="@={symbolTransction.volumn}"
                         android:textColor="@color/color333"
                         android:textSize="14dp" />
 
@@ -226,6 +229,7 @@
                                 android:textColor="@color/color999" />
 
                             <EditText
+                                android:id="@+id/editText_price"
                                 android:layout_width="100dp"
                                 android:layout_height="20dp"
                                 android:background="@null"

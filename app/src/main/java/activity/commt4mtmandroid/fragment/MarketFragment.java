@@ -34,6 +34,7 @@ import activity.commt4mtmandroid.utils.OkhttBackAlwaysOneThread;
 import activity.commt4mtmandroid.utils.RequestCallBackDefaultImpl;
 import activity.commt4mtmandroid.utils.SpOperate;
 import activity.commt4mtmandroid.utils.UserFiled;
+import activity.commt4mtmandroid.vo.SymbolTransctionDetailsBean;
 
 /**
  * Created by Administrator on 2017/9/25.
@@ -48,9 +49,26 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
                     loadingView.setViewState(MultiStateView.VIEW_STATE_CONTENT);
                     String s = (String) message.obj;
                     MarketRespDTO marketRespDTO = JSONObject.parseObject(s, MarketRespDTO.class);
-                    //存入列表的第一个symbol 用于
-                    if (marketRespDTO.getData().getInfolist().size()>0)
+
+                    if (marketRespDTO.getData().getInfolist().size()>0&&!hadFirstSymbol){
+                        hadFirstSymbol = true;
+                        //存入列表的第一个symbol 用于图标绘制
                         SpOperate.setString(mAtivity,UserFiled.FIRSTSYMBOL,marketRespDTO.getData().getInfolist().get(0).getSymbol());
+                        //第一次请求成功后，存储symbol 列表的第一个symbol的详细数据 用于交易切换
+                        MarketRespDTO.DataBean.InfolistBean infolistBean = marketRespDTO.getData().getInfolist().get(0);
+                        SymbolTransctionDetailsBean transctionDetailsBean = new SymbolTransctionDetailsBean();
+                        transctionDetailsBean.setSymbol(infolistBean.getSymbol());
+                        transctionDetailsBean.setAsk(infolistBean.getAsk());
+                        transctionDetailsBean.setBid(infolistBean.getBid());
+                        transctionDetailsBean.setDescrip(infolistBean.getSymbol_desc());
+                        transctionDetailsBean.setDigits(infolistBean.getDigits());
+                        String jsonsStr = transctionDetailsBean.converToJson();
+                        //存储json对象
+                        SpOperate.setString(mAtivity,UserFiled.FirstSymbolDetails,jsonsStr);
+                        //发送广播提醒说明已经存储json 对象
+                    }
+
+
                     data.clear();
                     data.addAll(marketRespDTO.getData().getInfolist());
                     marketAdapt.notifyDataSetChanged();
@@ -72,6 +90,8 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
     private BaseReqDTO reqDTO;
     private MultiStateView loadingView;
     private OkhttBackAlwaysOneThread alwaysOneThread;
+
+    private boolean hadFirstSymbol = false;  //标识是否已经成功请求了symbol
 
     @Override
     protected int getLayoutId() {
@@ -185,4 +205,8 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
         if (alwaysOneThread!=null)
             alwaysOneThread.aliveThread(false);
     }
+
+
+    //生命周期
+
 }

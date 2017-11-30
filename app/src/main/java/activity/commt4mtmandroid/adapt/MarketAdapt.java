@@ -139,7 +139,7 @@ public class MarketAdapt extends BaseAdapter {
         return view;
     }
 
-
+    //字体样式修改 大写样式 和 最后数字上标
     private void changeTextStyle(TextView textView, String str) {
         //小数点后只有两位 两位都大写显示 不显示上标
         SpannableString spannableString = new SpannableString(str);
@@ -166,6 +166,7 @@ public class MarketAdapt extends BaseAdapter {
         textView.setText(spannableString);
     }
 
+    // 长按显示菜单
     private void showMenu(View v, final int position) {
         PopupMenu popupMenu = new PopupMenu(context, v, Gravity.RIGHT);
         final Menu menu = popupMenu.getMenu();
@@ -223,6 +224,7 @@ public class MarketAdapt extends BaseAdapter {
 
     }
 
+    //点击事件 显示弹出框
     private class MyClicListner implements View.OnClickListener {
         private int position;
 

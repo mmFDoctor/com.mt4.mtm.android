@@ -6,10 +6,13 @@ import android.icu.text.DecimalFormat;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -211,7 +214,6 @@ public class SymbolTransactionActivity extends BaseActivity implements View.OnCl
         return set;
     }
     private LineDataSet createSet1() {
-
         LineDataSet set = new LineDataSet(null, "DataSet 1");
         set.setLineWidth(2.5f);
         set.setCircleRadius(4.5f);
@@ -269,6 +271,33 @@ public class SymbolTransactionActivity extends BaseActivity implements View.OnCl
         xAxisLine.setDrawLabels(false);
         YAxis axisLeft = binding.linechart.getAxisLeft();
         axisLeft.setEnabled(false);
+
+
+        final EditText volumeEdittext = (EditText) findViewById(R.id.edit_volume);
+
+        volumeEdittext.addTextChangedListener(new TextWatcher() {
+            private double max = 100.00;
+            private double min = 0.01;
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.toString().isEmpty()){
+                    volumeEdittext.setText(String.valueOf(min));
+                }else if (Double.parseDouble(s.toString())>max){
+                    volumeEdittext.setText(String.valueOf(max));
+                }else if (Double.parseDouble(s.toString())<min){
+                    volumeEdittext.setText(String.valueOf(min));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
     }
 
     private void symbolPopuInit() {

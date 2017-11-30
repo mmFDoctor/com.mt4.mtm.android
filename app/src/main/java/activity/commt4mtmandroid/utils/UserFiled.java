@@ -45,4 +45,5 @@ public interface UserFiled {
     final String name = "name";
     final String HistoryFresh = "HistoryFresh";
     final String ServiceType = "ServiceType";
+    final String FirstSymbolDetails = "FirstSymbolDetails";
 }

@@ -187,7 +187,7 @@ public class SymbolTransctionReqDTO extends  BaseObservable{
             if (price==null||bid.equals("")){
                 price="0";
             }else {
-                if (Float.parseFloat(price) == 0) {
+                if (price.equals("")||Float.parseFloat(price) == 0) {
                     BigDecimal bigDecimal = new BigDecimal(bid);
                     bigDecimal = bigDecimal.subtract(bigDecimal.divide(new BigDecimal(Math.pow(10, Integer.parseInt(digits))), Integer.parseInt(digits), BigDecimal.ROUND_HALF_UP));
                     price = bigDecimal.toString();
@@ -204,11 +204,12 @@ public class SymbolTransctionReqDTO extends  BaseObservable{
 
     //priceAdd
     public void priceAdd(View view){
+        String s = price;
         if (bid!=null&&!bid.equals("")){
             if (price==null||bid.equals("")){
                 price="0";
             }else {
-                if (Float.parseFloat(price) == 0) {
+                if (price.equals("")||Float.parseFloat(price) == 0) {
                     BigDecimal bigDecimal = new BigDecimal(ask);
                     bigDecimal = bigDecimal.add(new BigDecimal("1").divide(new BigDecimal(Math.pow(10, Integer.parseInt(digits))), Integer.parseInt(digits), BigDecimal.ROUND_HALF_UP));
                     price = bigDecimal.toString();
@@ -444,6 +445,7 @@ public class SymbolTransctionReqDTO extends  BaseObservable{
 
     public void setPrice(String price) {
         this.price = price;
+
     }
 
     public String getLogin_token() {

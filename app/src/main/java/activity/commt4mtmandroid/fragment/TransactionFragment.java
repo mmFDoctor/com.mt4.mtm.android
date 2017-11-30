@@ -1,10 +1,12 @@
 package activity.commt4mtmandroid.fragment;
 
 
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +23,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import activity.commt4mtmandroid.R;
+import activity.commt4mtmandroid.activity.SymbolTransactionActivity;
 import activity.commt4mtmandroid.adapt.TransctionFooterListViewAdapt;
 import activity.commt4mtmandroid.adapt.TransctionListViewAdapt;
 import activity.commt4mtmandroid.bean.evnetBusBean.SymbolChangeBean;
@@ -35,12 +38,13 @@ import activity.commt4mtmandroid.utils.RequestCallBackDefaultImpl;
 import activity.commt4mtmandroid.utils.RequestCallBackToastImpl;
 import activity.commt4mtmandroid.utils.SpOperate;
 import activity.commt4mtmandroid.utils.UserFiled;
+import activity.commt4mtmandroid.vo.SymbolTransctionDetailsBean;
 
 /**
  * Created by Administrator on 2017/9/25.
  */
 
-public class TransactionFragment extends BaseFragment {
+public class TransactionFragment extends BaseFragment implements View.OnClickListener {
     private Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message msg) {
@@ -104,6 +108,7 @@ public class TransactionFragment extends BaseFragment {
     private ListView listView;
     private View headView;
     private TextView headTitle;
+    private ImageView newTransction;
 
     @Override
     protected int getLayoutId() {
@@ -133,9 +138,19 @@ public class TransactionFragment extends BaseFragment {
     }
 
     @Override
+    protected void initListner() {
+        super.initListner();
+        newTransction.setOnClickListener(this);
+    }
+
+    @Override
     protected void initView() {
         super.initView();
         initLoading();
+        newTransction = (ImageView) mRootView.findViewById(R.id.new_transction);
+        //用户登录则可以进行显示
+        newTransction.setVisibility(SpOperate.getIsLogin(mAtivity,UserFiled.IsLog)?View.VISIBLE:View.GONE);
+
         title = (TextView) mRootView.findViewById(R.id.transctionName);
         listView = (ListView) mRootView.findViewById(R.id.transction_listView);
         headView = View.inflate(mAtivity, R.layout.item_trasction_head, null);
@@ -179,5 +194,27 @@ public class TransactionFragment extends BaseFragment {
         super.onDestroyView();
         if (alwaysOneThread != null)
             alwaysOneThread.aliveThread(false);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.new_transction:
+                //获取存储在本地的第一个symbol 的json数据
+                String firstSymbolStr = SpOperate.getString(mAtivity, UserFiled.FirstSymbolDetails);
+                //如果获取存储本地的第一个symbol details 不为空（标识在market 页面存储了数据）则可以点击进行跳转
+                if (!firstSymbolStr.equals("")) {
+                    //json 转对象
+                    SymbolTransctionDetailsBean transctionDetailsBean = JSONObject.parseObject(firstSymbolStr, SymbolTransctionDetailsBean.class);
+                    Intent intent = new Intent(mAtivity, SymbolTransactionActivity.class);
+                    intent.putExtra(UserFiled.SYMBOL, transctionDetailsBean.getSymbol());
+                    intent.putExtra(UserFiled.ASK, transctionDetailsBean.getAsk());
+                    intent.putExtra(UserFiled.BID, transctionDetailsBean.getBid());
+                    intent.putExtra(UserFiled.descrip, transctionDetailsBean.getDescrip());
+                    intent.putExtra(UserFiled.DIGITS,transctionDetailsBean.getDigits());
+                    startActivity(intent);
+                }
+                break;
+        }
     }
 }

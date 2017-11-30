@@ -19,7 +19,7 @@
         <ImageView
             android:clickable="true"
             android:foreground="?selectableItemBackground"
-            android:id="@+id/add"
+            android:id="@+id/new_transction"
             android:padding="13dp"
             android:src="@mipmap/chart_add"
             android:layout_alignParentRight="true"

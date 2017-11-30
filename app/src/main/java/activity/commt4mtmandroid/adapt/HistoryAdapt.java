@@ -87,8 +87,8 @@ public class HistoryAdapt extends BaseAdapter {
             historyHolder = (HistoryHolder) convertView.getTag();
         }
 
-        historyHolder.contentTime.setText(data.get(position).getClose_time());
-        historyHolder.openTime.setText(data.get(position).getOpen_time());
+        historyHolder.contentTime.setText(data.get(position).getOpen_time());
+        historyHolder.openTime.setText(data.get(position).getClose_time());
         historyHolder.IDContent.setText(data.get(position).getId());
         historyHolder.slContent.setText(data.get(position).getSl());
         historyHolder.tpContent.setText(data.get(position).getTp());
@@ -102,7 +102,6 @@ public class HistoryAdapt extends BaseAdapter {
 
 
         if (data.get(position).getCmd().equals("0")||data.get(position).getCmd().equals("1")){
-
             historyHolder.profit.setText(data.get(position).getProfit());
             if (Double.parseDouble(data.get(position).getProfit())>=0){
                 historyHolder.profit.setTextColor(context.getResources().getColor(R.color.colorBlue));

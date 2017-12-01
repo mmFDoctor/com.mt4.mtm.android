@@ -27,6 +27,10 @@ public class LoginChooseActivity extends BaseActivity {
         Intent intent = new Intent(this,UserRegestActivity.class);
         intent.putExtra(UserFiled.loginType,"1");
         intent.putExtra(UserFiled.serviceID,"1");
+
+        intent.putExtra(UserFiled.name,"metaquotes-demo");
+        intent.putExtra(UserFiled.descrip,"Metaquotes Software Corp");
+        intent.putExtra(UserFiled.serviceImg,"http://oygoqpzpy.bkt.clouddn.com/mt4logo2.png");
         startActivity(intent);
 
         finish();

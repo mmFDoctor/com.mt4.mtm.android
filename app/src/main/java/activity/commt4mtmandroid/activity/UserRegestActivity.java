@@ -49,6 +49,12 @@ public class UserRegestActivity extends BaseActivity implements View.OnClickList
                     intent.putExtra(UserFiled.passWord, userRegestRespDTO.getData().getInfo().getPwd() + "");
                     intent.putExtra(UserFiled.loginType, type);
                     intent.putExtra(UserFiled.serviceID,serviceID);
+
+                    //添加 注册服务器的 icon 名称 和描述
+
+                    intent.putExtra(UserFiled.name,serviceName);
+                    intent.putExtra(UserFiled.descrip,serviceDesc);
+                    intent.putExtra(UserFiled.serviceImg,serviceImg);
                     startActivity(intent);
 
                     finish();
@@ -94,6 +100,9 @@ public class UserRegestActivity extends BaseActivity implements View.OnClickList
     private int smsTimeSecond = 0;
     private String serviceID;
     private MyDialog dialog;
+    private String serviceName;
+    private String serviceDesc;
+    private String serviceImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +116,10 @@ public class UserRegestActivity extends BaseActivity implements View.OnClickList
         Intent intent = getIntent();
         type = intent.getStringExtra(UserFiled.loginType);
         serviceID = intent.getStringExtra(UserFiled.serviceID);
+
+        serviceName = intent.getStringExtra(UserFiled.name);
+        serviceDesc = intent.getStringExtra(UserFiled.descrip);
+        serviceImg = intent.getStringExtra(UserFiled.serviceImg);
     }
 
     @Override

@@ -18,7 +18,6 @@ import activity.commt4mtmandroid.activity.LanguageSettingActivity;
 import activity.commt4mtmandroid.activity.LoginChooseActivity;
 import activity.commt4mtmandroid.activity.NewsListActivity;
 import activity.commt4mtmandroid.activity.UserAccountActivity;
-import activity.commt4mtmandroid.activity.UserRegestActivity;
 import activity.commt4mtmandroid.activity.WebViewActivity;
 import activity.commt4mtmandroid.utils.SpOperate;
 import activity.commt4mtmandroid.utils.ToastUtils;

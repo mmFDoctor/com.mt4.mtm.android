@@ -109,6 +109,7 @@ public class ServiceListActivity extends BaseActivity {
                     @Override
                     public void success(String data) {
                         super.success(data);
+                        Log.i("tag", "success: ======>"+data);
                         Message message =Message.obtain();
                         message.what = 1;
                         message.obj = data;

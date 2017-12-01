@@ -78,6 +78,10 @@ public class ServiceListAdapt extends BaseAdapter {
                     Intent intent = new Intent(context, UserRegestActivity.class);
                     intent.putExtra(UserFiled.loginType,data.get(position).getType()+"");
                     intent.putExtra(UserFiled.serviceID,data.get(position).getId()+"");
+
+                    intent.putExtra(UserFiled.name,data.get(position).getName());
+                    intent.putExtra(UserFiled.descrip,data.get(position).getService_desc());
+                    intent.putExtra(UserFiled.serviceImg,data.get(position).getImg());
                     context.startActivity(intent);
                 }else {
                     Intent intent = new Intent(context, LoginActivity.class);
@@ -85,6 +89,10 @@ public class ServiceListAdapt extends BaseAdapter {
                     intent.putExtra(UserFiled.loginType,data.get(position).getType()+"");
                     intent.putExtra(UserFiled.account, SpOperate.getString(context,UserFiled.account));
                     intent.putExtra(UserFiled.passWord,SpOperate.getString(context,UserFiled.passWord));
+
+                    intent.putExtra(UserFiled.name,data.get(position).getName());
+                    intent.putExtra(UserFiled.descrip,data.get(position).getService_desc());
+                    intent.putExtra(UserFiled.serviceImg,data.get(position).getImg());
                     context.startActivity(intent);
                 }
                 handler.sendEmptyMessage(2);

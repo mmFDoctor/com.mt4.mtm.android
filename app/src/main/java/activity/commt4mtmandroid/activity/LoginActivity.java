@@ -8,10 +8,12 @@ import android.support.design.widget.TextInputEditText;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
+import com.bumptech.glide.Glide;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -62,6 +64,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private String accout;
     private String password;
     private MyDialog dialog;
+    private String serviceImg;
+    private String serviceName;
+    private String serviceDescrip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +81,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         id = intent.getStringExtra(UserFiled.serviceID);
         accout = intent.getStringExtra(UserFiled.account);
         password = intent.getStringExtra(UserFiled.passWord);
+
+        serviceImg = intent.getStringExtra(UserFiled.serviceImg);
+        serviceName = intent.getStringExtra(UserFiled.name);
+        serviceDescrip = intent.getStringExtra(UserFiled.descrip);
     }
 
     @Override
@@ -98,6 +107,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         psw.setText(password);
         psw.setSelection(password.length());
 
+        ImageView icon = (ImageView) findViewById(R.id.icon);
+        Glide.with(this).load(serviceImg).into(icon);
+
+        TextView name = (TextView) findViewById(R.id.name);
+        name.setText(serviceName);
+
+        TextView serviceDescrip  = (TextView) findViewById(R.id.descrip);
+        serviceDescrip.setText(this.serviceDescrip);
         initDialog();
     }
 

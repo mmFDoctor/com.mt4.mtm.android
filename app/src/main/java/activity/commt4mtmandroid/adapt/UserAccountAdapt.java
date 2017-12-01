@@ -91,6 +91,9 @@ public class UserAccountAdapt extends BaseAdapter {
                 intent.putExtra(UserFiled.account,dataID.get(position));
                 intent.putExtra(UserFiled.passWord,dataMessage.get(position).getPsw());
                 intent.putExtra(UserFiled.loginType,dataMessage.get(position).getServiceType());
+                intent.putExtra(UserFiled.name,dataMessage.get(position).getName());
+                intent.putExtra(UserFiled.descrip,dataMessage.get(position).getServiceDes());
+                intent.putExtra(UserFiled.serviceImg,dataMessage.get(position).getServiceImg());
                 context.startActivity(intent);
             }
         });

@@ -59,6 +59,7 @@
                         android:layout_marginTop="10dp">
 
                         <TextView
+                            android:id="@+id/sell_buy_type"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
@@ -225,7 +226,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="价格："
+                                android:text="@{@string/Price+':'}"
                                 android:textColor="@color/color999" />
 
                             <EditText
@@ -270,7 +271,7 @@
                         android:gravity="center_vertical"
                         android:textColor="@color/color333"
                         android:textSize="16dp"
-                        android:text="止损"
+                        android:text="@string/StopLoss"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
@@ -333,7 +334,7 @@
                         android:gravity="center_vertical"
                         android:textColor="@color/color333"
                         android:textSize="16dp"
-                        android:text="获利"
+                        android:text="@string/TakeProfit"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
@@ -394,7 +395,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="注意：市价交易模式下的实际成交价格，可能会和请求价格有一定差异！"
+                    android:text="@string/TransctionMessage"
                     android:textColor="@color/color999" />
             </LinearLayout>
         </ScrollView>
@@ -446,7 +447,7 @@
             android:foreground="?selectableItemBackground"
             android:gravity="center"
             android:onClick="@{symbolTransction.sellTextClick}"
-            android:text="下单"
+            android:text="@string/Place"
             android:textColor="@color/color666"
             android:textSize="20dp"
             android:visibility="gone" />

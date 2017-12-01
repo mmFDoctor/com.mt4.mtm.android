@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/OP_BUY_SELL"
-        android:title="即时买入"/>
+        android:title="@string/MarketExecution"/>
 
     <item
         android:id="@+id/OP_BUY_LIMIT"
-        android:title="买入限价"/>
+        android:title="@string/BuyLimit"/>
     <item
         android:id="@+id/OP_SELL_LIMIT"
-        android:title="卖出限价"/>
+        android:title="@string/SellLimit"/>
     <item
         android:id="@+id/OP_BUY_STOP"
-        android:title="买入止损"/>
+        android:title="@string/BuyStop"/>
     <item
         android:id="@+id/OP_SELL_STOP"
-        android:title="卖出止损"/>
+        android:title="@string/SellStop"/>
 </menu>

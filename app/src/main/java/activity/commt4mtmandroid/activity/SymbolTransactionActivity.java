@@ -250,6 +250,9 @@ public class SymbolTransactionActivity extends BaseActivity implements View.OnCl
     }
 
     private void initChartView() {
+
+        //初始化给类型赋值
+        transctionDto.setCommandText(this.getResources().getString(R.string.MarketExecution));
         //取消
         binding.linechart.setAutoScaleMinMaxEnabled(false);
         binding.linechart.setDragDecelerationEnabled(true);

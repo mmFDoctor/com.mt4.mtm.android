@@ -2,6 +2,7 @@ package activity.commt4mtmandroid.adapt;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -28,11 +29,13 @@ public class ServiceListAdapt extends BaseAdapter {
     private Context context;
     private List<ServiceListRespDTO.DataBean.InfoListBean> data;
     private String type;
+    private Handler handler;
 
-    public ServiceListAdapt(Context context, List<ServiceListRespDTO.DataBean.InfoListBean> data,String type) {
+    public ServiceListAdapt(Context context, List<ServiceListRespDTO.DataBean.InfoListBean> data,String type,Handler handler) {
         this.context = context;
         this.data = data;
         this.type = type;
+        this.handler = handler;
     }
 
     @Override
@@ -84,6 +87,7 @@ public class ServiceListAdapt extends BaseAdapter {
                     intent.putExtra(UserFiled.passWord,SpOperate.getString(context,UserFiled.passWord));
                     context.startActivity(intent);
                 }
+                handler.sendEmptyMessage(2);
             }
         });
         return convertView;

@@ -24,6 +24,7 @@ import activity.commt4mtmandroid.utils.LocalUrl;
 import activity.commt4mtmandroid.utils.OkhttBack;
 import activity.commt4mtmandroid.utils.RequestCallBackToastImpl;
 import activity.commt4mtmandroid.utils.UserFiled;
+import activity.commt4mtmandroid.view.MyDialog;
 
 public class UserRegestActivity extends BaseActivity implements View.OnClickListener {
     private Handler handler = new Handler(new Handler.Callback() {
@@ -38,6 +39,9 @@ public class UserRegestActivity extends BaseActivity implements View.OnClickList
                     Toast.makeText(UserRegestActivity.this, messageCodeRespDTO.getMessage(), Toast.LENGTH_SHORT).show();
                     break;
                 case 2:
+                    if (dialog!=null)
+                        dialog.dismiss();
+
                     String regestStr = (String) msg.obj;
                     UserRegestRespDTO userRegestRespDTO = JSONObject.parseObject(regestStr, UserRegestRespDTO.class);
                     Intent intent = new Intent(UserRegestActivity.this, LoginActivity.class);
@@ -46,6 +50,8 @@ public class UserRegestActivity extends BaseActivity implements View.OnClickList
                     intent.putExtra(UserFiled.loginType, type);
                     intent.putExtra(UserFiled.serviceID,serviceID);
                     startActivity(intent);
+
+                    finish();
                     break;
                 case 3:
                     if (smsTimeSecond>0){
@@ -87,6 +93,7 @@ public class UserRegestActivity extends BaseActivity implements View.OnClickList
     private TextView dingjinTextView;
     private int smsTimeSecond = 0;
     private String serviceID;
+    private MyDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,6 +133,12 @@ public class UserRegestActivity extends BaseActivity implements View.OnClickList
         accountTypeTextView = (TextView) findViewById(R.id.account_type_textView);
         ganganTextView = (TextView) findViewById(R.id.ganggan_TextView);
         dingjinTextView = (TextView) findViewById(R.id.dingjin_TextView);
+
+        initDialog();
+    }
+
+    private void initDialog() {
+        dialog = MyDialog.showDialog(this);
     }
 
 
@@ -161,6 +174,9 @@ public class UserRegestActivity extends BaseActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.regist_textView:
+                if (dialog!=null)
+                    dialog.show();
+
                 reqDTO.setName(name.getText().toString());
                 reqDTO.setPhone(phone.getText().toString());
                 reqDTO.setQqnum(qq.getText().toString());
@@ -172,7 +188,6 @@ public class UserRegestActivity extends BaseActivity implements View.OnClickList
                     @Override
                     public void success(String data) {
                         super.success(data);
-                        Log.i("tag", "success: ============>"+data);
                         Message message = Message.obtain();
                         message.what = 2;
                         message.obj = data;

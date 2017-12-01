@@ -21,17 +21,22 @@ public class LoginChooseActivity extends BaseActivity {
         setContentView( R.layout.activity_login_choose);
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void exit(String event){
-        if (event.equals(UserFiled.LOGINEXIT)){
-            finish();
-        }
-    }
 
+
+    public void userRegiest(View view){
+        Intent intent = new Intent(this,UserRegestActivity.class);
+        intent.putExtra(UserFiled.loginType,"1");
+        intent.putExtra(UserFiled.serviceID,"1");
+        startActivity(intent);
+
+        finish();
+    }
     public void loginClick(View view){
         Intent intent = new Intent(view.getContext(), ServiceListActivity.class);
         intent.putExtra("type","1");
         view.getContext().startActivity(intent);
+
+        finish();
     }
 
 
@@ -39,5 +44,7 @@ public class LoginChooseActivity extends BaseActivity {
         Intent intent = new Intent(view.getContext(), ServiceListActivity.class);
         intent.putExtra("type","0");
         view.getContext().startActivity(intent);
+
+        finish();
     }
 }

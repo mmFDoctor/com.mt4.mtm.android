@@ -88,4 +88,18 @@
     <string name="AccountMessage">请输入账号</string>
     <string name="PasswordMessage">请输入密码</string>
     <string name="Loading">加载中</string>
+    <string name="StopLoss">止损</string>
+    <string name="TakeProfit">获利</string>
+
+    <string name="MarketExecution">市场执行</string>
+    <string name="BuyLimit">买入限价</string>
+    <string name="SellLimit">卖出限价</string>
+    <string name="BuyStop">买入止损</string>
+    <string name="SellStop">卖出止损</string>
+
+    <string name="Place">下单</string>
+    
+    <string name="TransctionMessage">注意：市价交易模式下的实际成交价格，可能会和请求价格有一定差异！</string>
+    <string name="ModifyMessage">止损价位和止赢价位的设定与现在市场价位相差200点.止损处理由交易商侧执行</string>
+    <string name="Register">注册</string>
 </resources>

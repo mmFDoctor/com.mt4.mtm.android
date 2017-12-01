@@ -133,7 +133,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="止损"
+                android:text="@string/StopLoss"
                 android:textColor="@color/color333"
                 android:textSize="16dp" />
             <LinearLayout
@@ -193,7 +193,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="获利"
+                android:text="@string/TakeProfit"
                 android:textColor="@color/color333"
                 android:textSize="16dp" />
             <LinearLayout
@@ -240,7 +240,7 @@
             android:textSize="14dp"
             android:paddingLeft="20dp"
             android:gravity="center"
-            android:text="注意：市价交易模式下的实际成交价格，可能会和请求价格有一定差异"
+            android:text="@string/TransctionMessage"
             android:layout_width="match_parent"
             android:layout_height="50dp" />
         <View style="@style/line_1px"/>
@@ -254,7 +254,7 @@
             android:textSize="22dp"
             android:gravity="center"
             android:textColor="@color/colorBlue"
-            android:text="平仓"
+            android:text="@string/Close"
             android:layout_width="match_parent"
             android:layout_height="60dp" />
     </LinearLayout>

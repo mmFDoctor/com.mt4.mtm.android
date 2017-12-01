@@ -1,5 +1,6 @@
 package activity.commt4mtmandroid.bean.reqDTO;
 
+import android.content.Context;
 import android.content.Intent;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
@@ -48,7 +49,7 @@ public class SymbolTransctionReqDTO extends  BaseObservable{
     private String sl;
     private String tp;
     private String price="0";
-    private String commandText = "市场执行";
+    private String commandText ;
     private String ask;
     private String bid;
     private String digits;
@@ -120,7 +121,8 @@ public class SymbolTransctionReqDTO extends  BaseObservable{
     //commandChoose
 
     public void commandChoose(View view){
-        PopupMenu popupMenu = new PopupMenu(view.getContext(),view, Gravity.RIGHT);
+        final Context context = view.getContext();
+        PopupMenu popupMenu = new PopupMenu(context,view, Gravity.RIGHT);
         popupMenu.inflate(R.menu.transction_menu);
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
@@ -129,26 +131,26 @@ public class SymbolTransctionReqDTO extends  BaseObservable{
                 message.what = 20;
                 switch (item.getItemId()){
                     case R.id.OP_BUY_SELL:
-                        commandText = "即时买入";
+                        commandText = context.getResources().getString(R.string.MarketExecution);
                         message.obj = true;
                         break;
                     case R.id.OP_BUY_LIMIT:
-                        commandText = "买入限价";
+                        commandText = context.getResources().getString(R.string.BuyLimit);
                         command = "2";
                         message.obj = false;
                         break;
                     case R.id.OP_SELL_LIMIT:
-                        commandText = "卖出限价";
+                        commandText = context.getResources().getString(R.string.SellLimit);
                         command = "3";
                         message.obj = false;
                         break;
                     case R.id.OP_BUY_STOP:
-                        commandText = "买入止损";
+                        commandText = context.getResources().getString(R.string.BuyStop);
                         command = "4";
                         message.obj = false;
                         break;
                     case R.id.OP_SELL_STOP:
-                        commandText = "卖出止损";
+                        commandText = context.getResources().getString(R.string.SellStop);
                         command = "5";
                         message.obj = false;
                         break;

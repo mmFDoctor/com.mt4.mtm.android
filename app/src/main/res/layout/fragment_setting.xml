@@ -29,19 +29,17 @@
         android:layout_width="match_parent"
         android:layout_height="100dp">
         <TextView
-
-
+            android:layout_marginTop="20dp"
+            android:text="yang chen"
             android:id="@+id/service_name"
-            android:layout_marginRight="80dp"
-            android:layout_marginLeft="80dp"
             android:layout_centerHorizontal="true"
-            android:textSize="22dp"
+            android:textSize="16dp"
             android:gravity="center"
             android:lines="1"
             android:ellipsize="end"
             android:textColor="@color/color333"
             android:layout_width="wrap_content"
-            android:layout_height="50dp" />
+            android:layout_height="wrap_content" />
         <ImageView
             android:background="@mipmap/demo_tag"
             android:id="@+id/tag"
@@ -49,12 +47,14 @@
             android:layout_width="50dp"
             android:layout_height="50dp" />
         <TextView
+            android:lines="1"
+            android:ellipsize="end"
             android:id="@+id/service_message"
             android:textColor="@color/color333"
             android:gravity="center"
             android:textSize="18dp"
-            android:layout_marginLeft="100dp"
-            android:layout_marginRight="100dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/service_name"
             android:layout_width="wrap_content"

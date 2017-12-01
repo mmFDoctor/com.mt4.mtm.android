@@ -36,6 +36,10 @@ public class ServiceListActivity extends BaseActivity {
                         adapt.notifyDataSetChanged();
                     }
                     break;
+
+                case 2:
+                    finish();
+                    break;
             }
             return true;
         }
@@ -84,7 +88,7 @@ public class ServiceListActivity extends BaseActivity {
     protected void initAdapt() {
         super.initAdapt();
         data = new ArrayList<>();
-        adapt = new ServiceListAdapt(this, data,type);
+        adapt = new ServiceListAdapt(this, data,type,handler);
         listView.setAdapter(adapt);
     }
 
@@ -105,7 +109,6 @@ public class ServiceListActivity extends BaseActivity {
                     @Override
                     public void success(String data) {
                         super.success(data);
-                        Log.i("tag", "success: ===========>"+data);
                         Message message =Message.obtain();
                         message.what = 1;
                         message.obj = data;

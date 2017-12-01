@@ -145,7 +145,7 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
         reqDTO = new HistoryReqDTO();
         reqDTO.setLogin_token(SpOperate.getString(mAtivity, UserFiled.token));
         reqDTO.setEndTime(getOldDate(0));
-        reqDTO.setBeginTime(getOldDate(-1));
+        reqDTO.setBeginTime(getOldDate(0));
 
     }
 
@@ -216,7 +216,7 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
                 if (dialog != null)
                     dialog.show();
                 reqDTO.setEndTime(getOldDate(0));
-                reqDTO.setBeginTime(getOldDate(-1));
+                reqDTO.setBeginTime(getOldDate(0));
                 initData();
                 break;
             case R.id.radioButton_week:

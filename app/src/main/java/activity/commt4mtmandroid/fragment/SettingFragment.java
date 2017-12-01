@@ -18,8 +18,10 @@ import activity.commt4mtmandroid.activity.LanguageSettingActivity;
 import activity.commt4mtmandroid.activity.LoginChooseActivity;
 import activity.commt4mtmandroid.activity.NewsListActivity;
 import activity.commt4mtmandroid.activity.UserAccountActivity;
+import activity.commt4mtmandroid.activity.UserRegestActivity;
 import activity.commt4mtmandroid.activity.WebViewActivity;
 import activity.commt4mtmandroid.utils.SpOperate;
+import activity.commt4mtmandroid.utils.ToastUtils;
 import activity.commt4mtmandroid.utils.UserFiled;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.model.Conversation;
@@ -98,22 +100,30 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
             case R.id.r5:
                 if (SpOperate.getIsLogin(mAtivity,UserFiled.IsLog)) {
                     startActivity(new Intent(mAtivity, WebViewActivity.class));
+                }else {
+                    ToastUtils.showToast(mAtivity,"请先进行用户登录");
                 }
                 break;
             case R.id.r6:
                 if (SpOperate.getIsLogin(mAtivity,UserFiled.IsLog)) {
                     startActivity(new Intent(mAtivity, LanguageSettingActivity.class));
+                }else {
+                    ToastUtils.showToast(mAtivity,"请先进行用户登录");
                 }
                 break;
             case R.id.r7:
                 if (SpOperate.getIsLogin(mAtivity,UserFiled.IsLog)) {
 //                    RongIM.getInstance().startConversation(mAtivity, Conversation.ConversationType.PRIVATE,SpOperate.getString(mAtivity,UserFiled.ServiceToken),"会话");
                     startActivity(new Intent(mAtivity, ChatActivity.class));
+                }else {
+                    ToastUtils.showToast(mAtivity,"请先进行用户登录");
                 }
                 break;
             case R.id.news:
                 if (SpOperate.getIsLogin(mAtivity,UserFiled.IsLog)) {
                     startActivity(new Intent(mAtivity, NewsListActivity.class));
+                }else {
+                    ToastUtils.showToast(mAtivity,"请先进行用户登录");
                 }
                 break;
         }

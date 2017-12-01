@@ -151,7 +151,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="价格"
+                        android:text="@string/Price"
                         android:textColor="@color/color333"
                         android:textSize="16dp" />
 
@@ -216,7 +216,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="止损"
+                        android:text="@string/StopLoss"
                         android:textColor="@color/color333"
                         android:textSize="16dp" />
 
@@ -281,7 +281,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="获利"
+                        android:text="@string/TakeProfit"
                         android:textColor="@color/color333"
                         android:textSize="16dp" />
 
@@ -336,7 +336,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="止损价位和止赢价位的设定与现在市场价位相差200点.止损处理由交易商侧执行"
+                    android:text="@string/ModifyMessage"
                     android:textColor="@color/color999" />
 
 
@@ -353,7 +353,7 @@
             android:foreground="?selectableItemBackground"
             android:gravity="center"
             android:onClick="@{orderTransction.modificationClick}"
-            android:text="修改"
+            android:text="@string/Modify"
             android:textColor="@color/color333"
             android:textSize="18dp" />
     </LinearLayout>

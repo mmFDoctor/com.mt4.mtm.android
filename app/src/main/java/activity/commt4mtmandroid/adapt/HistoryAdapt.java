@@ -92,7 +92,7 @@ public class HistoryAdapt extends BaseAdapter {
         historyHolder.IDContent.setText(data.get(position).getId());
         historyHolder.slContent.setText(data.get(position).getSl());
         historyHolder.tpContent.setText(data.get(position).getTp());
-        historyHolder.storageContent.setText(data.get(position).getOpen_price());
+        historyHolder.storageContent.setText(data.get(position).getStorage());
         historyHolder.r1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

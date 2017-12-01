@@ -27,7 +27,7 @@
         android:layout_gravity="center"/>
 
     <RelativeLayout
-        android:onClick="serviceChooseClick"
+        android:onClick="userRegiest"
         android:padding="20dp"
         android:clickable="true"
         android:foreground="?selectableItemBackground"

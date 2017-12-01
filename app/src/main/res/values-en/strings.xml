@@ -85,4 +85,17 @@
     <string name="Login">Login</string>
     <string name="AccountMessage">Please enter your account number</string>
     <string name="PasswordMessage">Please enter your password</string>
+
+    <string name="StopLoss">Stop Loss</string>
+    <string name="TakeProfit">Take Profit</string>
+
+    <string name="MarketExecution">Market Execution</string>
+    <string name="BuyLimit">Buy Limit</string>
+    <string name="SellLimit">Sell Limit</string>
+    <string name="BuyStop">Buy Stop</string>
+    <string name="SellStop">Sell Stop</string>
+    <string name="Place">Place</string>
+    <string name="TransctionMessage">Attention!The trade will be executed at market condition,difference will requested price may be significant!</string>
+    <string name="ModifyMessage">Stop Loss or Take Profit you set must differ from market price by at least 200 points.Stops processing is performed on the broker side.</string>
+    <string name="Register">Register</string>
 </resources>

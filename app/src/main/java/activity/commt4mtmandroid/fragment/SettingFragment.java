@@ -13,6 +13,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import activity.commt4mtmandroid.R;
+import activity.commt4mtmandroid.activity.AboutActivity;
 import activity.commt4mtmandroid.activity.ChatActivity;
 import activity.commt4mtmandroid.activity.LanguageSettingActivity;
 import activity.commt4mtmandroid.activity.LoginChooseActivity;
@@ -40,6 +41,7 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
     private RelativeLayout serviceRl1;
     private RelativeLayout newsRl;
     private ImageView tagImg;
+    private RelativeLayout aboutRl;
 
 
     @Override
@@ -64,6 +66,7 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
         languageRl = (RelativeLayout) mRootView.findViewById(R.id.r6);
         serviceRl1 = (RelativeLayout) mRootView.findViewById(R.id.r7);
         newsRl = (RelativeLayout) mRootView.findViewById(R.id.news);
+        aboutRl = (RelativeLayout) mRootView.findViewById(R.id.r8);
         tagImg = (ImageView) mRootView.findViewById(R.id.tag);
 
         //获取本地存储服务器类型 判断是否显示demo 表示
@@ -80,6 +83,7 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
         languageRl.setOnClickListener(this);
         serviceRl1.setOnClickListener(this);
         newsRl.setOnClickListener(this);
+        aboutRl.setOnClickListener(this);
     }
 
     @Override
@@ -124,6 +128,14 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
                 }else {
                     ToastUtils.showToast(mAtivity,"请先进行用户登录");
                 }
+                break;
+            case R.id.r8:
+                if (SpOperate.getIsLogin(mAtivity,UserFiled.IsLog)) {
+                    startActivity(new Intent(mAtivity, AboutActivity.class));
+                }else {
+                    ToastUtils.showToast(mAtivity,"请先进行用户登录");
+                }
+
                 break;
         }
     }

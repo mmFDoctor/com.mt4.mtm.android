@@ -34,4 +34,17 @@ public class SpOperate {
         return aBoolean;
     }
 
+
+    public static void setBoolean(Context context, String key, Boolean isLogin){
+        SharedPreferences sp = context.getSharedPreferences(UserFiled.UserAbout, Context.MODE_PRIVATE);
+        SharedPreferences.Editor edit = sp.edit();
+        edit.putBoolean(key,isLogin);
+        edit.commit();
+    }
+    public static boolean getBoolean(Context context, String key){
+        SharedPreferences sp = context.getSharedPreferences(UserFiled.UserAbout, Context.MODE_PRIVATE);
+        boolean aBoolean = sp.getBoolean(key, false);
+        return aBoolean;
+    }
+
 }

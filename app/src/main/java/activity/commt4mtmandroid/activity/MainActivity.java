@@ -84,11 +84,14 @@ public class MainActivity extends BaseActivity implements OnTabSelectListener {
     public void changeFragmentByEventBus(SymbolChangeBean changeBean){
         String change = changeBean.getChange();
         switch (change){
-            case "chart":
+            case UserFiled.CHART:
                 bottomBar.selectTabAtPosition(1);
                 break;
-            case "transction":
+            case UserFiled.TRANSCTION:
                 bottomBar.selectTabAtPosition(2);
+                break;
+            case UserFiled.SETTING:
+                bottomBar.selectTabAtPosition(4);
                 break;
         }
     }

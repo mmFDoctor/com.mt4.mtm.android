@@ -46,4 +46,10 @@ public interface UserFiled {
     final String HistoryFresh = "HistoryFresh";
     final String ServiceType = "ServiceType";
     final String FirstSymbolDetails = "FirstSymbolDetails";
+    final String AUTOLOCK = "AUTOLOCK";
+    final String SOUNDLOCK = "SOUNDLOCK";
+    final String NEWSLOCK = "NEWSLOCK";
+    final String CHART = "chart";
+    final String TRANSCTION = "transction";
+    final String SETTING = "setting";
 }

@@ -66,6 +66,9 @@ public class HistoryAdapt extends BaseAdapter {
 
 
             historyHolder.openAndClosePrice = (TextView) convertView.findViewById(R.id.openAndClosePrice);
+            historyHolder.openAndClosePrice.getPaint().setFlags(Paint.FAKE_BOLD_TEXT_FLAG);
+            historyHolder.openAndClosePrice.getPaint().setAntiAlias(true);
+
             historyHolder.profit = (TextView) convertView.findViewById(R.id.profit);
             //加粗
             historyHolder.profit.getPaint().setFlags(Paint.FAKE_BOLD_TEXT_FLAG);

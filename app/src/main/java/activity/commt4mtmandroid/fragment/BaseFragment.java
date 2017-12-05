@@ -37,6 +37,7 @@ public abstract class BaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //注册EventBus
         mRootView = inflater.inflate(getLayoutId(), container, false);
+        //EventBus 注册
         EventBus.getDefault().register(this);
         LanguageUtils.changeAppLanguage(mAtivity,false);
         init();
@@ -82,5 +83,12 @@ public abstract class BaseFragment extends Fragment {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void pub(String event){
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        //EventBus 注销
+        EventBus.getDefault().unregister(this);
     }
 }

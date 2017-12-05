@@ -35,8 +35,11 @@ public class RequestCallBackDefaultImpl implements IRequestCallBack {
     //todo
     @Override
     public void fail(BaseRespDTO dto) {
-        Log.i("tag", "fail: "+dto.getMessage());
 
+        if (dto.getCode()==2000){
+            //2000 token 异常 重新登录
+            new UserLoginAgin().ActivityExit(context);
+        }
         if (handler != null) {
             handler.sendEmptyMessage(UserFiled.LINKFAIL);
         }

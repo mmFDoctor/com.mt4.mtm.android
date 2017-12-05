@@ -106,7 +106,7 @@ public class SymbolTransactionActivity extends BaseActivity implements View.OnCl
                     break;
                 case 100:
                     String orderID = (String) msg.obj;
-                    EventBus.getDefault().post(new SymbolChangeBean("","transction"));
+                    EventBus.getDefault().post(new SymbolChangeBean("",UserFiled.TRANSCTION));
                     NewSymbolEventBean newSymbolEventBean = new NewSymbolEventBean(true);
                     newSymbolEventBean.setOrderId(orderID);
                     EventBus.getDefault().post(newSymbolEventBean);

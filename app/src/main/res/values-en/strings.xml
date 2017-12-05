@@ -98,4 +98,8 @@
     <string name="TransctionMessage">Attention!The trade will be executed at market condition,difference will requested price may be significant!</string>
     <string name="ModifyMessage">Stop Loss or Take Profit you set must differ from market price by at least 200 points.Stops processing is performed on the broker side.</string>
     <string name="Register">Register</string>
+    <string name="About">About</string>
+    <string name="Sounds">Sounds</string>
+    <string name="Auto_Lock">Auto_Lock</string>
+    <string name="Enable_News">Enable News</string>
 </resources>

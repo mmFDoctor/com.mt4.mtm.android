@@ -75,7 +75,7 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
                     break;
                 case 99:
                     String symbolS = (String) message.obj;
-                    EventBus.getDefault().post(new SymbolChangeBean(symbolS,"chart"));
+                    EventBus.getDefault().post(new SymbolChangeBean(symbolS,UserFiled.CHART));
                     break;
             }
             return true;

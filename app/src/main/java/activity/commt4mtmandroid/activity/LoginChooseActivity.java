@@ -39,7 +39,6 @@ public class LoginChooseActivity extends BaseActivity {
         Intent intent = new Intent(view.getContext(), ServiceListActivity.class);
         intent.putExtra("type","1");
         view.getContext().startActivity(intent);
-
         finish();
     }
 
@@ -48,7 +47,6 @@ public class LoginChooseActivity extends BaseActivity {
         Intent intent = new Intent(view.getContext(), ServiceListActivity.class);
         intent.putExtra("type","0");
         view.getContext().startActivity(intent);
-
         finish();
     }
 }

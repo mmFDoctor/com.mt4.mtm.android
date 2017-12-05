@@ -11,6 +11,7 @@ import activity.commt4mtmandroid.bean.respDTO.BaseRespDTO;
 
 /**
  * Created by Administrator on 2017/7/26.
+ * 网络请求回调接口实现 ，请求失败提醒，
  */
 
 public class RequestCallBackToastImpl implements IRequestCallBack {
@@ -35,6 +36,9 @@ public class RequestCallBackToastImpl implements IRequestCallBack {
     //todo
     @Override
     public void fail(BaseRespDTO dto) {
+        if (dto.getCode()==2000){
+            new UserLoginAgin().ActivityExit(context);
+        }
         if (handler != null) {
             handler.sendEmptyMessage(UserFiled.LINKFAIL);
         }

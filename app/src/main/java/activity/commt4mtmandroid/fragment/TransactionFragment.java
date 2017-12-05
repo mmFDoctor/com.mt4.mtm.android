@@ -79,7 +79,7 @@ public class TransactionFragment extends BaseFragment implements View.OnClickLis
                     break;
                 case 99:
                     String symbolS = (String) msg.obj;
-                    EventBus.getDefault().post(new SymbolChangeBean(symbolS, "chart"));
+                    EventBus.getDefault().post(new SymbolChangeBean(symbolS,UserFiled.CHART));
                     break;
                 case 101:
                     //定单成功关闭后 Toast 提醒用户 并且发广播更新历史页面

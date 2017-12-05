@@ -165,8 +165,12 @@ public class SymbolTransctionReqDTO extends  BaseObservable{
     //sell点击事件
     public void sellClick(View view){
         Intent intent = new Intent(view.getContext(), NewSymbolLoadingActivity.class);
-        intent.putExtra(UserFiled.descrip,digits+" "+symbol+"at 0.00000\n"+"sl:"+askText + "tp:"+bidText);
+        String descripAsk = askText.equals("0")?"0.0000":askText;
+        String descripBid = bidText.equals("0")?"0.0000":bidText;
+        intent.putExtra(UserFiled.descrip,digits+" "+symbol+" "+ask+"\nsl:"+descripAsk + "tp:"+descripBid);
         view.getContext().startActivity(intent);
+
+
         SymbolTraReqDTO reqDTO = new SymbolTraReqDTO();
         reqDTO.setLogin_token(SpOperate.getString(view.getContext(), UserFiled.token));
         reqDTO.setSymbol(symbol);

@@ -23,7 +23,6 @@ public class NewSymbolLoadingActivity extends BaseActivity implements View.OnCli
     private TextView content;
     private TextView ensure;
     private String content1;
-    private String price;
 
     private Handler handler = new Handler(new Handler.Callback() {
         @Override
@@ -33,7 +32,6 @@ public class NewSymbolLoadingActivity extends BaseActivity implements View.OnCli
                     String orderId = (String) msg.obj;
                     Intent intent = new Intent(NewSymbolLoadingActivity.this, TransctionSuccessActivity.class);
                     intent.putExtra(UserFiled.descrip,content1);
-                    intent.putExtra(UserFiled.price,price);
                     intent.putExtra(UserFiled.ID,orderId);
                     startActivity(intent);
                     finish();

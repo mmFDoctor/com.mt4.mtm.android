@@ -29,4 +29,5 @@ public interface LocalUrl  {
     final String changeOrder = "mtinter/mvc/order/changeOrder.json";
     final String newsList = "mtinter/mvc/news/list.json";
     final String changePush= "mtinter/mvc/user/changePush.json";
+    final String getServiceCount= "mtinter/mvc/common/getServiceCount.json";
 }

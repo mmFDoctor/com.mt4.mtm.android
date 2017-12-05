@@ -65,7 +65,7 @@
     <string name="Swr">开始无需注册</string>
     <string name="SwrDescp">一个匿名账户将自动登录</string>
     <string name="Opda">打开一个匿名账户</string>
-    <string name="OpdaDesc">在128个交易商中选择并注册一个账户</string>
+    <string name="OpdaDesc">在1455个交易商中选择并注册一个账户</string>
     <string name="Laea">登录一个已有账户</string>
     <string name="LaeaDesc">使用您的登录名/密码连接您选择的交易商</string>
     <string name="Account">账户</string>
@@ -106,4 +106,6 @@
     <string name="Sounds">声音</string>
     <string name="Auto_Lock">自动锁定</string>
     <string name="Enable_News">启用新闻</string>
+    <string name="serviceDescripContent1">在</string>
+    <string name="serviceDescripContent2">个交易商中选择并注册一个账户</string>
 </resources>

@@ -25,7 +25,7 @@ public class TransctionSuccessActivity extends BaseActivity implements View.OnCl
         }
     });
 
-    private String price;
+
     private String des;
     private TextView content;
     private TextView ensure;
@@ -43,7 +43,6 @@ public class TransctionSuccessActivity extends BaseActivity implements View.OnCl
         super.initIntnet();
         Intent intent = getIntent();
         des = intent.getStringExtra(UserFiled.descrip);
-        price = intent.getStringExtra(UserFiled.price);
         id = intent.getStringExtra(UserFiled.ID);
         SoundPoolUtil soundPoolUtil = SoundPoolUtil.getInstance(this);
         soundPoolUtil.play(1,this);
@@ -55,9 +54,9 @@ public class TransctionSuccessActivity extends BaseActivity implements View.OnCl
         super.initView();
         ensure = (TextView) findViewById(R.id.ensure);
         idText = (TextView) findViewById(R.id.text3);
-        idText.setText(id);
+        idText.setText("#"+id);
         content = (TextView) findViewById(R.id.text2);
-        content.setText(des+"\n以"+price);
+        content.setText(des);
         handler.sendEmptyMessageDelayed(1,2000);
     }
 

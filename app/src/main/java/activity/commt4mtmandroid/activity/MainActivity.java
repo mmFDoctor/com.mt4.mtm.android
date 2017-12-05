@@ -43,6 +43,7 @@ public class MainActivity extends BaseActivity implements OnTabSelectListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //初始化个推组件
         PushManager.getInstance().registerPushIntentService(this.getApplicationContext(), MT4IntentService.class);
         PushManager.getInstance().initialize(this.getApplicationContext(), MT4PushService.class);
 
@@ -98,6 +99,7 @@ public class MainActivity extends BaseActivity implements OnTabSelectListener {
 
     }
 
+    //底部导航栏切换控制
     private void changeFragment(String s) {
         int checkedId = Integer.parseInt(s);
         Fragment f = null;
@@ -138,6 +140,7 @@ public class MainActivity extends BaseActivity implements OnTabSelectListener {
     }
 
 
+    //导航栏切换点击事件
     @Override
     public void onTabSelected(@IdRes int tabId) {
         changeFragment(String.valueOf(tabId));

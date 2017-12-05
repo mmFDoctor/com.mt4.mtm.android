@@ -63,7 +63,7 @@
     <string name="Swr">Start without registration</string>
     <string name="SwrDescp">An anonymous account will be automatically created for you</string>
     <string name="Opda">Open a personal demo account</string>
-    <string name="OpdaDesc">Choose among 1844 brokers and register an account</string>
+    <string name="OpdaDesc">Choose among 1455 brokers and register an account</string>
     <string name="Laea">Login to an existing account</string>
     <string name="LaeaDesc">Use your login/password to connect to the broker of your choice</string>
     <string name="Account">Account</string>
@@ -102,4 +102,6 @@
     <string name="Sounds">Sounds</string>
     <string name="Auto_Lock">Auto_Lock</string>
     <string name="Enable_News">Enable News</string>
+    <string name="serviceDescripContent1">Choose among </string>
+    <string name="serviceDescripContent2"> brokers and register an account</string>
 </resources>

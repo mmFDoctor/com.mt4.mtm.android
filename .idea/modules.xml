@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/LYZ_KChart/LYZ_KChart.iml" filepath="$PROJECT_DIR$/LYZ_KChart/LYZ_KChart.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/com.mt4.mtm.android.iml" filepath="$PROJECT_DIR$/com.mt4.mtm.android.iml" />
     </modules>

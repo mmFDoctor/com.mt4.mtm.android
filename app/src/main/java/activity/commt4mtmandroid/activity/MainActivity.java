@@ -20,8 +20,11 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.bean.evnetBusEntity.SymbolChangeBean;
+import activity.commt4mtmandroid.datahelp.KlineHepler;
+import activity.commt4mtmandroid.entity.KlineCycle;
 import activity.commt4mtmandroid.fragment.ChartFragment;
 import activity.commt4mtmandroid.fragment.HistoryFragment;
+import activity.commt4mtmandroid.fragment.KLineFragment;
 import activity.commt4mtmandroid.fragment.MarketFragment;
 import activity.commt4mtmandroid.fragment.SettingFragment;
 import activity.commt4mtmandroid.fragment.TransactionFragment;
@@ -109,7 +112,8 @@ public class MainActivity extends BaseActivity implements OnTabSelectListener {
                     f = new MarketFragment();
                     break;
                 case R.id.radioButton_chart:
-                    f = new ChartFragment();
+//                    f = new ChartFragment();
+                    f = KLineFragment.newInstance("USDCHF", KlineHepler.VALUE_PARAM_KLINE_M1        );
                     break;
                 case R.id.radioButton_Transaction:
                     f = new TransactionFragment();

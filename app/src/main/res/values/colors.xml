@@ -14,4 +14,12 @@
     <color name="KLineBlue">#59F0F1</color>
     <color name="colorBlack">#000</color>
     <color name="colorAAA">#EFEFEF</color>
+
+    <color name="bg_line_type_bg">#f7f8fa</color>
+    <color name="line_spil">#cbccce</color>
+
+    <!--周期字体默认颜色-->
+    <color name="p_cycle_normal">#797979</color>
+    <!--周期字体选中颜色-->
+    <color name="p_cycle_selected">#1f8ceb</color>
 </resources>

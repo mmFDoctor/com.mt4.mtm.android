@@ -28,7 +28,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import activity.commt4mtmandroid.R;
-import activity.commt4mtmandroid.bean.evnetBusBean.DingDanStatusBean;
+import activity.commt4mtmandroid.bean.evnetBusEntity.DingDanStatusBean;
 import activity.commt4mtmandroid.bean.reqDTO.CloseOutReqDTO;
 import activity.commt4mtmandroid.bean.reqDTO.SingleSymbolDetailsReqDTO;
 import activity.commt4mtmandroid.bean.respDTO.SingleSymbolDetailsRespDTO;

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,8 +12,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import activity.commt4mtmandroid.R;
-import activity.commt4mtmandroid.bean.evnetBusBean.DingDanStatusBean;
-import activity.commt4mtmandroid.bean.evnetBusBean.NewSymbolEventBean;
+import activity.commt4mtmandroid.bean.evnetBusEntity.NewSymbolEventBean;
 import activity.commt4mtmandroid.utils.SoundPoolUtil;
 import activity.commt4mtmandroid.utils.UserFiled;
 
@@ -82,7 +80,7 @@ public class NewSymbolLoadingActivity extends BaseActivity implements View.OnCli
             handler.sendMessageDelayed(message,1000);
         }else {
             SoundPoolUtil soundPoolUtil = SoundPoolUtil.getInstance(this);
-            soundPoolUtil.play(2);
+            soundPoolUtil.play(2,this);
             icon.setBackgroundResource(R.mipmap.order_status_error);
             descrip.setText("交易失败");
         }

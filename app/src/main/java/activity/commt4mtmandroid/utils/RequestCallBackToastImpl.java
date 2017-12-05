@@ -38,6 +38,7 @@ public class RequestCallBackToastImpl implements IRequestCallBack {
     public void fail(BaseRespDTO dto) {
         if (dto.getCode()==2000){
             new UserLoginAgin().ActivityExit(context);
+
         }
         if (handler != null) {
             handler.sendEmptyMessage(UserFiled.LINKFAIL);

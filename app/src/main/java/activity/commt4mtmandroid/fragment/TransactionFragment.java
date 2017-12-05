@@ -4,7 +4,6 @@ package activity.commt4mtmandroid.fragment;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -15,27 +14,22 @@ import com.alibaba.fastjson.JSONObject;
 import com.kennyc.view.MultiStateView;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.activity.SymbolTransactionActivity;
-import activity.commt4mtmandroid.adapt.TransctionFooterListViewAdapt;
 import activity.commt4mtmandroid.adapt.TransctionListViewAdapt;
-import activity.commt4mtmandroid.bean.evnetBusBean.SymbolChangeBean;
+import activity.commt4mtmandroid.bean.evnetBusEntity.IsForegroundControlEntity;
+import activity.commt4mtmandroid.bean.evnetBusEntity.SymbolChangeBean;
 import activity.commt4mtmandroid.bean.reqDTO.BaseReqDTO;
-import activity.commt4mtmandroid.bean.reqDTO.CurrentTransctionReqDTO;
 import activity.commt4mtmandroid.bean.respDTO.TransctionRespDTO;
 import activity.commt4mtmandroid.utils.LocalUrl;
-import activity.commt4mtmandroid.utils.OkhttBack;
-import activity.commt4mtmandroid.utils.OkhttBackAlways;
 import activity.commt4mtmandroid.utils.OkhttBackAlwaysOneThread;
 import activity.commt4mtmandroid.utils.RequestCallBackDefaultImpl;
-import activity.commt4mtmandroid.utils.RequestCallBackToastImpl;
 import activity.commt4mtmandroid.utils.SpOperate;
 import activity.commt4mtmandroid.utils.UserFiled;
 import activity.commt4mtmandroid.vo.SymbolTransctionDetailsBean;
@@ -216,5 +210,17 @@ public class TransactionFragment extends BaseFragment implements View.OnClickLis
                 }
                 break;
         }
+    }
+
+    //广播接受App 前后台状态用于控制线程暂停继续
+    //EventBus 接受前后天时接收广播 进行线程控制
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void threadControl(IsForegroundControlEntity event){
+        if (event.isForeground()&&alwaysOneThread!=null){
+            alwaysOneThread.isRun(true);
+        }else if (!event.isForeground()&&alwaysOneThread!=null){
+            alwaysOneThread.isRun(false);
+        }
+
     }
 }

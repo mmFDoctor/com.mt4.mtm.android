@@ -4,6 +4,7 @@
     package="activity.commt4mtmandroid">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
     <!-- 个推SDK权限配置开始 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -49,16 +50,7 @@
         android:theme="@style/AppNormal"
         tools:replace="android:icon">
 
-        <!-- 融云配置 -->
-        <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="activity.commt4mtmandroid"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/rc_file_path" />
-        </provider>
+
 
         <!-- 个推SDK配置开始 -->
         <!-- 配置的第三方参数属性 -->
@@ -130,6 +122,7 @@
         </activity>
         <activity
             android:name=".activity.LoginChooseActivity"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.LoginActivity"

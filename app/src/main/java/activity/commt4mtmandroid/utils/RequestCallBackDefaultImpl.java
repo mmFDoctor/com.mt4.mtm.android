@@ -36,16 +36,21 @@ public class RequestCallBackDefaultImpl implements IRequestCallBack {
     @Override
     public void fail(BaseRespDTO dto) {
 
-        if (dto.getCode()==2000){
+        if (dto.getCode() == 2000) {
             //2000 token 异常 重新登录
+            Log.i("tag", "fail: ============>token 异常" + dto.getCode());
             new UserLoginAgin().ActivityExit(context);
+            if (handler != null)
+                handler.sendEmptyMessage(UserFiled.STOP_THREAD);
+
+        } else {
+            if (handler != null)
+                handler.sendEmptyMessage(UserFiled.LINKFAIL);
+//            Looper.prepare();
+//            Toast.makeText(context, dto.getMessage(), Toast.LENGTH_SHORT).show();
+//            Looper.loop();
         }
-        if (handler != null) {
-            handler.sendEmptyMessage(UserFiled.LINKFAIL);
-        }
-//        Looper.prepare();
-//        Toast.makeText(context, dto.getMessage(), Toast.LENGTH_SHORT).show();
-//        Looper.loop();
+
 
     }
 
@@ -55,7 +60,7 @@ public class RequestCallBackDefaultImpl implements IRequestCallBack {
             handler.sendEmptyMessage(UserFiled.NONET);
         }
 //        Looper.prepare();
-//        Toast.makeText(context,"网络不给力", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, "网络不给力，请重新尝试！", Toast.LENGTH_SHORT).show();
 //        Looper.loop();
     }
 }

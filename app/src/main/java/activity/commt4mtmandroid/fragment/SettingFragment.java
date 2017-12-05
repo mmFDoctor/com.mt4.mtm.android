@@ -23,8 +23,6 @@ import activity.commt4mtmandroid.activity.WebViewActivity;
 import activity.commt4mtmandroid.utils.SpOperate;
 import activity.commt4mtmandroid.utils.ToastUtils;
 import activity.commt4mtmandroid.utils.UserFiled;
-import io.rong.imkit.RongIM;
-import io.rong.imlib.model.Conversation;
 
 /**
  * Created by Administrator on 2017/9/25.

@@ -1,5 +1,7 @@
 package activity.commt4mtmandroid.activity;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -16,8 +18,11 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 
+import java.util.List;
+
 import activity.commt4mtmandroid.R;
-import activity.commt4mtmandroid.bean.evnetBusBean.AutoLockStatusBean;
+import activity.commt4mtmandroid.bean.evnetBusEntity.AutoLockStatusBean;
+import activity.commt4mtmandroid.bean.evnetBusEntity.IsForegroundControlEntity;
 import activity.commt4mtmandroid.utils.LanguageUtils;
 import activity.commt4mtmandroid.utils.SpOperate;
 import activity.commt4mtmandroid.utils.UserFiled;
@@ -65,7 +70,6 @@ public abstract class BaseActivity extends AppCompatActivity implements GestureD
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
-
         if (isOpenLock&&SpOperate.getIsLogin(this,UserFiled.IsLog) ) {
             Log.i("tag", "dispatchKeyEvent: ");
             //等于0 表示第一次进入app不进行处理 只进行当前的时间点赋值
@@ -157,6 +161,8 @@ public abstract class BaseActivity extends AppCompatActivity implements GestureD
         }
         return super.onOptionsItemSelected(item);
     }
+
+    //用于全局的 一键退出方法
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void exit(String event){
         if (event.equals(UserFiled.EXIT)){
@@ -167,7 +173,7 @@ public abstract class BaseActivity extends AppCompatActivity implements GestureD
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);
+        EventBus.getDefault().unregister(this); // BaseActivity 销毁时注销EventBus注册
     }
 
     //继承接口默认实现
@@ -198,6 +204,52 @@ public abstract class BaseActivity extends AppCompatActivity implements GestureD
 
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        return false;
+    }
+
+    //生命周期监听
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (!isAppOnForeground()) {
+            //不在前台时 发送广播 停止线程请求数据
+            EventBus.getDefault().post(new IsForegroundControlEntity(false));
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (isAppOnForeground()) {
+            //在前台时 发送广播让线程继续接受数据
+            EventBus.getDefault().post(new IsForegroundControlEntity(true));
+        }
+    }
+
+
+    //监听程序是否进入后台方法
+    public boolean isAppOnForeground() {
+        // Returns a list of application processes that are running on the
+        // device
+
+        ActivityManager activityManager = (ActivityManager) getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
+        String packageName = getApplicationContext().getPackageName();
+
+        List<ActivityManager.RunningAppProcessInfo> appProcesses = activityManager
+                .getRunningAppProcesses();
+        if (appProcesses == null)
+            return false;
+
+        for (ActivityManager.RunningAppProcessInfo appProcess : appProcesses) {
+            // The name of the process that this object is associated with.
+            if (appProcess.processName.equals(packageName)
+                    && appProcess.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
+                return true;
+            }
+        }
+
         return false;
     }
 }

@@ -4,7 +4,6 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 
-import io.rong.imkit.RongIM;
 
 /**
  * Created by Administrator on 2017/11/9.
@@ -14,9 +13,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        if (getApplicationInfo().packageName.equals(getCurProcessName(getApplicationContext()))){
-            RongIM.init(this);
-        }
+
     }
 
     public static String getCurProcessName(Context context) {

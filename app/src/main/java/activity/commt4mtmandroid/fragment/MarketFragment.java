@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -14,22 +13,21 @@ import com.alibaba.fastjson.JSONObject;
 import com.kennyc.view.MultiStateView;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.activity.MyAdditionSymbolActivity;
 import activity.commt4mtmandroid.activity.SymbolAdditionActivity;
 import activity.commt4mtmandroid.adapt.MarketAdapt;
-import activity.commt4mtmandroid.bean.evnetBusBean.SymbolChangeBean;
+import activity.commt4mtmandroid.bean.evnetBusEntity.IsForegroundControlEntity;
+import activity.commt4mtmandroid.bean.evnetBusEntity.SymbolChangeBean;
 import activity.commt4mtmandroid.bean.reqDTO.BaseReqDTO;
 import activity.commt4mtmandroid.bean.respDTO.MarketRespDTO;
 import activity.commt4mtmandroid.utils.LocalUrl;
-import activity.commt4mtmandroid.utils.OkhttBackAlways;
 import activity.commt4mtmandroid.utils.OkhttBackAlwaysOneThread;
 import activity.commt4mtmandroid.utils.RequestCallBackDefaultImpl;
 import activity.commt4mtmandroid.utils.SpOperate;
@@ -76,6 +74,13 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
                 case 99:
                     String symbolS = (String) message.obj;
                     EventBus.getDefault().post(new SymbolChangeBean(symbolS,UserFiled.CHART));
+                    break;
+                case UserFiled.STOP_THREAD:
+                    if (alwaysOneThread!=null){
+                        //停止线程请求 关闭线程
+                        alwaysOneThread.isRun(false);
+                        alwaysOneThread.aliveThread(false);
+                    }
                     break;
             }
             return true;
@@ -207,6 +212,15 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
     }
 
 
-    //生命周期
+    //EventBus 接受前后天时接收广播 进行线程控制
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void threadControl(IsForegroundControlEntity event){
+        if (event.isForeground()&&alwaysOneThread!=null){
+            alwaysOneThread.isRun(true);
+        }else if (!event.isForeground()&&alwaysOneThread!=null){
+            alwaysOneThread.isRun(false);
+        }
+
+    }
 
 }

@@ -15,6 +15,7 @@ import activity.commt4mtmandroid.R;
 public class SoundPoolUtil {
     private static SoundPoolUtil soundPoolUtil;
     private SoundPool soundPool;
+    private Context context;
 
     //单例模式
     public static SoundPoolUtil getInstance(Context context) {
@@ -33,8 +34,9 @@ public class SoundPoolUtil {
         soundPool.load(context, R.raw.timeout, 1);
     }
 
-    public void play(int number) {
-        Log.d("tag", "number " + number);
-        soundPool.play(number, 1, 1, 0, 0, 1);
+    public void play(int number,Context context) {
+        if (SpOperate.getBoolean(context,UserFiled.SOUNDLOCK)) {
+            soundPool.play(number, 1, 1, 0, 0, 1);
+        }
     }
 }

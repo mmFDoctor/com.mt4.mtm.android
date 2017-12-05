@@ -7,6 +7,7 @@ package activity.commt4mtmandroid.utils;
 public interface UserFiled {
     final int NONET = 401;
     final int LINKFAIL = 402;
+    final int STOP_THREAD = 404;
     final String UserAbout ="user";
     final String IsLog = "IsLog";
     final String token = "token";
@@ -52,4 +53,5 @@ public interface UserFiled {
     final String CHART = "chart";
     final String TRANSCTION = "transction";
     final String SETTING = "setting";
+    final String GETUIID= "GETUIID";
 }

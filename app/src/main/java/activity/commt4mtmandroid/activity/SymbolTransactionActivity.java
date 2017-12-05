@@ -8,13 +8,11 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -39,18 +37,13 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import activity.commt4mtmandroid.R;
-import activity.commt4mtmandroid.adapt.ChartSymbolListViewAdapt;
-import activity.commt4mtmandroid.adapt.ChartTimeListViewAdapt;
 import activity.commt4mtmandroid.adapt.TransctionSymbolListViewAdapt;
-import activity.commt4mtmandroid.bean.evnetBusBean.DingDanStatusBean;
-import activity.commt4mtmandroid.bean.evnetBusBean.NewSymbolEventBean;
-import activity.commt4mtmandroid.bean.evnetBusBean.SymbolChangeBean;
+import activity.commt4mtmandroid.bean.evnetBusEntity.NewSymbolEventBean;
+import activity.commt4mtmandroid.bean.evnetBusEntity.SymbolChangeBean;
 import activity.commt4mtmandroid.bean.reqDTO.BaseReqDTO;
 import activity.commt4mtmandroid.bean.reqDTO.SingleSymbolDetailsReqDTO;
-import activity.commt4mtmandroid.bean.reqDTO.SymbolDetailsReqDTO;
 import activity.commt4mtmandroid.bean.reqDTO.SymbolTransctionReqDTO;
 import activity.commt4mtmandroid.bean.respDTO.SingleSymbolDetailsRespDTO;
-import activity.commt4mtmandroid.bean.respDTO.SymbolDetailsRespDTO;
 import activity.commt4mtmandroid.bean.respDTO.SymbolListRespDTO;
 import activity.commt4mtmandroid.databinding.ActivitySymbolTransactionBinding;
 import activity.commt4mtmandroid.utils.ChangeTextStyleUtil;
@@ -62,7 +55,6 @@ import activity.commt4mtmandroid.utils.RequestCallBackToastImpl;
 import activity.commt4mtmandroid.utils.SpOperate;
 import activity.commt4mtmandroid.utils.UserFiled;
 import activity.commt4mtmandroid.view.ChartSymbolListView;
-import activity.commt4mtmandroid.vo.SymbolTransctionBean;
 
 public class SymbolTransactionActivity extends BaseActivity implements View.OnClickListener {
     private Handler handler = new Handler(new Handler.Callback() {

@@ -27,4 +27,5 @@ public interface LocalUrl  {
     final String closrPosition= "mtinter/mvc/history/closrPosition.json";
     final String changeOrder = "mtinter/mvc/order/changeOrder.json";
     final String newsList = "mtinter/mvc/news/list.json";
+    final String changePush= "mtinter/mvc/user/changePush.json";
 }

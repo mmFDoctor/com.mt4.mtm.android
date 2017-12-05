@@ -7,8 +7,6 @@ import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.os.Handler;
 import android.os.Message;
-import android.provider.Settings;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -22,7 +20,6 @@ import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.charts.CombinedChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.CandleData;
@@ -37,13 +34,10 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.Utils;
 import com.kennyc.view.MultiStateView;
 
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.LinkedBlockingDeque;
@@ -55,7 +49,7 @@ import activity.commt4mtmandroid.activity.ChartMenuActivity;
 import activity.commt4mtmandroid.activity.SymbolTransactionActivity;
 import activity.commt4mtmandroid.adapt.ChartSymbolListViewAdapt;
 import activity.commt4mtmandroid.adapt.ChartTimeListViewAdapt;
-import activity.commt4mtmandroid.bean.evnetBusBean.SymbolChangeBean;
+import activity.commt4mtmandroid.bean.evnetBusEntity.SymbolChangeBean;
 import activity.commt4mtmandroid.bean.reqDTO.BaseReqDTO;
 import activity.commt4mtmandroid.bean.reqDTO.ChartReqDTO;
 import activity.commt4mtmandroid.bean.reqDTO.SingleSymbolDetailsReqDTO;
@@ -77,6 +71,7 @@ import activity.commt4mtmandroid.view.MyCombinChart;
 
 /**
  * Created by Administrator on 2017/9/25.
+ * 图标页面Fragment
  */
 
 public class ChartFragment extends BaseFragment implements View.OnClickListener {
@@ -280,7 +275,6 @@ public class ChartFragment extends BaseFragment implements View.OnClickListener 
         List<Entry> lineEntrys = new ArrayList<>();
         for (int i = 0 ; i<data.size();i++){
             lineEntrys.add(new Entry(i,data.get(i)));
-            Log.i("tag", "lineDataSet: ");
         }
         lineDataSet = new LineDataSet(lineEntrys,"");
         lineDataSet.setColor(getResources().getColor(R.color.colorBlue));

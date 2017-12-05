@@ -146,6 +146,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
         loginReqDTO.setLoginid(word.getText().toString());
         loginReqDTO.setPwd(psw.getText().toString());
+        Log.i("tag", "userLogin: ===========>"+loginReqDTO.convertToJson());
         OkhttBack okhttBack = new OkhttBack(loginReqDTO.convertToJson(), LocalUrl.baseUrl + LocalUrl.login);
         okhttBack.post(new RequestCallBackToastImpl(this, handler) {
             @Override

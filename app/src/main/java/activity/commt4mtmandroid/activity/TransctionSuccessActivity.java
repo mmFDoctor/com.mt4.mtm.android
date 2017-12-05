@@ -46,7 +46,7 @@ public class TransctionSuccessActivity extends BaseActivity implements View.OnCl
         price = intent.getStringExtra(UserFiled.price);
         id = intent.getStringExtra(UserFiled.ID);
         SoundPoolUtil soundPoolUtil = SoundPoolUtil.getInstance(this);
-        soundPoolUtil.play(1);
+        soundPoolUtil.play(1,this);
 
     }
 

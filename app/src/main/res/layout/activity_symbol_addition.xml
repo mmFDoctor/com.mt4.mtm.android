@@ -11,7 +11,7 @@
         android:id="@+id/tb_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/rc_main_theme"
+        android:background="@color/colorBlue"
         android:elevation="2dp"
         android:translationZ="2dp"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"

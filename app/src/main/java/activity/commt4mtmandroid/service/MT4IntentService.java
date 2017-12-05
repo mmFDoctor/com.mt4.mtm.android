@@ -42,19 +42,19 @@ public class MT4IntentService extends GTIntentService {
 
     @Override
     public void onReceiveClientId(Context context, String clientid) {
-        Log.e("tag", "onReceiveClientId -> " + "clientid = " + clientid);
+        //存储连接个推成功后得到的ID
+        SpOperate.setString(context,UserFiled.GETUIID,clientid);
+
         GetuiCidReqDTO reqDTO = new GetuiCidReqDTO();
         reqDTO.setId(SpOperate.getString(context, UserFiled.ID));
         reqDTO.setPhoneType(0);
         reqDTO.setCID(clientid);
         reqDTO.setLogin_token(SpOperate.getString(context,UserFiled.token));
-        Log.i("tag", "onReceiveClientId: ======>"+reqDTO.convertToJson());
         OkhttBack okhttBack = new OkhttBack(reqDTO.convertToJson(), LocalUrl.baseUrl+LocalUrl.addCID);
         okhttBack.post(new RequestCallBackDefaultImpl(context){
             @Override
             public void success(String data) {
                 super.success(data);
-                Log.i("tag", "success: ===========>"+data);
             }
         });
     }

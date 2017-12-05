@@ -87,6 +87,12 @@ public class CloseOutActivity extends BaseActivity implements View.OnClickListen
                 case UserFiled.LINKFAIL:
                     EventBus.getDefault().post(new DingDanStatusBean(false));
                     break;
+                case UserFiled.STOP_THREAD:
+                    if (backAlways!=null){   //token异常 关闭线程请求
+                        backAlways.isRun(false);
+                        backAlways.aliveThread(false);
+                    }
+                    break;
             }
             return true;
         }
@@ -230,7 +236,7 @@ public class CloseOutActivity extends BaseActivity implements View.OnClickListen
         super.initData();
         backAlways = new OkhttBackAlways(reqDTO.convertToJson(), LocalUrl.baseUrl+LocalUrl.getSymbolInfoOne);
         backAlways.isRun(true);
-        backAlways.post(new RequestCallBackDefaultImpl(this){
+        backAlways.post(new RequestCallBackDefaultImpl(this,handler){
             @Override
             public void success(String data) {
                 super.success(data);
@@ -259,12 +265,15 @@ public class CloseOutActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.closeOutTextView:
+                // 跳转订单等待页面
                 Intent intent = new Intent(this, NewOrderLoadingActivity.class);
                 intent.putExtra(UserFiled.descrip,"#"+orderId+"\n"+entity.getCloseVolum()+" "+symbol+" at 0.00000\n"+"sl:0.00000 tp 0.00000");
                 if (respDTO!=null) {
                     intent.putExtra(UserFiled.price,type.equals("0")?respDTO.getData().getInfo().getBid():respDTO.getData().getInfo().getAsk());
                 }
                 startActivity(intent);
+
+                //网络请求 成功与否 显示不同的订单状态页面
                 closeOutReqDTO.setVolume(entity.getCloseVolum());
                 OkhttBack okhttBack = new OkhttBack(closeOutReqDTO.convertToJson(),LocalUrl.baseUrl+LocalUrl.closrPosition);
                 okhttBack.post(new RequestCallBackDefaultImpl(this,handler){

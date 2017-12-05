@@ -2,6 +2,7 @@ package activity.commt4mtmandroid.utils;
 
 /**
  * Created by Administrator on 2017/9/25.
+ * 本地Url存储
  */
 
 public interface LocalUrl  {

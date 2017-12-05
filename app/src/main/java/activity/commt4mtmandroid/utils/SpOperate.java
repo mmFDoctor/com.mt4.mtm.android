@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 
 /**
  * Created by Administrator on 2017/4/6.
+ * 本地用户偏好类操作工具类
  */
 public class SpOperate {
 

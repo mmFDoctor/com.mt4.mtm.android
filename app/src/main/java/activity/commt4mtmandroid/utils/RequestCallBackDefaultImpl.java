@@ -11,11 +11,13 @@ import activity.commt4mtmandroid.bean.respDTO.BaseRespDTO;
 
 /**
  * Created by Administrator on 2017/7/26.
+ * 请求回调 实现 默认不Toast 提示
  */
 
 public class RequestCallBackDefaultImpl implements IRequestCallBack {
     private Context context;
     private Handler handler;
+    private boolean hadSend = false;
 
 
     public RequestCallBackDefaultImpl(Context context, Handler handler) {
@@ -36,12 +38,14 @@ public class RequestCallBackDefaultImpl implements IRequestCallBack {
     @Override
     public void fail(BaseRespDTO dto) {
 
-        if (dto.getCode() == 2000) {
+        if (dto.getCode() == 2000&&!hadSend) {
             //2000 token 异常 重新登录
-            Log.i("tag", "fail: ============>token 异常" + dto.getCode());
+            hadSend = true;
             new UserLoginAgin().ActivityExit(context);
             if (handler != null)
                 handler.sendEmptyMessage(UserFiled.STOP_THREAD);
+            //token异常 同步关闭线程请求
+//            handler.sendEmptyMessage(UserFiled.TOKEN_ERROR);
 
         } else {
             if (handler != null)
@@ -50,8 +54,6 @@ public class RequestCallBackDefaultImpl implements IRequestCallBack {
 //            Toast.makeText(context, dto.getMessage(), Toast.LENGTH_SHORT).show();
 //            Looper.loop();
         }
-
-
     }
 
     @Override

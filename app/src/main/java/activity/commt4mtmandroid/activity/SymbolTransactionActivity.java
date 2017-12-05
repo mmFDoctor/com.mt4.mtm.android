@@ -140,6 +140,12 @@ public class SymbolTransactionActivity extends BaseActivity implements View.OnCl
                     mToolbarTb.setSubtitle(respDTO.getData().getInfo().getSymboldesc());
                     popupWindow.dismiss();
                     break;
+                case UserFiled.STOP_THREAD:
+                    if (backAlways!=null){   //token异常 关闭线程请求
+                        backAlways.isRun(false);
+                        backAlways.aliveThread(false);
+                    }
+                    break;
 
             }
             return true;
@@ -332,7 +338,7 @@ public class SymbolTransactionActivity extends BaseActivity implements View.OnCl
         super.initData();
         backAlways = new OkhttBackAlways(reDto.convertToJson(), LocalUrl.baseUrl+LocalUrl.getSymbolInfoOne);
         backAlways.isRun(true);
-        backAlways.post(new RequestCallBackDefaultImpl(this){
+        backAlways.post(new RequestCallBackDefaultImpl(this,handler){
             @Override
             public void success(String data) {
                 super.success(data);

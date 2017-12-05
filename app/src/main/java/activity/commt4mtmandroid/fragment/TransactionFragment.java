@@ -80,6 +80,13 @@ public class TransactionFragment extends BaseFragment implements View.OnClickLis
                     Toast.makeText(mAtivity,"订单关闭",Toast.LENGTH_SHORT).show();
                     EventBus.getDefault().post(UserFiled.HistoryFresh);
                     break;
+                case UserFiled.STOP_THREAD:
+                    if (alwaysOneThread!=null){
+                        //停止线程请求 关闭线程
+                        alwaysOneThread.isRun(false);
+                        alwaysOneThread.aliveThread(false);
+                    }
+                    break;
 
             }
             return true;
@@ -169,7 +176,7 @@ public class TransactionFragment extends BaseFragment implements View.OnClickLis
         super.initData();
         if (SpOperate.getIsLogin(mAtivity, UserFiled.IsLog)) {
             alwaysOneThread = new OkhttBackAlwaysOneThread(baseReqDTO.convertToJson(), LocalUrl.baseUrl + LocalUrl.getOrderInfo);
-            alwaysOneThread.post(new RequestCallBackDefaultImpl(mAtivity) {
+            alwaysOneThread.post(new RequestCallBackDefaultImpl(mAtivity,handler) {
                 @Override
                 public void success(String data) {
                     super.success(data);

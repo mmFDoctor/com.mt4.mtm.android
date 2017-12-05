@@ -21,6 +21,7 @@ import okhttp3.Response;
 
 /**
  * Created by Administrator on 2017/4/5.
+ * 线程请求工具类 -- 线程池请求
  */
 public class OkhttBackAlways {
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");

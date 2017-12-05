@@ -9,7 +9,8 @@ import activity.commt4mtmandroid.R;
 
 
 /**
- * Created by zhongwang on 2017/9/8.
+ * Created by Administrator on 2017/7/26.
+ * 语音播放 单例工具类
  */
 
 public class SoundPoolUtil {

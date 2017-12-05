@@ -52,7 +52,7 @@ public class DingDanSuccessActivity extends BaseActivity implements View.OnClick
         super.initView();
         ensure = (TextView) findViewById(R.id.ensure);
         content = (TextView) findViewById(R.id.text2);
-        content.setText(des+"\n以"+price+"价格平仓");
+        content.setText(des);
         SoundPoolUtil soundPoolUtil = SoundPoolUtil.getInstance(DingDanSuccessActivity.this);
         soundPoolUtil.play(1,this);
         handler.sendEmptyMessageDelayed(1,2000);

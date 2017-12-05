@@ -75,7 +75,7 @@ public abstract class BaseActivity extends AppCompatActivity implements GestureD
             //等于0 表示第一次进入app不进行处理 只进行当前的时间点赋值
 
                 //不等于0  对比时间
-                if (System.currentTimeMillis()-loginOutLastTime>1000*10){
+                if (System.currentTimeMillis()-loginOutLastTime>1000*60*15){
                     Log.i("tag", "dispatchKeyEvent: 重新登录");
                     // TODO: 2017/12/4  超过30分钟未操作 执行重新登录逻辑
                     new UserLoginAgin().ActivityExit(this);

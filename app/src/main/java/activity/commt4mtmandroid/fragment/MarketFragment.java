@@ -36,6 +36,7 @@ import activity.commt4mtmandroid.vo.SymbolTransctionDetailsBean;
 
 /**
  * Created by Administrator on 2017/9/25.
+ * symbol 实时更新的Fragment
  */
 
 public class MarketFragment extends BaseFragment implements View.OnClickListener {
@@ -44,7 +45,8 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
         public boolean handleMessage(Message message) {
             switch (message.what) {
                 case 1:
-                    loadingView.setViewState(MultiStateView.VIEW_STATE_CONTENT);
+
+                    loadingView.setViewState(MultiStateView.VIEW_STATE_CONTENT);  //有数据返回时 将等待页面转换为内容页面
                     String s = (String) message.obj;
                     MarketRespDTO marketRespDTO = JSONObject.parseObject(s, MarketRespDTO.class);
 
@@ -52,7 +54,8 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
                         hadFirstSymbol = true;
                         //存入列表的第一个symbol 用于图标绘制
                         SpOperate.setString(mAtivity,UserFiled.FIRSTSYMBOL,marketRespDTO.getData().getInfolist().get(0).getSymbol());
-                        //第一次请求成功后，存储symbol 列表的第一个symbol的详细数据 用于交易切换
+
+                        // TODO: 2017/12/5   第一次请求成功后，存储symbol 列表的第一个symbol的详细数据 用于交易切换
                         MarketRespDTO.DataBean.InfolistBean infolistBean = marketRespDTO.getData().getInfolist().get(0);
                         SymbolTransctionDetailsBean transctionDetailsBean = new SymbolTransctionDetailsBean();
                         transctionDetailsBean.setSymbol(infolistBean.getSymbol());
@@ -76,6 +79,13 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
                     EventBus.getDefault().post(new SymbolChangeBean(symbolS,UserFiled.CHART));
                     break;
                 case UserFiled.STOP_THREAD:
+                    if (alwaysOneThread!=null){
+                        //停止线程请求 关闭线程
+                        alwaysOneThread.isRun(false);
+                        alwaysOneThread.aliveThread(false);
+                    }
+                    break;
+                case UserFiled.TOKEN_ERROR:
                     if (alwaysOneThread!=null){
                         //停止线程请求 关闭线程
                         alwaysOneThread.isRun(false);
@@ -109,11 +119,7 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
     }
 
 
-    //
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-//        super.onSaveInstanceState(outState);
-    }
+
 
     @Override
     protected void initCondition() {
@@ -122,6 +128,7 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
     }
 
 
+    // fragment 切换时控制当前页面的线程暂停和继续请求
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
@@ -155,20 +162,24 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
         loadingView.setViewState(MultiStateView.VIEW_STATE_EMPTY);
     }
 
+
+    // 按钮可点击控制方法
     private void viewTouch(View view) {
         view.setAlpha(1f);
         view.setEnabled(true);
     }
 
+
+    //按钮不可点击控制方法
     private void viewCantTouch(View view) {
         view.setAlpha(0.5f);
         view.setEnabled(false);
     }
     @Override
     protected void initData() {
-       if (SpOperate.getIsLogin(mAtivity,UserFiled.IsLog)){
+       if (SpOperate.getIsLogin(mAtivity,UserFiled.IsLog)){  //用户进入页面 是非登录状态时  不进行请求
            alwaysOneThread = new OkhttBackAlwaysOneThread(reqDTO.convertToJson(), LocalUrl.baseUrl+LocalUrl.getSymbolInfo);
-           alwaysOneThread.post(new RequestCallBackDefaultImpl(mAtivity){
+           alwaysOneThread.post(new RequestCallBackDefaultImpl(mAtivity,handler){
                @Override
                public void success(String data) {
                    super.success(data);
@@ -207,6 +218,7 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        // Fragment 销毁时释放实时参数请求的 子线程
         if (alwaysOneThread!=null)
             alwaysOneThread.aliveThread(false);
     }

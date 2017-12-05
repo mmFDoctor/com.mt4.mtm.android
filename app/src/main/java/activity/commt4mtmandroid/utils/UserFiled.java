@@ -2,12 +2,14 @@ package activity.commt4mtmandroid.utils;
 
 /**
  * Created by Administrator on 2017/9/25.
+ * 本地字段存储接口
  */
 
 public interface UserFiled {
     final int NONET = 401;
     final int LINKFAIL = 402;
     final int STOP_THREAD = 404;
+    final int TOKEN_ERROR = 405;
     final String UserAbout ="user";
     final String IsLog = "IsLog";
     final String token = "token";

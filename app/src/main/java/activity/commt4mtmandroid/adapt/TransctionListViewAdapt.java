@@ -275,8 +275,10 @@ public class TransctionListViewAdapt extends BaseAdapter {
                         Intent intent = new Intent(context, OrderModificationActivity.class);
                         intent.putExtra(UserFiled.volume, footData.get(position - bodyData.size() - 1).getVolume());
                         intent.putExtra(UserFiled.price, footData.get(position - bodyData.size() - 1).getNow_price());
-                        intent.putExtra(UserFiled.SL, footData.get(position - bodyData.size() - 1).getStoploss());
-                        intent.putExtra(UserFiled.TP, footData.get(position - bodyData.size() - 1).getTakeprofit());
+                        intent.putExtra(UserFiled.SL, footData.get(position - bodyData.size() - 1).getStoploss().equals("-")?"0"
+                                :footData.get(position - bodyData.size() - 1).getStoploss());   //后台数据0时 默认返回-,判断为- 时 转换为0
+                        intent.putExtra(UserFiled.TP, footData.get(position - bodyData.size() - 1).getTakeprofit().equals("-")?"0"
+                                :footData.get(position - bodyData.size() - 1).getTakeprofit());  //后台数据0 时 默认返回-,判断为- 时 转换为0
                         intent.putExtra(UserFiled.ID, footData.get(position - bodyData.size() - 1).getId());
                         intent.putExtra(UserFiled.DIGITS, footData.get(position - bodyData.size() - 1).getDigits());
                         intent.putExtra(UserFiled.SYMBOL, footData.get(position - bodyData.size() - 1).getSymbol());

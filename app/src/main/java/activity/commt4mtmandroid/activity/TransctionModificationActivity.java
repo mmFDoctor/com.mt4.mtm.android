@@ -79,6 +79,12 @@ public class TransctionModificationActivity extends BaseActivity {
                     finish();
                     Toast.makeText(TransctionModificationActivity.this,"订单修改成功",Toast.LENGTH_SHORT).show();
                     break;
+                case UserFiled.STOP_THREAD:
+                    if (alwaysOneThread!=null){   //token异常 关闭线程请求
+                        alwaysOneThread.isRun(false);
+                        alwaysOneThread.aliveThread(false);
+                    }
+                    break;
             }
             return true;
         }
@@ -115,7 +121,7 @@ public class TransctionModificationActivity extends BaseActivity {
 
     private void requestLineData() {
         alwaysOneThread = new OkhttBackAlwaysOneThread(reqDTO.convertToJson(), LocalUrl.baseUrl+LocalUrl.getSymbolInfoOne);
-        alwaysOneThread.post(new RequestCallBackDefaultImpl(this){
+        alwaysOneThread.post(new RequestCallBackDefaultImpl(this,handler){
             @Override
             public void success(String data) {
                 super.success(data);

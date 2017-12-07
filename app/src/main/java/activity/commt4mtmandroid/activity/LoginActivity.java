@@ -21,6 +21,7 @@ import java.util.Map;
 
 import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.bean.UserAccountStorageDTO;
+import activity.commt4mtmandroid.bean.reqDTO.BaseReqDTO;
 import activity.commt4mtmandroid.bean.reqDTO.LoginReqDTO;
 import activity.commt4mtmandroid.bean.respDTO.LoginRespDTO;
 import activity.commt4mtmandroid.utils.LocalUrl;
@@ -140,6 +141,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     private void userLogin() {
 
+
+
+
         //登录请求显示 加载等待 Dialog
         if (dialog != null)
             dialog.show();
@@ -209,4 +213,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         userAccount.put(loginRespDTO.getData().getLoginInfo().getId() + "", accountMessage);
         SpOperate.setString(this, UserFiled.USERACCOUNT, userAccountStorageDTO.convertToJson());
     }
+
+
+
 }

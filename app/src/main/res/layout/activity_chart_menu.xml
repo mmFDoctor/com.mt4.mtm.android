@@ -1,167 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-    <data>
-        <variable
-            name="chartEntity"
-            type="activity.commt4mtmandroid.bindingEntity.ChartMenuEntity"/>
-    </data>
-
-<LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ScrollView
-        android:layout_weight="1"
+    <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/tb_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context="activity.commt4mtmandroid.activity.ChartMenuActivity">
-
-            <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/tb_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/colorBlue"
-                android:elevation="2dp"
-                android:translationZ="2dp"
-                android:titleTextColor="@color/colorWhite"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-                app:theme="@style/ToolbarTheme"
-                app:title="@string/Index"
-                app:titleTextColor="@color/colorWhite">
-                <TextView
-                    android:clickable="true"
-                    android:foreground="?selectableItemBackground"
-                    android:textColor="@color/colorWhite"
-                    android:layout_gravity="right"
-                    android:gravity="center"
-                    android:textSize="18dp"
-                    android:text="完成"
-                    android:layout_width="?actionBarSize"
-                    android:layout_height="match_parent" />
-            </android.support.v7.widget.Toolbar>
-
-            <RelativeLayout
-
-
-                android:layout_width="match_parent"
-                android:layout_height="40dp">
-                <TextView
-                    android:layout_marginLeft="20dp"
-                    android:layout_centerVertical="true"
-                    android:textColor="@color/color333"
-                    android:textSize="18dp"
-                    android:text="名称"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <View style="@style/line_1px"
-                    android:layout_height="2dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="20dp"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-
-
-                android:layout_width="match_parent"
-                android:layout_height="40dp">
-                <TextView
-                    android:layout_marginLeft="20dp"
-                    android:layout_centerVertical="true"
-                    android:textColor="@color/color999"
-                    android:textSize="16dp"
-                    android:text="快速EMA"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <EditText
-
-                    android:text="@={chartEntity.fastEMA}"
-                    android:id="@+id/name_editText"
-                    android:layout_marginTop="10dp"
-                    android:background="@null"
-                    android:paddingRight="40dp"
-                    android:gravity="right"
-                    android:inputType="number"
-                    android:layout_alignParentRight="true"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content" />
-                <View style="@style/line_1px"
-                    android:layout_marginTop="10dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="20dp"/>
-            </RelativeLayout>
-            <RelativeLayout
-
-
-                android:layout_width="match_parent"
-                android:layout_height="40dp">
-                <TextView
-                    android:layout_marginLeft="20dp"
-                    android:layout_centerVertical="true"
-                    android:textColor="@color/color999"
-                    android:textSize="16dp"
-                    android:text="慢速EMA"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <EditText
-                    android:text="@={chartEntity.slowEMA}"
-                    android:layout_marginTop="10dp"
-                    android:background="@null"
-                    android:paddingRight="40dp"
-                    android:gravity="right"
-                    android:inputType="number"
-                    android:layout_alignParentRight="true"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content" />
-                <View style="@style/line_1px"
-                    android:layout_marginTop="10dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="20dp"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp">
-                <TextView
-                    android:layout_marginLeft="20dp"
-                    android:layout_centerVertical="true"
-                    android:textColor="@color/color999"
-                    android:textSize="16dp"
-                    android:text="MACD SMA"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <EditText
-                    android:text="@={chartEntity.MACDSMA}"
-                    android:layout_marginTop="10dp"
-                    android:background="@null"
-                    android:paddingRight="40dp"
-                    android:gravity="right"
-                    android:inputType="number"
-                    android:layout_alignParentRight="true"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content" />
-                <View style="@style/line_1px"
-                    android:layout_marginTop="10dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="20dp"/>
-            </RelativeLayout>
-        </LinearLayout>
-    </ScrollView>
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorBlue"
+        android:elevation="2dp"
+        android:translationZ="2dp"
+        android:titleTextColor="@color/colorWhite"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+        app:theme="@style/ToolbarTheme"
+        app:title="@string/Index"
+        app:titleTextColor="@color/colorWhite">
+        <TextView
+            android:id="@+id/completeTextView"
+            android:clickable="true"
+            android:foreground="?selectableItemBackground"
+            android:textColor="@color/colorWhite"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:textSize="18dp"
+            android:text="完成"
+            android:layout_width="?actionBarSize"
+            android:layout_height="match_parent" />
+    </android.support.v7.widget.Toolbar>
     <TextView
+        android:layout_margin="10dp"
         android:textSize="16dp"
-        android:textColor="@color/color666"
-        android:padding="20dp"
-        android:gravity="center"
-        android:text="设为默认"
-        android:layout_width="match_parent"
+        android:textColor="@color/colorBlue"
+        android:text="指示窗口1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <View style="@style/line_1px" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="16dp"
+            android:layout_margin="10dp"
+            android:textColor="@color/color666"
+            android:text="SMA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <CheckBox
+            android:id="@+id/SMA_checkbox"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <View style="@style/line_1px"
+        android:layout_marginLeft="10dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="16dp"
+            android:layout_margin="10dp"
+            android:textColor="@color/color666"
+            android:text="EMA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <CheckBox
+            android:id="@+id/EMA_checkbox"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <View style="@style/line_1px"
+        android:layout_marginLeft="10dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="16dp"
+            android:layout_margin="10dp"
+            android:textColor="@color/color666"
+            android:text="BOLL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <CheckBox
+            android:id="@+id/BOLL_checkbox"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <View style="@style/line_1px"
+        />
+    <TextView
+        android:layout_margin="10dp"
+        android:textSize="16dp"
+        android:textColor="@color/colorBlue"
+        android:text="指示窗口2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <View style="@style/line_1px" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="16dp"
+            android:layout_margin="10dp"
+            android:textColor="@color/color666"
+            android:text="MACD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <CheckBox
+            android:id="@+id/MACD_checkbox"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <View style="@style/line_1px"
+        android:layout_marginLeft="10dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="16dp"
+            android:textColor="@color/color666"
+            android:text="KDJ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="9dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="9dp" />
+        <CheckBox
+            android:id="@+id/KDJ_checkbox"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <View style="@style/line_1px"
+        android:layout_marginLeft="10dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="16dp"
+            android:layout_margin="10dp"
+            android:textColor="@color/color666"
+            android:text="RSI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <CheckBox
+            android:id="@+id/RSI_checkbox"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <View style="@style/line_1px"
+        />
 </LinearLayout>
-</layout>

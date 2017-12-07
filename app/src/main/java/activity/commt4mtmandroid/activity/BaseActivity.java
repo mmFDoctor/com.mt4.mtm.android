@@ -38,7 +38,6 @@ public abstract class BaseActivity extends AppCompatActivity implements GestureD
     //设置广播，更改锁定设置时 接受
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void setLockmode(AutoLockStatusBean event){
-        Log.i("tag", "setLockmode: ");
         if (event.isOpen()){
             //开启锁定计时 init
             loginOutLastTime = 0;

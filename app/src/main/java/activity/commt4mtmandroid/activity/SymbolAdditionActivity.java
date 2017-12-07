@@ -25,6 +25,7 @@ import activity.commt4mtmandroid.utils.OkhttBack;
 import activity.commt4mtmandroid.utils.RequestCallBackDefaultImpl;
 import activity.commt4mtmandroid.utils.RequestCallBackToastImpl;
 import activity.commt4mtmandroid.utils.SpOperate;
+import activity.commt4mtmandroid.utils.SymbolListUtil;
 import activity.commt4mtmandroid.utils.UserFiled;
 
 public class SymbolAdditionActivity extends BaseActivity implements View.OnClickListener {
@@ -95,10 +96,14 @@ public class SymbolAdditionActivity extends BaseActivity implements View.OnClick
             @Override
             public void success(String data) {
                 super.success(data);
+
+                //删除成功后同步最新的symbol列表
+                SymbolListUtil.symbolListSave(SymbolAdditionActivity.this);
                 Message message =Message.obtain();
                 message.what = 1;
                 message.obj = data;
                 handler.sendMessage(message);
+
             }
         });
 

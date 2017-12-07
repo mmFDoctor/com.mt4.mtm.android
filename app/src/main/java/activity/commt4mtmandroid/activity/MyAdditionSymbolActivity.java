@@ -94,6 +94,9 @@ public class MyAdditionSymbolActivity extends BaseActivity implements View.OnCli
             @Override
             public void success(String data) {
                 super.success(data);
+                //删除成功时 同步到本地存储的 symbol列表
+                SpOperate.setString(MyAdditionSymbolActivity.this,UserFiled.SYMBOL_LIST,data);
+
                 Message message =Message.obtain();
                 message.obj = data;
                 message.what = 1;

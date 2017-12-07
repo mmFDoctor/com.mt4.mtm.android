@@ -4,12 +4,12 @@
     android:background="#EFEFEF"
     android:layout_height="match_parent">
     <TextView
-        android:padding="10dp"
+        android:padding="15dp"
         android:clickable="true"
         android:foreground="?selectableItemBackground"
         android:gravity="center"
         android:id="@+id/symbol"
-        android:textSize="16dp"
+        android:textSize="14dp"
         android:textColor="@color/color333"
         android:text="AUDJPY"
         android:layout_width="match_parent"

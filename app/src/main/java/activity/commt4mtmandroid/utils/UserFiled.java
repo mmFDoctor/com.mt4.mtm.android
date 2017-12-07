@@ -56,4 +56,8 @@ public interface UserFiled {
     final String TRANSCTION = "transction";
     final String SETTING = "setting";
     final String GETUIID= "GETUIID";
+
+    final String SYMBOL_LIST = "SYMBOL_LIST";
+
+
 }

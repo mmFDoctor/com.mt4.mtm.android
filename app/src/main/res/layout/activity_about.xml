@@ -25,7 +25,7 @@
         android:layout_height="120dp"
         android:layout_below="@+id/tb_toolbar"
         android:layout_centerHorizontal="true"
-        android:scaleType="center"
+        android:scaleType="fitXY"
         android:src="@mipmap/mt4_icon" />
 
     <View

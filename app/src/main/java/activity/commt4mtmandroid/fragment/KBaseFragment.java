@@ -7,7 +7,7 @@ import android.view.View;
 /**
  * Created by fangzhu
  */
-public class KBaseFragment extends Fragment {
+public class KBaseFragment extends BaseFragment {
     public static final String SUCCESS = "SUCCESS";
     public static final String ERROR = "ERROR";
 
@@ -45,5 +45,10 @@ public class KBaseFragment extends Fragment {
 //                }
 //            });
 //        }
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return 0;
     }
 }

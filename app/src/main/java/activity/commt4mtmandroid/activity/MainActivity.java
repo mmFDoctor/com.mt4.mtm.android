@@ -1,12 +1,12 @@
 package activity.commt4mtmandroid.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-
 
 
 import com.igexin.sdk.PushManager;
@@ -20,6 +20,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.bean.evnetBusEntity.SymbolChangeBean;
+import activity.commt4mtmandroid.bean.reqDTO.BaseReqDTO;
 import activity.commt4mtmandroid.datahelp.KlineHepler;
 import activity.commt4mtmandroid.entity.KlineCycle;
 import activity.commt4mtmandroid.fragment.ChartFragment;
@@ -30,16 +31,19 @@ import activity.commt4mtmandroid.fragment.SettingFragment;
 import activity.commt4mtmandroid.fragment.TransactionFragment;
 import activity.commt4mtmandroid.service.MT4IntentService;
 import activity.commt4mtmandroid.service.MT4PushService;
+import activity.commt4mtmandroid.utils.LocalUrl;
+import activity.commt4mtmandroid.utils.OkhttBack;
+import activity.commt4mtmandroid.utils.RequestCallBackToastImpl;
+import activity.commt4mtmandroid.utils.SpOperate;
+import activity.commt4mtmandroid.utils.SymbolListUtil;
 import activity.commt4mtmandroid.utils.UserFiled;
-
-
 
 
 public class MainActivity extends BaseActivity implements OnTabSelectListener {
     private FragmentManager manager;
     private Fragment noFragment;
     private BottomBar bottomBar;
-
+    private KLineFragment usdchf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,13 +78,19 @@ public class MainActivity extends BaseActivity implements OnTabSelectListener {
     @Override
     public void initData() {
 
+// TODO: 2017/12/6   登录时存储当前symbol列表
 
+        if (SpOperate.getBoolean(this,UserFiled.IsLog)) {
+            SymbolListUtil.symbolListSave(this);
+        }
     }
 
-    @Subscribe( threadMode = ThreadMode.MAIN)
-    public void changeFragmentByEventBus(SymbolChangeBean changeBean){
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void changeFragmentByEventBus(SymbolChangeBean changeBean) {
         String change = changeBean.getChange();
-        switch (change){
+        switch (change) {
             case UserFiled.CHART:
                 bottomBar.selectTabAtPosition(1);
                 break;
@@ -94,7 +104,11 @@ public class MainActivity extends BaseActivity implements OnTabSelectListener {
     }
 
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+    }
 
     @Override
     protected void onRestart() {
@@ -113,7 +127,8 @@ public class MainActivity extends BaseActivity implements OnTabSelectListener {
                     break;
                 case R.id.radioButton_chart:
 //                    f = new ChartFragment();
-                    f = KLineFragment.newInstance("USDCHF", KlineHepler.VALUE_PARAM_KLINE_M1        );
+                    usdchf = KLineFragment.newInstance("USDCHF", KlineHepler.VALUE_PARAM_KLINE_M1);
+                    f = usdchf;
                     break;
                 case R.id.radioButton_Transaction:
                     f = new TransactionFragment();

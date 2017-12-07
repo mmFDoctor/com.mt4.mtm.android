@@ -60,4 +60,5 @@ public interface UserFiled {
     final String SYMBOL_LIST = "SYMBOL_LIST";
 
 
+    final String CHART_RECYL = "CHART_RECYL";
 }

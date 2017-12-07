@@ -3,6 +3,8 @@ package activity.commt4mtmandroid.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import activity.commt4mtmandroid.datahelp.KCycleConfig;
+
 
 /**
  * Created by Administrator on 2017/4/6.
@@ -46,6 +48,12 @@ public class SpOperate {
         SharedPreferences sp = context.getSharedPreferences(UserFiled.UserAbout, Context.MODE_PRIVATE);
         boolean aBoolean = sp.getBoolean(key, false);
         return aBoolean;
+    }
+
+    public static String getRecyl(Context context, String name){
+        SharedPreferences sp = context.getSharedPreferences(UserFiled.UserAbout, Context.MODE_PRIVATE);
+        String string = sp.getString(name, KCycleConfig.VALUE_PARAM_KLINE_M1);  // 没有存储获取默认的1分钟 时间
+        return string;
     }
 
 }

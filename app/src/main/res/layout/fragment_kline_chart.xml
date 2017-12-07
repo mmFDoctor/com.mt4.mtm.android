@@ -2,91 +2,100 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-    <RelativeLayout
-        android:id="@+id/fragment_head"
-        android:elevation="2dp"
-        android:translationZ="1dp"
-        android:background="@color/colorBlue"
+    >
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/fragmentTopHeigh">
-        <TextView
-            android:layout_marginLeft="10dp"
-            android:textSize="20dp"
-            android:textColor="@color/colorWhite"
-            android:layout_centerVertical="true"
-            android:id="@+id/chart_symbolName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <ImageView
-            android:id="@+id/timePopImageView"
-            android:clickable="true"
-            android:foreground="?selectableItemBackground"
-            android:layout_toLeftOf="@+id/add"
-            android:padding="13dp"
-            android:src="@mipmap/time"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
-
-        <ImageView
-            android:clickable="true"
-            android:foreground="?selectableItemBackground"
-            android:id="@+id/add"
-            android:padding="13dp"
-            android:src="@mipmap/chart_add"
-            android:layout_alignParentRight="true"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
-
-        <ImageView
-            android:clickable="true"
-            android:foreground="?selectableItemBackground"
-            android:id="@+id/symbolPopImgeView"
-            android:padding="13dp"
-            android:src="@mipmap/symbol_list"
-            android:layout_toLeftOf="@+id/timePopImageView"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
-        <ImageView
-            android:clickable="true"
-            android:foreground="?selectableItemBackground"
-            android:id="@+id/chart_menu"
-            android:padding="13dp"
-            android:src="@mipmap/chart_menu"
-            android:layout_toLeftOf="@+id/symbolPopImgeView"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_below="@+id/fragment_head"
-        android:id="@+id/layoutContent"
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="5dip"
-        android:layout_marginLeft="5dip"
-        android:layout_marginRight="0dip"
-        android:layout_marginTop="2dip"
-        android:visibility="invisible">
-
-        <!--指标list-->
+        android:layout_height="match_parent">
         <RelativeLayout
-            android:id="@+id/typeView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            >
 
-            <include layout="@layout/layout_kline_type" />
+            android:id="@+id/fragment_head"
+            android:elevation="2dp"
+            android:translationZ="1dp"
+            android:background="@color/colorBlue"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fragmentTopHeigh">
+            <TextView
+
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                android:textColor="@color/colorWhite"
+                android:layout_centerVertical="true"
+                android:id="@+id/chart_symbolName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:id="@+id/timePopImageView"
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
+                android:layout_toLeftOf="@+id/add"
+                android:padding="13dp"
+                android:src="@mipmap/time"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+            <ImageView
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
+                android:id="@+id/add"
+                android:padding="13dp"
+                android:src="@mipmap/chart_add"
+                android:layout_alignParentRight="true"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+            <ImageView
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
+                android:id="@+id/symbolPopImgeView"
+                android:padding="13dp"
+                android:src="@mipmap/symbol_list"
+                android:layout_toLeftOf="@+id/timePopImageView"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+            <ImageView
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
+                android:id="@+id/chart_menu"
+                android:padding="13dp"
+                android:src="@mipmap/chart_menu"
+                android:layout_toLeftOf="@+id/symbolPopImgeView"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
         </RelativeLayout>
-
-        <com.lyz.chart.candle.KLineView
-            android:id="@+id/klineView"
+        <RelativeLayout
+            android:layout_below="@+id/fragment_head"
+            android:id="@+id/layoutContent"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_below="@+id/typeView" />
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dip"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="0dip"
+            android:layout_marginTop="2dip"
+            android:visibility="invisible">
 
-    </RelativeLayout>
+            <!--指标list-->
+            <RelativeLayout
+                android:visibility="gone"
+                android:id="@+id/typeView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+
+                <include layout="@layout/layout_kline_type" />
+            </RelativeLayout>
+
+            <com.lyz.chart.candle.KLineView
+                android:id="@+id/klineView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@+id/typeView" />
+
+        </RelativeLayout>
+    </LinearLayout>
 
     <include
         android:id="@+id/layoutLoding"
         layout="@layout/app_common_progressbar" />
+
 </RelativeLayout>

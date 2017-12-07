@@ -54,7 +54,6 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
                         hadFirstSymbol = true;
                         //存入列表的第一个symbol 用于图标绘制
                         SpOperate.setString(mAtivity,UserFiled.FIRSTSYMBOL,marketRespDTO.getData().getInfolist().get(0).getSymbol());
-
                         // TODO: 2017/12/5   第一次请求成功后，存储symbol 列表的第一个symbol的详细数据 用于交易切换
                         MarketRespDTO.DataBean.InfolistBean infolistBean = marketRespDTO.getData().getInfolist().get(0);
                         SymbolTransctionDetailsBean transctionDetailsBean = new SymbolTransctionDetailsBean();
@@ -76,6 +75,8 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
                     break;
                 case 99:
                     String symbolS = (String) message.obj;
+                    //将用于用于跳转的Symbol 存储到本地
+                    SpOperate.setString(mAtivity,UserFiled.FIRSTSYMBOL,symbolS);
                     EventBus.getDefault().post(new SymbolChangeBean(symbolS,UserFiled.CHART));
                     break;
                 case UserFiled.STOP_THREAD:

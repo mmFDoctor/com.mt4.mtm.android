@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import activity.commt4mtmandroid.R;
+import activity.commt4mtmandroid.datahelp.KCycleConfig;
 
 /**
  * Created by Administrator on 2017/11/16.
@@ -68,34 +69,34 @@ public class ChartTimeListViewAdapt extends BaseAdapter {
 
         @Override
         public void onClick(View v) {
-            long spacingInterval = 0;
+            String spacingInterval = KCycleConfig.VALUE_PARAM_KLINE_M1;
             switch (position){
                 case 0:
-                    spacingInterval = 1;
+                    spacingInterval = KCycleConfig.VALUE_PARAM_KLINE_M1;
                     break;
                 case 1:
-                    spacingInterval = 5;
+                    spacingInterval = KCycleConfig.VALUE_PARAM_KLINE_M5;
                     break;
                 case 2:
-                    spacingInterval = 15;
+                    spacingInterval = KCycleConfig.VALUE_PARAM_KLINE_M15;
                     break;
                 case 3:
-                    spacingInterval = 30;
+                    spacingInterval = KCycleConfig.VALUE_PARAM_KLINE_M30;
                     break;
                 case 4:
-                    spacingInterval = 60;
+                    spacingInterval = KCycleConfig.VALUE_PARAM_KLINE_H1;
                     break;
                 case 5:
-                    spacingInterval = 240;
+                    spacingInterval = KCycleConfig.VALUE_PARAM_KLINE_H4;
                     break;
                 case 6:
-                    spacingInterval = 1440;
+                    spacingInterval = KCycleConfig.VALUE_PARAM_KLINE_DAY;
                     break;
                 case 7:
-                    spacingInterval = 10080;
+                    spacingInterval = KCycleConfig.VALUE_PARAM_KLINE_WEEK;
                     break;
                 case 8:
-                    spacingInterval = 43200;
+                    spacingInterval = KCycleConfig.VALUE_PARAM_KLINE_MONTH;
                     break;
             }
             Message message = Message.obtain();

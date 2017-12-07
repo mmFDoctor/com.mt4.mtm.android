@@ -19,11 +19,9 @@ import org.greenrobot.eventbus.ThreadMode;
 
 
 import activity.commt4mtmandroid.R;
+import activity.commt4mtmandroid.bean.evnetBusEntity.KLineFragmentInvateBean;
 import activity.commt4mtmandroid.bean.evnetBusEntity.SymbolChangeBean;
-import activity.commt4mtmandroid.bean.reqDTO.BaseReqDTO;
 import activity.commt4mtmandroid.datahelp.KlineHepler;
-import activity.commt4mtmandroid.entity.KlineCycle;
-import activity.commt4mtmandroid.fragment.ChartFragment;
 import activity.commt4mtmandroid.fragment.HistoryFragment;
 import activity.commt4mtmandroid.fragment.KLineFragment;
 import activity.commt4mtmandroid.fragment.MarketFragment;
@@ -31,9 +29,6 @@ import activity.commt4mtmandroid.fragment.SettingFragment;
 import activity.commt4mtmandroid.fragment.TransactionFragment;
 import activity.commt4mtmandroid.service.MT4IntentService;
 import activity.commt4mtmandroid.service.MT4PushService;
-import activity.commt4mtmandroid.utils.LocalUrl;
-import activity.commt4mtmandroid.utils.OkhttBack;
-import activity.commt4mtmandroid.utils.RequestCallBackToastImpl;
 import activity.commt4mtmandroid.utils.SpOperate;
 import activity.commt4mtmandroid.utils.SymbolListUtil;
 import activity.commt4mtmandroid.utils.UserFiled;
@@ -43,7 +38,13 @@ public class MainActivity extends BaseActivity implements OnTabSelectListener {
     private FragmentManager manager;
     private Fragment noFragment;
     private BottomBar bottomBar;
-    private KLineFragment usdchf;
+    private Fragment kLineFragment;
+
+    private String symbolCode;
+
+    //刷新周期
+    String klineCycle = KlineHepler.VALUE_PARAM_KLINE_MINUTE;
+    private Fragment f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,11 +81,10 @@ public class MainActivity extends BaseActivity implements OnTabSelectListener {
 
 // TODO: 2017/12/6   登录时存储当前symbol列表
 
-        if (SpOperate.getBoolean(this,UserFiled.IsLog)) {
+        if (SpOperate.getBoolean(this, UserFiled.IsLog)) {
             SymbolListUtil.symbolListSave(this);
         }
     }
-
 
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -92,6 +92,9 @@ public class MainActivity extends BaseActivity implements OnTabSelectListener {
         String change = changeBean.getChange();
         switch (change) {
             case UserFiled.CHART:
+                //清除 保存的chartFragment 重新加载
+                FragmentTransaction fragmentTransaction = manager.beginTransaction();
+                fragmentTransaction.remove(kLineFragment);
                 bottomBar.selectTabAtPosition(1);
                 break;
             case UserFiled.TRANSCTION:
@@ -119,7 +122,7 @@ public class MainActivity extends BaseActivity implements OnTabSelectListener {
     //底部导航栏切换控制
     private void changeFragment(String s) {
         int checkedId = Integer.parseInt(s);
-        Fragment f = null;
+        f = null;
         if (manager.findFragmentByTag(s) == null) {
             switch (checkedId) {
                 case R.id.radioButton_market:
@@ -127,8 +130,10 @@ public class MainActivity extends BaseActivity implements OnTabSelectListener {
                     break;
                 case R.id.radioButton_chart:
 //                    f = new ChartFragment();
-                    usdchf = KLineFragment.newInstance("USDCHF", KlineHepler.VALUE_PARAM_KLINE_M1);
-                    f = usdchf;
+                    if (symbolCode == null||symbolCode.equals("")  ) //初始化时 symbolcode 为空取时取本地存储的symbol
+                        symbolCode = SpOperate.getString(this, UserFiled.FIRSTSYMBOL);
+                    kLineFragment = KLineFragment.newInstance(SpOperate.getString(this,UserFiled.FIRSTSYMBOL), SpOperate.getRecyl(this, UserFiled.CHART_RECYL));
+                    f = kLineFragment;
                     break;
                 case R.id.radioButton_Transaction:
                     f = new TransactionFragment();
@@ -165,5 +170,37 @@ public class MainActivity extends BaseActivity implements OnTabSelectListener {
         changeFragment(String.valueOf(tabId));
     }
 
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void replaceCharFragment(KLineFragmentInvateBean event) {
+        if (!event.getSycle().equals("") && event.getSycle() != null)
+            symbolCode = SpOperate.getString(this,UserFiled.FIRSTSYMBOL);
+            replaceFragment(SpOperate.getRecyl(this,UserFiled.CHART_RECYL));
+    }
+
+    /**
+     * 替换frag
+     */
+    protected void replaceFragment(String cycle) {
+        FragmentTransaction transaction = manager.beginTransaction();
+        if (kLineFragment != null)
+            transaction.remove(kLineFragment);  //移除先前add 的图标Fragment
+
+        klineCycle = cycle;
+        kLineFragment = getFragment(cycle);
+        transaction.add(R.id.main_fraglayout, kLineFragment, String.valueOf(R.id.radioButton_chart));
+//        if (addToBackStack) {
+//            transaction.addToBackStack(null);
+//        }
+        if (noFragment != null)
+            transaction.hide(noFragment);
+
+        noFragment = kLineFragment;
+        transaction.commitAllowingStateLoss();
+    }
+
+    protected Fragment getFragment(String cycleCode) {
+        return KLineFragment.newInstance(symbolCode, cycleCode);
+    }
 
 }

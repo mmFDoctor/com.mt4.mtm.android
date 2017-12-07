@@ -42,6 +42,7 @@ import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.activity.ChartMenuActivity;
 import activity.commt4mtmandroid.adapt.ChartSymbolListViewAdapt;
 import activity.commt4mtmandroid.adapt.ChartTimeListViewAdapt;
+import activity.commt4mtmandroid.bean.evnetBusEntity.KLineFragmentInvateBean;
 import activity.commt4mtmandroid.bean.reqDTO.BaseReqDTO;
 import activity.commt4mtmandroid.bean.respDTO.SymbolListRespDTO;
 import activity.commt4mtmandroid.datahelp.KlineHepler;
@@ -71,6 +72,17 @@ public class KLineFragment extends KBaseFragment implements OnKCrossLineMoveList
                     popSymbolData.addAll(symbolListRespDTO.getData().getSymbollist());
                     popSymbolListAdapt.notifyDataSetChanged();
                     popupWindow.showAsDropDown(symbolPopImageView);
+                    break;
+
+                case 6:  //时间选择handler 接收
+                    //隐藏时间列表弹出框
+                    if (timePopWindow!=null)
+                        timePopWindow.dismiss();
+                    String timeSycle = (String) msg.obj;
+                    //存储到本地
+                    SpOperate.setString(mAtivity,UserFiled.CHART_RECYL,timeSycle);
+                    //发送广播通知 添加新的Fragment
+                    EventBus.getDefault().post(new KLineFragmentInvateBean(timeSycle));
                     break;
             }
             return true;
@@ -176,7 +188,6 @@ public class KLineFragment extends KBaseFragment implements OnKCrossLineMoveList
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.v(TAG, "onCreateView--");
 
         code = getArguments().getString("code");
         cycle = getArguments().getString("cycle");
@@ -195,6 +206,7 @@ public class KLineFragment extends KBaseFragment implements OnKCrossLineMoveList
         initRefresh();
         layoutContent = view.findViewById(R.id.layoutContent);
         layoutLoding = view.findViewById(R.id.layoutLoding);
+
 
         return view;
     }
@@ -246,15 +258,7 @@ public class KLineFragment extends KBaseFragment implements OnKCrossLineMoveList
         timePopuInit();
         symbolPopuInit();
         //设置时间格式
-
         kLineView = (KLineView) view.findViewById(R.id.klineView);
-
-
-        //获得系统保留的默认设置
-        if (kLineView != null) {
-            initKlineSetting();
-        }
-
 
         kLineView.setCycle(cycle);
         //十字线出现的滑动逻辑
@@ -347,12 +351,11 @@ public class KLineFragment extends KBaseFragment implements OnKCrossLineMoveList
                 kLineView.postInvalidate();
             }
         });
-        //切换图片表  ========end=========
+        //切换图片表  ========end========
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void chartInvit(String event) {
-        Log.i(TAG, "chartInvit: ------------------------------>");
         if (kLineView != null && event.equals(ChartMenuActivity.CHART_INVIT)) {
             initKlineSetting();
         }
@@ -382,9 +385,6 @@ public class KLineFragment extends KBaseFragment implements OnKCrossLineMoveList
         if (bottomSetting.equals(ChartMenuActivity.CHART_BOTTOM_NULL)) {
             //附图表隐藏
             kLineView.setShowSubChart(false);
-
-
-            kLineView.invalidate();
         } else {
             //显示副图标显示时设置比例
             kLineView.setMainF(4F / 5F);
@@ -404,6 +404,7 @@ public class KLineFragment extends KBaseFragment implements OnKCrossLineMoveList
             }
         }
         kLineView.invalidate();
+        kLineView.postInvalidate();
     }
 
 
@@ -583,6 +584,12 @@ public class KLineFragment extends KBaseFragment implements OnKCrossLineMoveList
                 Toast.makeText(getActivity(), "获取数据失败", Toast.LENGTH_SHORT).show();
                 if (layoutContent != null)
                     layoutContent.setVisibility(View.INVISIBLE);
+            }
+
+
+            //获得系统保留的默认设置
+            if (kLineView != null) {
+                initKlineSetting();
             }
         }
     }

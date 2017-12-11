@@ -13,8 +13,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.util.Locale;
-
 import activity.commt4mtmandroid.utils.LanguageUtils;
 
 /**

@@ -6,23 +6,22 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.activity.AboutActivity;
-import activity.commt4mtmandroid.activity.ChatActivity;
 import activity.commt4mtmandroid.activity.LanguageSettingActivity;
 import activity.commt4mtmandroid.activity.LoginChooseActivity;
 import activity.commt4mtmandroid.activity.NewsListActivity;
-import activity.commt4mtmandroid.activity.UserAccountActivity;
 import activity.commt4mtmandroid.activity.WebViewActivity;
-import activity.commt4mtmandroid.utils.SpOperate;
 import activity.commt4mtmandroid.utils.ToastUtils;
 import activity.commt4mtmandroid.utils.UserFiled;
+import activity.commt4mtmandroid.R;
+import activity.commt4mtmandroid.activity.ChatActivity;
+import activity.commt4mtmandroid.activity.UserAccountActivity;
+import activity.commt4mtmandroid.utils.SpOperate;
 
 /**
  * Created by Administrator on 2017/9/25.

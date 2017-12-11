@@ -9,7 +9,6 @@ import android.icu.text.DecimalFormat;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.PopupMenu;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,8 +18,6 @@ import com.alibaba.fastjson.JSONObject;
 import activity.commt4mtmandroid.BR;
 import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.activity.NewSymbolLoadingActivity;
-import activity.commt4mtmandroid.activity.SymbolTransactionActivity;
-import activity.commt4mtmandroid.bean.respDTO.TransctionRespDTO;
 import activity.commt4mtmandroid.bean.respDTO.TransctionSuccesDTO;
 import activity.commt4mtmandroid.utils.LocalUrl;
 import activity.commt4mtmandroid.utils.OkhttBack;
@@ -80,6 +77,7 @@ public class SymbolTransctionReqDTO extends  BaseObservable{
 
     public void setAskText(String askText) {
         this.askText = askText;
+        notifyPropertyChanged(BR.askText);
     }
     @Bindable
     public String getBidText() {
@@ -88,6 +86,7 @@ public class SymbolTransctionReqDTO extends  BaseObservable{
 
     public void setBidText(String bidText) {
         this.bidText = bidText;
+        notifyPropertyChanged(BR.bidText);
     }
 
     public String getDigits() {
@@ -488,7 +487,7 @@ public class SymbolTransctionReqDTO extends  BaseObservable{
 
     public void setPrice(String price) {
         this.price = price;
-
+        notifyPropertyChanged(BR.price);
     }
 
     public String getLogin_token() {

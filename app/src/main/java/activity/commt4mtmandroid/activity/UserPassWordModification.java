@@ -3,9 +3,7 @@ package activity.commt4mtmandroid.activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -14,9 +12,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import activity.commt4mtmandroid.utils.LocalUrl;
 import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.bean.reqDTO.UserPassWordModificationReqDTO;
-import activity.commt4mtmandroid.utils.LocalUrl;
 import activity.commt4mtmandroid.utils.OkhttBack;
 import activity.commt4mtmandroid.utils.RequestCallBackToastImpl;
 import activity.commt4mtmandroid.utils.SpOperate;

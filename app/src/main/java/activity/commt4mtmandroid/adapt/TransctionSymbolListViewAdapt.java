@@ -11,16 +11,14 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.bean.reqDTO.SingleSymbolDetailsReqDTO;
-import activity.commt4mtmandroid.bean.reqDTO.SymbolDetailsReqDTO;
-import activity.commt4mtmandroid.bean.respDTO.SymbolListRespDTO;
 import activity.commt4mtmandroid.utils.LocalUrl;
 import activity.commt4mtmandroid.utils.OkhttBack;
 import activity.commt4mtmandroid.utils.RequestCallBackToastImpl;
 import activity.commt4mtmandroid.utils.SpOperate;
 import activity.commt4mtmandroid.utils.UserFiled;
-import activity.commt4mtmandroid.vo.SymbolTransctionBean;
+import activity.commt4mtmandroid.R;
+import activity.commt4mtmandroid.bean.respDTO.SymbolListRespDTO;
 
 /**
  * Created by Administrator on 2017/11/16.
@@ -78,7 +76,7 @@ public class TransctionSymbolListViewAdapt extends BaseAdapter{
     private void rquestSingleSymbolInfo(String symbol) {
         SingleSymbolDetailsReqDTO reqDTO = new SingleSymbolDetailsReqDTO();
         reqDTO.setSymbol(symbol);
-        reqDTO.setLogin_token(SpOperate.getString(context,UserFiled.token));
+        reqDTO.setLogin_token(SpOperate.getString(context, UserFiled.token));
         OkhttBack okhttBack = new OkhttBack(reqDTO.convertToJson(), LocalUrl.baseUrl+LocalUrl.getSymbolInfoOne);
         okhttBack.post(new RequestCallBackToastImpl(context){
             @Override

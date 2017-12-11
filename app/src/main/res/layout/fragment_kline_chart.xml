@@ -1,86 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
-    <LinearLayout
-        android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <RelativeLayout
 
             android:id="@+id/fragment_head"
-            android:elevation="2dp"
-            android:translationZ="1dp"
-            android:background="@color/colorBlue"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/fragmentTopHeigh">
+            android:layout_height="@dimen/fragmentTopHeigh"
+            android:background="@color/colorBlue"
+            android:elevation="2dp"
+            android:translationZ="1dp">
+
             <TextView
 
-                android:layout_marginLeft="10dp"
-                android:textSize="20dp"
-                android:textColor="@color/colorWhite"
-                android:layout_centerVertical="true"
                 android:id="@+id/chart_symbolName"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="20dp" />
+
             <ImageView
                 android:id="@+id/timePopImageView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_toLeftOf="@+id/kline_transction_add"
                 android:clickable="true"
                 android:foreground="?selectableItemBackground"
-                android:layout_toLeftOf="@+id/add"
                 android:padding="13dp"
-                android:src="@mipmap/time"
-                android:layout_width="50dp"
-                android:layout_height="50dp" />
+                android:src="@mipmap/time" />
 
             <ImageView
-                android:clickable="true"
-                android:foreground="?selectableItemBackground"
-                android:id="@+id/add"
-                android:padding="13dp"
-                android:src="@mipmap/chart_add"
+                android:id="@+id/kline_transction_add"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_alignParentRight="true"
-                android:layout_width="50dp"
-                android:layout_height="50dp" />
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
+                android:padding="13dp"
+                android:src="@mipmap/chart_add" />
 
             <ImageView
-                android:clickable="true"
-                android:foreground="?selectableItemBackground"
                 android:id="@+id/symbolPopImgeView"
-                android:padding="13dp"
-                android:src="@mipmap/symbol_list"
-                android:layout_toLeftOf="@+id/timePopImageView"
                 android:layout_width="50dp"
-                android:layout_height="50dp" />
-            <ImageView
+                android:layout_height="50dp"
+                android:layout_toLeftOf="@+id/timePopImageView"
                 android:clickable="true"
                 android:foreground="?selectableItemBackground"
-                android:id="@+id/chart_menu"
                 android:padding="13dp"
-                android:src="@mipmap/chart_menu"
-                android:layout_toLeftOf="@+id/symbolPopImgeView"
+                android:src="@mipmap/symbol_list" />
+
+            <ImageView
+                android:id="@+id/chart_menu"
                 android:layout_width="50dp"
-                android:layout_height="50dp" />
+                android:layout_height="50dp"
+                android:layout_toLeftOf="@+id/symbolPopImgeView"
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
+                android:padding="13dp"
+                android:src="@mipmap/chart_menu" />
         </RelativeLayout>
-        <RelativeLayout
+
+        <TextView
+            android:id="@+id/symbolDescrip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/fragment_head"
+            android:layout_marginLeft="25px"
+            android:layout_marginTop="43px"
+            android:textColor="@color/color333"
+            android:textSize="10dp"
+            android:visibility="gone" />
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/symbolprice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/symbolDescrip"
+            android:layout_below="@+id/symbolDescrip"
+            android:layout_marginTop="1dp"
+            android:textColor="@color/color333"
+            android:textSize="10dp" />
+
+        <RelativeLayout
             android:id="@+id/layoutContent"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
+            android:layout_below="@+id/fragment_head"
             android:layout_marginBottom="5dip"
             android:layout_marginLeft="5dip"
             android:layout_marginRight="0dip"
             android:layout_marginTop="2dip"
             android:visibility="invisible">
 
+
             <!--指标list-->
             <RelativeLayout
-                android:visibility="gone"
                 android:id="@+id/typeView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                >
+                android:visibility="gone">
 
                 <include layout="@layout/layout_kline_type" />
             </RelativeLayout>
@@ -92,7 +118,7 @@
                 android:layout_below="@+id/typeView" />
 
         </RelativeLayout>
-    </LinearLayout>
+    </RelativeLayout>
 
     <include
         android:id="@+id/layoutLoding"

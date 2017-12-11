@@ -20,19 +20,19 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 import java.util.List;
 
-import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.activity.SymbolTransactionActivity;
-import activity.commt4mtmandroid.adapt.TransctionListViewAdapt;
-import activity.commt4mtmandroid.bean.evnetBusEntity.IsForegroundControlEntity;
-import activity.commt4mtmandroid.bean.evnetBusEntity.SymbolChangeBean;
 import activity.commt4mtmandroid.bean.reqDTO.BaseReqDTO;
 import activity.commt4mtmandroid.bean.respDTO.TransctionRespDTO;
 import activity.commt4mtmandroid.utils.LocalUrl;
+import activity.commt4mtmandroid.utils.UserFiled;
+import activity.commt4mtmandroid.vo.SymbolTransctionDetailsBean;
+import activity.commt4mtmandroid.R;
+import activity.commt4mtmandroid.adapt.TransctionListViewAdapt;
+import activity.commt4mtmandroid.bean.evnetBusEntity.IsForegroundControlEntity;
+import activity.commt4mtmandroid.bean.evnetBusEntity.SymbolChangeBean;
 import activity.commt4mtmandroid.utils.OkhttBackAlwaysOneThread;
 import activity.commt4mtmandroid.utils.RequestCallBackDefaultImpl;
 import activity.commt4mtmandroid.utils.SpOperate;
-import activity.commt4mtmandroid.utils.UserFiled;
-import activity.commt4mtmandroid.vo.SymbolTransctionDetailsBean;
 
 /**
  * Created by Administrator on 2017/9/25.
@@ -73,7 +73,7 @@ public class TransactionFragment extends BaseFragment implements View.OnClickLis
                     break;
                 case 99:
                     String symbolS = (String) msg.obj;
-                    EventBus.getDefault().post(new SymbolChangeBean(symbolS,UserFiled.CHART));
+                    EventBus.getDefault().post(new SymbolChangeBean(symbolS, UserFiled.CHART));
                     break;
                 case 101:
                     //定单成功关闭后 Toast 提醒用户 并且发广播更新历史页面

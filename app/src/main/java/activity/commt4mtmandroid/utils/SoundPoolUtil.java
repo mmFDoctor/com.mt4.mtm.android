@@ -3,7 +3,6 @@ package activity.commt4mtmandroid.utils;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.SoundPool;
-import android.util.Log;
 
 import activity.commt4mtmandroid.R;
 

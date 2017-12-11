@@ -8,7 +8,6 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.highlight.Highlight;
 
 import activity.commt4mtmandroid.R;
-
 /**
  * author：ajiang
  * mail：1025065158@qq.com

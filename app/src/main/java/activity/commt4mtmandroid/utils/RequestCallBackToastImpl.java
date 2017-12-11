@@ -3,7 +3,6 @@ package activity.commt4mtmandroid.utils;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.widget.Toast;
 
 import activity.commt4mtmandroid.bean.respDTO.BaseRespDTO;

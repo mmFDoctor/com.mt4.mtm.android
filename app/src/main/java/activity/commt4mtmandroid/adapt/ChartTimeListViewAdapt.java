@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
 import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.datahelp.KCycleConfig;
 

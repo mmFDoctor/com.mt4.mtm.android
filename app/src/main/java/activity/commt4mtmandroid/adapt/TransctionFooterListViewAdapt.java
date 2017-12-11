@@ -19,12 +19,12 @@ import com.github.aakira.expandablelayout.ExpandableLinearLayout;
 
 import java.util.List;
 
-import activity.commt4mtmandroid.R;
-import activity.commt4mtmandroid.activity.CloseOutActivity;
 import activity.commt4mtmandroid.activity.SymbolTransactionActivity;
 import activity.commt4mtmandroid.bean.respDTO.TransctionRespDTO;
-import activity.commt4mtmandroid.utils.SpOperate;
 import activity.commt4mtmandroid.utils.UserFiled;
+import activity.commt4mtmandroid.R;
+import activity.commt4mtmandroid.activity.CloseOutActivity;
+import activity.commt4mtmandroid.utils.SpOperate;
 
 /**
  * Created by Administrator on 2017/10/19.

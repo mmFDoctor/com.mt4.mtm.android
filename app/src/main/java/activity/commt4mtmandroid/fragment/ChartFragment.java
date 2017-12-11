@@ -44,7 +44,6 @@ import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.activity.ChartMenuActivity;
 import activity.commt4mtmandroid.activity.SymbolTransactionActivity;
 import activity.commt4mtmandroid.adapt.ChartSymbolListViewAdapt;
@@ -53,9 +52,7 @@ import activity.commt4mtmandroid.bean.evnetBusEntity.SymbolChangeBean;
 import activity.commt4mtmandroid.bean.reqDTO.BaseReqDTO;
 import activity.commt4mtmandroid.bean.reqDTO.ChartReqDTO;
 import activity.commt4mtmandroid.bean.reqDTO.SingleSymbolDetailsReqDTO;
-import activity.commt4mtmandroid.bean.respDTO.ChartRespDTO;
 import activity.commt4mtmandroid.bean.respDTO.SingleSymbolDetailsRespDTO;
-import activity.commt4mtmandroid.bean.respDTO.SymbolListRespDTO;
 import activity.commt4mtmandroid.mpcustom.CombinedChartMarkView;
 import activity.commt4mtmandroid.mpcustom.CoupleChartGestureListener;
 import activity.commt4mtmandroid.utils.LocalUrl;
@@ -66,8 +63,11 @@ import activity.commt4mtmandroid.utils.RequestCallBackToastImpl;
 import activity.commt4mtmandroid.utils.SpOperate;
 import activity.commt4mtmandroid.utils.TestController;
 import activity.commt4mtmandroid.utils.UserFiled;
-import activity.commt4mtmandroid.view.ChartSymbolListView;
 import activity.commt4mtmandroid.view.MyCombinChart;
+import activity.commt4mtmandroid.R;
+import activity.commt4mtmandroid.bean.respDTO.ChartRespDTO;
+import activity.commt4mtmandroid.bean.respDTO.SymbolListRespDTO;
+import activity.commt4mtmandroid.view.ChartSymbolListView;
 
 /**
  * Created by Administrator on 2017/9/25.
@@ -591,7 +591,7 @@ public class ChartFragment extends BaseFragment implements View.OnClickListener 
     private void initLoading() {
         loadingView = (MultiStateView) mRootView.findViewById(R.id.loadingView);
         loadingView.setViewState(MultiStateView.VIEW_STATE_EMPTY);
-        symbolTransction = (ImageView) mRootView.findViewById(R.id.add);
+        symbolTransction = (ImageView) mRootView.findViewById(R.id.kline_transction_add);
         time = (ImageView) mRootView.findViewById(R.id.time);
         symbolList = (ImageView) mRootView.findViewById(R.id.symbol_list);
         chartMenu = (ImageView) mRootView.findViewById(R.id.chart_menu);
@@ -663,7 +663,7 @@ public class ChartFragment extends BaseFragment implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.add:
+            case R.id.kline_transction_add:
                 if (singleSymbolDetailsRespDTO!=null) {
                     Intent intent = new Intent(mAtivity, SymbolTransactionActivity.class);
                     intent.putExtra(UserFiled.SYMBOL, singleSymbolDetailsRespDTO.getData().getInfo().getSymbol());

@@ -1,11 +1,5 @@
 package activity.commt4mtmandroid.bean.respDTO;
 
-import android.databinding.Bindable;
-import android.databinding.BindingAdapter;
-import android.widget.TextView;
-
-import activity.commt4mtmandroid.utils.ChangeTextStyleUtil;
-
 /**
  * Created by Administrator on 2017/10/9.
  */

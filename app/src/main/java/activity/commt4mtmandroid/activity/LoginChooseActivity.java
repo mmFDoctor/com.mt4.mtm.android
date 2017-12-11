@@ -11,12 +11,12 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 
-import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.bean.respDTO.ServiceCountDTO;
 import activity.commt4mtmandroid.utils.LocalUrl;
 import activity.commt4mtmandroid.utils.OkhttBack;
 import activity.commt4mtmandroid.utils.RequestCallBackDefaultImpl;
 import activity.commt4mtmandroid.utils.UserFiled;
+import activity.commt4mtmandroid.R;
 
 public class LoginChooseActivity extends BaseActivity {
     private Handler handler = new Handler(new Handler.Callback() {

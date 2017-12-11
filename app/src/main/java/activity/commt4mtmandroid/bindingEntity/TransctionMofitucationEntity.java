@@ -1,6 +1,5 @@
 package activity.commt4mtmandroid.bindingEntity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
@@ -9,13 +8,13 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 
-import activity.commt4mtmandroid.BR;
 import activity.commt4mtmandroid.bean.reqDTO.ChangeOrderReqDTO;
 import activity.commt4mtmandroid.utils.LocalUrl;
 import activity.commt4mtmandroid.utils.OkhttBack;
 import activity.commt4mtmandroid.utils.RequestCallBackToastImpl;
 import activity.commt4mtmandroid.utils.SpOperate;
 import activity.commt4mtmandroid.utils.UserFiled;
+import activity.commt4mtmandroid.BR;
 
 /**
  * Created by Administrator on 2017/11/10.

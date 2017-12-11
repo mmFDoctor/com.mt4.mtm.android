@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.utils.UserFiled;
+import activity.commt4mtmandroid.R;
 
 /**
  * Created by Administrator on 2017/10/31.

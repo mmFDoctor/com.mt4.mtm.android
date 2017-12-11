@@ -14,10 +14,11 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-import activity.commt4mtmandroid.R;
+
 import activity.commt4mtmandroid.activity.LoginActivity;
-import activity.commt4mtmandroid.activity.UserRegestActivity;
 import activity.commt4mtmandroid.bean.reqDTO.ServiceListRespDTO;
+import activity.commt4mtmandroid.R;
+import activity.commt4mtmandroid.activity.UserRegestActivity;
 import activity.commt4mtmandroid.utils.SpOperate;
 import activity.commt4mtmandroid.utils.UserFiled;
 

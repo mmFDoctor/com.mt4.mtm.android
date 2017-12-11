@@ -11,7 +11,6 @@ import android.net.http.SslError;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -22,7 +21,6 @@ import android.webkit.SslErrorHandler;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
-import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -30,8 +28,9 @@ import android.webkit.WebViewClient;
 import java.io.File;
 import java.io.IOException;
 
-import activity.commt4mtmandroid.R;
+
 import activity.commt4mtmandroid.utils.ImageFilePath;
+import activity.commt4mtmandroid.R;
 
 public class ChatActivity extends BaseActivity {
 

@@ -3,15 +3,14 @@ package activity.commt4mtmandroid.activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import activity.commt4mtmandroid.R;
+
 import activity.commt4mtmandroid.utils.SoundPoolUtil;
 import activity.commt4mtmandroid.utils.UserFiled;
+import activity.commt4mtmandroid.R;
 
 public class DingDanSuccessActivity extends BaseActivity implements View.OnClickListener {
     private Handler handler = new Handler(new Handler.Callback() {

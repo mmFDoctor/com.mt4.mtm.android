@@ -13,7 +13,6 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.SuperscriptSpan;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,9 +27,10 @@ import java.util.List;
 import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.activity.SymbolDetailsActivity;
 import activity.commt4mtmandroid.activity.SymbolTransactionActivity;
+import activity.commt4mtmandroid.utils.UserFiled;
+
 import activity.commt4mtmandroid.bean.respDTO.MarketRespDTO;
 import activity.commt4mtmandroid.utils.SpOperate;
-import activity.commt4mtmandroid.utils.UserFiled;
 
 /**
  * Created by Administrator on 2017/9/25.

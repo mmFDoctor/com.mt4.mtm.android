@@ -11,10 +11,10 @@ import android.widget.TextView;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import activity.commt4mtmandroid.R;
-import activity.commt4mtmandroid.bean.evnetBusEntity.NewSymbolEventBean;
 import activity.commt4mtmandroid.utils.SoundPoolUtil;
 import activity.commt4mtmandroid.utils.UserFiled;
+import activity.commt4mtmandroid.R;
+import activity.commt4mtmandroid.bean.evnetBusEntity.NewSymbolEventBean;
 
 public class NewSymbolLoadingActivity extends BaseActivity implements View.OnClickListener {
 

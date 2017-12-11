@@ -1,6 +1,5 @@
 package activity.commt4mtmandroid.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -9,16 +8,14 @@ import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
 
-import activity.commt4mtmandroid.R;
+
 import activity.commt4mtmandroid.bindingEntity.ChartMenuEntity;
-import activity.commt4mtmandroid.databinding.ActivityChartMenuBinding;
-import activity.commt4mtmandroid.utils.SoundPoolUtil;
+import activity.commt4mtmandroid.R;
+
 import activity.commt4mtmandroid.utils.SpOperate;
-import activity.commt4mtmandroid.utils.UserFiled;
 
 public class ChartMenuActivity extends BaseActivity {
 
-    private ActivityChartMenuBinding binding;
     private ChartMenuEntity entity = new ChartMenuEntity();
     private TextView completeTextView;
     private CheckBox smaCheckBox;

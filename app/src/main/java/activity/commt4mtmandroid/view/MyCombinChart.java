@@ -11,7 +11,6 @@ import com.github.mikephil.charting.data.CandleDataSet;
 import com.github.mikephil.charting.data.CandleEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.highlight.Highlight;
-import com.github.mikephil.charting.interfaces.datasets.ICandleDataSet;
 
 import activity.commt4mtmandroid.mpcustom.CombinedChartMarkView;
 

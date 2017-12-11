@@ -1,9 +1,9 @@
 package activity.commt4mtmandroid.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import activity.commt4mtmandroid.R;
+
 
 public class ConversationActivity extends BaseActivity {
 

@@ -3,7 +3,6 @@ package activity.commt4mtmandroid.bindingEntity;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.icu.math.BigDecimal;
-import android.renderscript.Float2;
 import android.view.View;
 
 import activity.commt4mtmandroid.BR;

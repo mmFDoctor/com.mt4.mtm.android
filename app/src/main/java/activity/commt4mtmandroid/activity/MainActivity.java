@@ -18,20 +18,21 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 
-import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.bean.evnetBusEntity.KLineFragmentInvateBean;
 import activity.commt4mtmandroid.bean.evnetBusEntity.SymbolChangeBean;
 import activity.commt4mtmandroid.datahelp.KlineHepler;
 import activity.commt4mtmandroid.fragment.HistoryFragment;
 import activity.commt4mtmandroid.fragment.KLineFragment;
 import activity.commt4mtmandroid.fragment.MarketFragment;
-import activity.commt4mtmandroid.fragment.SettingFragment;
 import activity.commt4mtmandroid.fragment.TransactionFragment;
 import activity.commt4mtmandroid.service.MT4IntentService;
 import activity.commt4mtmandroid.service.MT4PushService;
-import activity.commt4mtmandroid.utils.SpOperate;
 import activity.commt4mtmandroid.utils.SymbolListUtil;
+import activity.commt4mtmandroid.utils.ToastUtils;
 import activity.commt4mtmandroid.utils.UserFiled;
+import activity.commt4mtmandroid.R;
+import activity.commt4mtmandroid.fragment.SettingFragment;
+import activity.commt4mtmandroid.utils.SpOperate;
 
 
 public class MainActivity extends BaseActivity implements OnTabSelectListener {
@@ -41,6 +42,8 @@ public class MainActivity extends BaseActivity implements OnTabSelectListener {
     private Fragment kLineFragment;
 
     private String symbolCode;
+    private boolean IS_NEED_NEW_CHAR_FRAGMENT = false;
+    private long lastTime; //上次点击时间点
 
     //刷新周期
     String klineCycle = KlineHepler.VALUE_PARAM_KLINE_MINUTE;
@@ -93,8 +96,13 @@ public class MainActivity extends BaseActivity implements OnTabSelectListener {
         switch (change) {
             case UserFiled.CHART:
                 //清除 保存的chartFragment 重新加载
+                Fragment fragmentByTag = manager.findFragmentByTag(String.valueOf(R.id.radioButton_chart));
                 FragmentTransaction fragmentTransaction = manager.beginTransaction();
-                fragmentTransaction.remove(kLineFragment);
+                if (fragmentByTag!=null) {  //图标Fragment 不为空 移除已经添加的图表Fragment
+                    fragmentTransaction.remove(fragmentByTag);
+                    fragmentTransaction.commit();
+                }
+                IS_NEED_NEW_CHAR_FRAGMENT = true;
                 bottomBar.selectTabAtPosition(1);
                 break;
             case UserFiled.TRANSCTION:
@@ -105,6 +113,8 @@ public class MainActivity extends BaseActivity implements OnTabSelectListener {
                 break;
         }
     }
+
+
 
 
     @Override
@@ -123,13 +133,14 @@ public class MainActivity extends BaseActivity implements OnTabSelectListener {
     private void changeFragment(String s) {
         int checkedId = Integer.parseInt(s);
         f = null;
-        if (manager.findFragmentByTag(s) == null) {
+        if (manager.findFragmentByTag(s) == null||IS_NEED_NEW_CHAR_FRAGMENT) {
             switch (checkedId) {
                 case R.id.radioButton_market:
                     f = new MarketFragment();
                     break;
                 case R.id.radioButton_chart:
 //                    f = new ChartFragment();
+                    IS_NEED_NEW_CHAR_FRAGMENT = false;
                     if (symbolCode == null||symbolCode.equals("")  ) //初始化时 symbolcode 为空取时取本地存储的symbol
                         symbolCode = SpOperate.getString(this, UserFiled.FIRSTSYMBOL);
                     kLineFragment = KLineFragment.newInstance(SpOperate.getString(this,UserFiled.FIRSTSYMBOL), SpOperate.getRecyl(this, UserFiled.CHART_RECYL));
@@ -175,7 +186,7 @@ public class MainActivity extends BaseActivity implements OnTabSelectListener {
     public void replaceCharFragment(KLineFragmentInvateBean event) {
         if (!event.getSycle().equals("") && event.getSycle() != null)
             symbolCode = SpOperate.getString(this,UserFiled.FIRSTSYMBOL);
-            replaceFragment(SpOperate.getRecyl(this,UserFiled.CHART_RECYL));
+            replaceFragment(SpOperate.getRecyl(this,UserFiled.CHART_RECYL)); //获取存储在本地 切换symbol 和 周期
     }
 
     /**
@@ -183,9 +194,11 @@ public class MainActivity extends BaseActivity implements OnTabSelectListener {
      */
     protected void replaceFragment(String cycle) {
         FragmentTransaction transaction = manager.beginTransaction();
-        if (kLineFragment != null)
-            transaction.remove(kLineFragment);  //移除先前add 的图标Fragment
-
+        if (manager.findFragmentByTag(String.valueOf(R.id.radioButton_chart))!=null){ // 若已经添加了 chartFragment 则移除
+            transaction.remove(kLineFragment);
+            transaction.commit();  //提交事务
+        }
+             //移除先前add 的图标Fragment
         klineCycle = cycle;
         kLineFragment = getFragment(cycle);
         transaction.add(R.id.main_fraglayout, kLineFragment, String.valueOf(R.id.radioButton_chart));
@@ -203,4 +216,15 @@ public class MainActivity extends BaseActivity implements OnTabSelectListener {
         return KLineFragment.newInstance(symbolCode, cycleCode);
     }
 
+
+    //双击退出
+    @Override
+    public void onBackPressed() {
+        if (System.currentTimeMillis() - lastTime > 1000) {
+            ToastUtils.showToast(this, "双击退出");
+            lastTime = System.currentTimeMillis();
+        } else {
+            super.onBackPressed();
+        }
+    }
 }

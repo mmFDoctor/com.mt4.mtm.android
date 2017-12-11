@@ -1,9 +1,7 @@
 package activity.commt4mtmandroid.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -14,11 +12,12 @@ import com.bumptech.glide.Glide;
 
 import java.util.Map;
 
-import activity.commt4mtmandroid.R;
-import activity.commt4mtmandroid.adapt.UserAccountAdapt;
+
 import activity.commt4mtmandroid.bean.UserAccountStorageDTO;
 import activity.commt4mtmandroid.utils.SpOperate;
 import activity.commt4mtmandroid.utils.UserFiled;
+import activity.commt4mtmandroid.R;
+import activity.commt4mtmandroid.adapt.UserAccountAdapt;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class UserAccountActivity extends BaseActivity implements View.OnClickListener {

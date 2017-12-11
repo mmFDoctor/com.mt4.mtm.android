@@ -1,6 +1,5 @@
 package activity.commt4mtmandroid.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 

@@ -27,20 +27,24 @@ import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import activity.commt4mtmandroid.R;
+
 import activity.commt4mtmandroid.bean.evnetBusEntity.DingDanStatusBean;
 import activity.commt4mtmandroid.bean.reqDTO.CloseOutReqDTO;
 import activity.commt4mtmandroid.bean.reqDTO.SingleSymbolDetailsReqDTO;
 import activity.commt4mtmandroid.bean.respDTO.SingleSymbolDetailsRespDTO;
 import activity.commt4mtmandroid.bindingEntity.CloseOutEntity;
-import activity.commt4mtmandroid.databinding.ActivityCloseOutBinding;
-import activity.commt4mtmandroid.utils.ChangeTextStyleUtil;
 import activity.commt4mtmandroid.utils.LocalUrl;
 import activity.commt4mtmandroid.utils.OkhttBack;
-import activity.commt4mtmandroid.utils.OkhttBackAlways;
 import activity.commt4mtmandroid.utils.RequestCallBackDefaultImpl;
 import activity.commt4mtmandroid.utils.SpOperate;
 import activity.commt4mtmandroid.utils.UserFiled;
+import activity.commt4mtmandroid.R;
+
+
+import activity.commt4mtmandroid.utils.ChangeTextStyleUtil;
+import activity.commt4mtmandroid.utils.OkhttBackAlways;
+import activity.commt4mtmandroid.databinding.ActivityCloseOutBinding;
+
 
 public class CloseOutActivity extends BaseActivity implements View.OnClickListener {
     private Handler handler = new Handler(new Handler.Callback() {

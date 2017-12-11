@@ -2,7 +2,6 @@ package activity.commt4mtmandroid.utils;
 
 import android.content.Context;
 
-import activity.commt4mtmandroid.activity.MainActivity;
 import activity.commt4mtmandroid.bean.reqDTO.BaseReqDTO;
 
 /**
@@ -10,6 +9,8 @@ import activity.commt4mtmandroid.bean.reqDTO.BaseReqDTO;
  */
 
 public class SymbolListUtil {
+
+
     public static void symbolListSave(final Context context) {
         BaseReqDTO reqDTO = new BaseReqDTO();
         reqDTO.setLogin_token(SpOperate.getString(context, UserFiled.token));

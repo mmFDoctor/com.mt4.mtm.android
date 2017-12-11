@@ -1,14 +1,11 @@
 package activity.commt4mtmandroid.fragment;
 
-import android.graphics.Paint;
 import android.icu.text.DecimalFormat;
 import android.icu.text.SimpleDateFormat;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.IdRes;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -24,8 +21,8 @@ import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 
-import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.adapt.HistoryAdapt;
+import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.bean.reqDTO.HistoryReqDTO;
 import activity.commt4mtmandroid.bean.respDTO.HistoryRespDTO;
 import activity.commt4mtmandroid.utils.LocalUrl;

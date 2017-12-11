@@ -19,6 +19,7 @@ import activity.commt4mtmandroid.activity.NewsContentVebActivity;
 import activity.commt4mtmandroid.bean.respDTO.NewsListRespDTO;
 import activity.commt4mtmandroid.utils.UserFiled;
 
+
 /**
  * Created by Administrator on 2017/11/14.
  */

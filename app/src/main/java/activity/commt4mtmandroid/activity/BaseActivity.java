@@ -20,13 +20,15 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
-import activity.commt4mtmandroid.R;
+
 import activity.commt4mtmandroid.bean.evnetBusEntity.AutoLockStatusBean;
-import activity.commt4mtmandroid.bean.evnetBusEntity.IsForegroundControlEntity;
 import activity.commt4mtmandroid.utils.LanguageUtils;
-import activity.commt4mtmandroid.utils.SpOperate;
 import activity.commt4mtmandroid.utils.UserFiled;
+
+import activity.commt4mtmandroid.bean.evnetBusEntity.IsForegroundControlEntity;
+import activity.commt4mtmandroid.utils.SpOperate;
 import activity.commt4mtmandroid.utils.UserLoginAgin;
+import activity.commt4mtmandroid.R;
 
 
 public abstract class BaseActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
@@ -51,7 +53,7 @@ public abstract class BaseActivity extends AppCompatActivity implements GestureD
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
 
-        if (isOpenLock &&SpOperate.getIsLogin(this,UserFiled.IsLog)) {
+        if (isOpenLock &&SpOperate.getIsLogin(this, UserFiled.IsLog)) {
             Log.i("tag", "dispatchTouchEvent: ");
             //等于0 表示第一次进入app不进行处理 只进行当前的时间点赋值
                 //不等于0  对比时间

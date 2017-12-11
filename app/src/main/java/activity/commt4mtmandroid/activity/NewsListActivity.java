@@ -2,22 +2,21 @@ package activity.commt4mtmandroid.activity;
 
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
 
 import com.alibaba.fastjson.JSONObject;
 
-import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.adapt.NewsListAdapt;
 import activity.commt4mtmandroid.bean.reqDTO.BaseReqDTO;
 import activity.commt4mtmandroid.bean.respDTO.NewsListRespDTO;
 import activity.commt4mtmandroid.utils.LocalUrl;
 import activity.commt4mtmandroid.utils.OkhttBack;
 import activity.commt4mtmandroid.utils.RequestCallBackToastImpl;
-import activity.commt4mtmandroid.utils.SpOperate;
 import activity.commt4mtmandroid.utils.UserFiled;
+import activity.commt4mtmandroid.R;
+import activity.commt4mtmandroid.utils.SpOperate;
 
 public class NewsListActivity extends BaseActivity {
     private Handler handler = new Handler(new Handler.Callback() {

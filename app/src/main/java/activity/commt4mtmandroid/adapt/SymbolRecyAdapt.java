@@ -3,28 +3,20 @@ package activity.commt4mtmandroid.adapt;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
-import android.os.Message;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.List;
 
-import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.activity.SymbolDetailsActivity;
-import activity.commt4mtmandroid.bean.reqDTO.SymbolAddReqDTO;
-import activity.commt4mtmandroid.bean.respDTO.SymbolListRespDTO;
-import activity.commt4mtmandroid.utils.LocalUrl;
-import activity.commt4mtmandroid.utils.OkhttBack;
-import activity.commt4mtmandroid.utils.RequestCallBackDefaultImpl;
-import activity.commt4mtmandroid.utils.SpOperate;
 import activity.commt4mtmandroid.utils.UserFiled;
+import activity.commt4mtmandroid.R;
+import activity.commt4mtmandroid.bean.respDTO.SymbolListRespDTO;
 
 /**
  * Created by Administrator on 2017/9/26.

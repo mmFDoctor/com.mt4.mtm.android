@@ -16,6 +16,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -38,23 +39,29 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.activity.ChartMenuActivity;
+import activity.commt4mtmandroid.activity.SymbolTransactionActivity;
 import activity.commt4mtmandroid.adapt.ChartSymbolListViewAdapt;
-import activity.commt4mtmandroid.adapt.ChartTimeListViewAdapt;
 import activity.commt4mtmandroid.bean.evnetBusEntity.KLineFragmentInvateBean;
-import activity.commt4mtmandroid.bean.reqDTO.BaseReqDTO;
 import activity.commt4mtmandroid.bean.respDTO.SymbolListRespDTO;
 import activity.commt4mtmandroid.datahelp.KlineHepler;
 import activity.commt4mtmandroid.datahelp.LasteKHelper;
 import activity.commt4mtmandroid.entity.KlineCycle;
 import activity.commt4mtmandroid.entity.QutationObj;
-import activity.commt4mtmandroid.utils.BaseInterface;
+import activity.commt4mtmandroid.utils.LocalUrl;
 import activity.commt4mtmandroid.utils.SpOperate;
 import activity.commt4mtmandroid.utils.SymbolListUtil;
 import activity.commt4mtmandroid.utils.UserFiled;
-import activity.commt4mtmandroid.view.ChartSymbolListView;
 import activity.commt4mtmandroid.view.RefreshUtil;
+import activity.commt4mtmandroid.R;
+import activity.commt4mtmandroid.adapt.ChartTimeListViewAdapt;
+import activity.commt4mtmandroid.bean.reqDTO.SingleSymbolDetailsReqDTO;
+import activity.commt4mtmandroid.bean.respDTO.SingleSymbolDetailsRespDTO;
+import activity.commt4mtmandroid.utils.BaseInterface;
+import activity.commt4mtmandroid.utils.OkhttBack;
+import activity.commt4mtmandroid.utils.RequestCallBackDefaultImpl;
+import activity.commt4mtmandroid.utils.Sycle2SycleDescrip;
+import activity.commt4mtmandroid.view.ChartSymbolListView;
 
 /**
  * 周期k线的布局frag
@@ -65,6 +72,26 @@ public class KLineFragment extends KBaseFragment implements OnKCrossLineMoveList
         @Override
         public boolean handleMessage(Message msg) {
             switch (msg.what) {
+                case 1:
+                    IsTransctionClick = true;
+                    String  singleSymbolInfo  = (String) msg.obj;
+                    SingleSymbolDetailsRespDTO respDTO = JSONObject.parseObject(singleSymbolInfo, SingleSymbolDetailsRespDTO.class);
+                    if (respDTO!=null) {
+                        Intent intent = new Intent(mAtivity, SymbolTransactionActivity.class);
+                        intent.putExtra(UserFiled.SYMBOL, respDTO.getData().getInfo().getSymbol());
+                        intent.putExtra(UserFiled.ASK, respDTO.getData().getInfo().getAsk());
+                        intent.putExtra(UserFiled.BID, respDTO.getData().getInfo().getBid());
+                        intent.putExtra(UserFiled.descrip, respDTO.getData().getInfo().getSymboldesc());
+                        intent.putExtra(UserFiled.DIGITS,respDTO.getData().getInfo().getDigits());
+                        mAtivity.startActivity(intent);
+                    }
+                    break;
+                case UserFiled.LINKFAIL:
+                    IsTransctionClick = true;
+                    break;
+                case UserFiled.NONET:
+                    IsTransctionClick = true;
+                    break;
                 case 4:
                     String symbolListStr = (String) msg.obj;
                     SymbolListRespDTO symbolListRespDTO = JSONObject.parseObject(symbolListStr, SymbolListRespDTO.class);
@@ -72,6 +99,15 @@ public class KLineFragment extends KBaseFragment implements OnKCrossLineMoveList
                     popSymbolData.addAll(symbolListRespDTO.getData().getSymbollist());
                     popSymbolListAdapt.notifyDataSetChanged();
                     popupWindow.showAsDropDown(symbolPopImageView);
+                    break;
+
+
+                case 5:  //图表页面切换 不同symbol 进行显示
+                    if (popupWindow!=null)
+                        popupWindow.dismiss();
+                    String symbol = (String) msg.obj;
+                    SpOperate.setString(mAtivity,UserFiled.FIRSTSYMBOL,symbol);
+                    EventBus.getDefault().post(new KLineFragmentInvateBean(symbol));
                     break;
 
                 case 6:  //时间选择handler 接收
@@ -135,7 +171,11 @@ public class KLineFragment extends KBaseFragment implements OnKCrossLineMoveList
     private ImageView timePopImageView;
     private ImageView symbolPopImageView;
     private ImageView chartMenuImageView;
+    private TextView symbolDescrip;
+    private TextView symbolPrice;
+    private ImageView addTransction;
 
+    private boolean IsTransctionClick = true;
     /**
      * k线启动
      *
@@ -207,7 +247,9 @@ public class KLineFragment extends KBaseFragment implements OnKCrossLineMoveList
         layoutContent = view.findViewById(R.id.layoutContent);
         layoutLoding = view.findViewById(R.id.layoutLoding);
 
-
+        //显示当前symbol 和周期
+        symbolDescrip = (TextView) view.findViewById(R.id.symbolDescrip);
+        symbolPrice = (TextView) view.findViewById(R.id.symbolprice);
         return view;
     }
 
@@ -278,6 +320,7 @@ public class KLineFragment extends KBaseFragment implements OnKCrossLineMoveList
         chartMenuImageView = (ImageView) view.findViewById(R.id.chart_menu);
         timePopImageView = (ImageView) view.findViewById(R.id.timePopImageView);
         symbolPopImageView = (ImageView) view.findViewById(R.id.symbolPopImgeView);
+        addTransction = (ImageView) view.findViewById(R.id.kline_transction_add);
 //        //蜡烛阳线颜色
 //        kLineView.setCandlePostColor(getActivity().getResources().getColor(R.color.candle_post));
 //        //蜡烛阴线颜色
@@ -477,6 +520,31 @@ public class KLineFragment extends KBaseFragment implements OnKCrossLineMoveList
             }
         });
 
+
+        addTransction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               if (IsTransctionClick){
+                   IsTransctionClick = false;
+                   //请求单个symbol 详情
+                   SingleSymbolDetailsReqDTO reqDTO = new SingleSymbolDetailsReqDTO();
+                   reqDTO.setSymbol(code);
+                   reqDTO.setLogin_token(SpOperate.getString(mAtivity,UserFiled.token));
+
+                   OkhttBack  okhttBack = new OkhttBack(reqDTO.convertToJson(), LocalUrl.baseUrl + LocalUrl.getSymbolInfoOne);
+                   okhttBack.post(new RequestCallBackDefaultImpl(mAtivity,handler){
+                       @Override
+                       public void success(String data) {
+                           super.success(data);
+                           Message message =Message.obtain();
+                           message.obj = data;
+                           message.what = 1;
+                           handler.sendMessage(message);
+                       }
+                   });
+               }
+            }
+        });
     }
 
     @Override
@@ -505,11 +573,15 @@ public class KLineFragment extends KBaseFragment implements OnKCrossLineMoveList
 //        if (crosslineLayout02 == null)
 //            return;
 //        TextView tv_crossinfo = (TextView) getActivity().findViewById(R.id.tv_crossinfo);
-//        String string = "开:" + object.getOpen() + "   "
-//                + "高:" + object.getHigh() + "   "
-//                + "低:" + object.getLow() + "   "
-//                + "收:" + object.getClose();
+        String string = "开:" + object.getOpen() + "   "
+                + "高:" + object.getHigh() + "   "
+                + "低:" + object.getLow() + "   "
+                + "收:" + object.getClose();
 //        tv_crossinfo.setText(string);
+        if (symbolPrice!=null){
+            symbolPrice.setVisibility(View.VISIBLE);
+            symbolPrice.setText(string);
+        }
     }
 
     /**
@@ -524,6 +596,10 @@ public class KLineFragment extends KBaseFragment implements OnKCrossLineMoveList
 //        View crosslineLayout02 = getActivity().findViewById(R.id.crosslineLayout02);
 //        if (crosslineLayout02 != null)
 //            crosslineLayout02.setVisibility(View.GONE);
+
+        if (symbolPrice!=null){
+            symbolPrice.setVisibility(View.GONE);
+        }
     }
 
     class GetKlineDataTask extends AsyncTask<String, Void, String> {
@@ -545,7 +621,6 @@ public class KLineFragment extends KBaseFragment implements OnKCrossLineMoveList
                 map.put(KlineHepler.PARAM_CODE, code);
                 map.put(KlineHepler.PARAM_CYCLE, cycle);
                 map.put(KlineHepler.PARAM_PAGE_SIZE, KlineHepler.VALUE_PAGE_SIZE_DEFAULT + "");
-
                 list = KlineHepler.getKlines(getActivity(), api, map);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -566,8 +641,12 @@ public class KLineFragment extends KBaseFragment implements OnKCrossLineMoveList
                 return;
             if (layoutContent != null)
                 layoutContent.setVisibility(View.VISIBLE);
-            if (layoutLoding != null)
+            if (layoutLoding != null){
                 layoutLoding.setVisibility(View.GONE);
+                symbolDescrip.setText(code+","+ Sycle2SycleDescrip.converToDescrip(cycle));
+                symbolDescrip.setVisibility(View.VISIBLE);
+            }
+
 
             if (SUCCESS.equals(result)) {
                 //设置数据集合

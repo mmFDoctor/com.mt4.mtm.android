@@ -7,7 +7,8 @@ import com.suke.widget.SwitchButton;
 
 import org.greenrobot.eventbus.EventBus;
 
-import activity.commt4mtmandroid.R;
+
+
 import activity.commt4mtmandroid.bean.evnetBusEntity.AutoLockStatusBean;
 import activity.commt4mtmandroid.bean.reqDTO.ChangePushReqDTO;
 import activity.commt4mtmandroid.utils.LocalUrl;
@@ -15,6 +16,7 @@ import activity.commt4mtmandroid.utils.OkhttBack;
 import activity.commt4mtmandroid.utils.RequestCallBackDefaultImpl;
 import activity.commt4mtmandroid.utils.SpOperate;
 import activity.commt4mtmandroid.utils.UserFiled;
+import activity.commt4mtmandroid.R;
 
 public class AboutActivity extends BaseActivity {
 

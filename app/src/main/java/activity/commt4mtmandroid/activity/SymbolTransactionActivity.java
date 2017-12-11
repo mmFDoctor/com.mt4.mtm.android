@@ -32,29 +32,24 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
-import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.adapt.TransctionSymbolListViewAdapt;
 import activity.commt4mtmandroid.bean.evnetBusEntity.NewSymbolEventBean;
 import activity.commt4mtmandroid.bean.evnetBusEntity.SymbolChangeBean;
-import activity.commt4mtmandroid.bean.reqDTO.BaseReqDTO;
 import activity.commt4mtmandroid.bean.reqDTO.SingleSymbolDetailsReqDTO;
 import activity.commt4mtmandroid.bean.reqDTO.SymbolTransctionReqDTO;
 import activity.commt4mtmandroid.bean.respDTO.SingleSymbolDetailsRespDTO;
 import activity.commt4mtmandroid.bean.respDTO.SymbolListRespDTO;
-import activity.commt4mtmandroid.databinding.ActivitySymbolTransactionBinding;
 import activity.commt4mtmandroid.utils.ChangeTextStyleUtil;
 import activity.commt4mtmandroid.utils.LocalUrl;
-import activity.commt4mtmandroid.utils.OkhttBack;
-import activity.commt4mtmandroid.utils.OkhttBackAlways;
 import activity.commt4mtmandroid.utils.RequestCallBackDefaultImpl;
-import activity.commt4mtmandroid.utils.RequestCallBackToastImpl;
 import activity.commt4mtmandroid.utils.SpOperate;
+import activity.commt4mtmandroid.utils.SymbolListUtil;
 import activity.commt4mtmandroid.utils.UserFiled;
 import activity.commt4mtmandroid.view.ChartSymbolListView;
+import activity.commt4mtmandroid.R;
+import activity.commt4mtmandroid.databinding.ActivitySymbolTransactionBinding;
+import activity.commt4mtmandroid.utils.OkhttBackAlwaysOneThread;
 
 public class SymbolTransactionActivity extends BaseActivity implements View.OnClickListener {
     private Handler handler = new Handler(new Handler.Callback() {
@@ -92,13 +87,13 @@ public class SymbolTransactionActivity extends BaseActivity implements View.OnCl
                     binding.linechart.notifyDataSetChanged();
 //                    binding.linechart.invalidate();
                     //X轴的最大显示个数
-                    binding.linechart.setVisibleXRangeMaximum(6);
+                    binding.linechart.setVisibleXRangeMaximum(20);
                     binding.linechart.moveViewToAnimated(symbolCount, Float.parseFloat(singleSymbolDetailsRespDTO.getData().getInfo().getBid()),null,1000l);
                     symbolCount++;
                     break;
                 case 100:
                     String orderID = (String) msg.obj;
-                    EventBus.getDefault().post(new SymbolChangeBean("",UserFiled.TRANSCTION));
+                    EventBus.getDefault().post(new SymbolChangeBean("", UserFiled.TRANSCTION));
                     NewSymbolEventBean newSymbolEventBean = new NewSymbolEventBean(true);
                     newSymbolEventBean.setOrderId(orderID);
                     EventBus.getDefault().post(newSymbolEventBean);
@@ -126,6 +121,7 @@ public class SymbolTransactionActivity extends BaseActivity implements View.OnCl
                     break;
 
                 case 4:
+                    //本地symbol 列表
                     String symbolListStr = (String) msg.obj;
                     SymbolListRespDTO symbolListRespDTO = JSONObject.parseObject(symbolListStr, SymbolListRespDTO.class);
                     popSymbolData.clear();
@@ -139,11 +135,15 @@ public class SymbolTransactionActivity extends BaseActivity implements View.OnCl
                     mToolbarTb.setTitle(respDTO.getData().getInfo().getSymbol());
                     mToolbarTb.setSubtitle(respDTO.getData().getInfo().getSymboldesc());
                     popupWindow.dismiss();
+
+                    // TODO: 2017/12/8  切换 新的图表显示
+                    symbolSwithc(respDTO);
+
                     break;
                 case UserFiled.STOP_THREAD:
-                    if (backAlways!=null){   //token异常 关闭线程请求
-                        backAlways.isRun(false);
-                        backAlways.aliveThread(false);
+                    if (alwaysOneThread!=null){   //token异常 关闭线程请求
+                        alwaysOneThread.isRun(false);
+                        alwaysOneThread.aliveThread(false);
                     }
                     break;
 
@@ -151,6 +151,8 @@ public class SymbolTransactionActivity extends BaseActivity implements View.OnCl
             return true;
         }
     });
+
+
 
     private String ask;
     private String bid;
@@ -160,13 +162,13 @@ public class SymbolTransactionActivity extends BaseActivity implements View.OnCl
     private LineData lineData;
     private SymbolTransctionReqDTO transctionDto = new SymbolTransctionReqDTO(handler);
     private int symbolCount = 0 ;
-    private OkhttBackAlways backAlways;
     private TextView askTextView;
     private TextView bidTextView;
     private PopupWindow popupWindow;
     private ImageView symbolListImage;
     private List<SymbolListRespDTO.DataBean.SymbollistBean> popSymbolData  = new ArrayList<>(); //弹出框数据源
     private TransctionSymbolListViewAdapt popSymbolListAdapt;
+    private OkhttBackAlwaysOneThread alwaysOneThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,6 +180,30 @@ public class SymbolTransactionActivity extends BaseActivity implements View.OnCl
         initLineData();
     }
 
+
+
+
+    // symbol 切换控制
+    private void symbolSwithc(SingleSymbolDetailsRespDTO respDTO) {
+        LineData data = binding.linechart.getData();
+        //暂停线程循环
+        alwaysOneThread.isRun(false);
+        handler.removeCallbacksAndMessages(null);
+        data.clearValues();// 清空data 中的数据
+        //重置绑定Entity 中的数据
+        transctionDto.setDigits(respDTO.getData().getInfo().getDigits());
+        transctionDto.setSymbol(respDTO.getData().getInfo().getSymbol());
+        transctionDto.setPrice("0");
+        transctionDto.setBidText("0");
+        transctionDto.setAskText("0");
+        reDto.setSymbol(respDTO.getData().getInfo().getSymbol());
+        alwaysOneThread.setJson(reDto.convertToJson());
+        symbolCount = 0;
+        alwaysOneThread.isRun(true);
+
+
+    }
+
     @Override
     protected void initView() {
         super.initView();
@@ -187,20 +213,22 @@ public class SymbolTransactionActivity extends BaseActivity implements View.OnCl
         symbolPopuInit();
         symbolListImage = (ImageView) findViewById(R.id.symbol_list);
 
+
     }
 
 
 
     private LineDataSet createSet() {
         LineDataSet set = new LineDataSet(null, "DataSet 1");
-        set.setLineWidth(2.5f);
-        set.setCircleRadius(4.5f);
+        set.setDrawValues(false);
+        set.setLineWidth(1.5f);
+        set.setDrawCircles(false);
         set.setColor(getResources().getColor(R.color.colorRed));
         set.setCircleColor(getResources().getColor(R.color.colorRed));
         set.setHighLightColor(getResources().getColor(R.color.colorRed));
         set.setAxisDependency(YAxis.AxisDependency.LEFT);
         set.setValueTextSize(10f);
-        set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+        set.setMode(LineDataSet.Mode.STEPPED);
 
         //去除指示器
         set.setDrawHorizontalHighlightIndicator(false);
@@ -216,8 +244,9 @@ public class SymbolTransactionActivity extends BaseActivity implements View.OnCl
     }
     private LineDataSet createSet1() {
         LineDataSet set = new LineDataSet(null, "DataSet 1");
-        set.setLineWidth(2.5f);
-        set.setCircleRadius(4.5f);
+        set.setLineWidth(1.5f);
+        set.setDrawValues(false);
+        set.setDrawCircles(false);
         set.setColor(getResources().getColor(R.color.colorBlue));
         set.setCircleColor(getResources().getColor(R.color.colorBlue));
         set.setHighLightColor(getResources().getColor(R.color.colorBlue));
@@ -226,7 +255,7 @@ public class SymbolTransactionActivity extends BaseActivity implements View.OnCl
         set.setDrawHorizontalHighlightIndicator(false);
         set.setDrawVerticalHighlightIndicator(false);
         set.setValueTextSize(10f);
-        set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+        set.setMode(LineDataSet.Mode.STEPPED);
         set.setValueFormatter(new IValueFormatter() {
             @Override
             public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
@@ -336,9 +365,8 @@ public class SymbolTransactionActivity extends BaseActivity implements View.OnCl
     @Override
     protected void initData() {
         super.initData();
-        backAlways = new OkhttBackAlways(reDto.convertToJson(), LocalUrl.baseUrl+LocalUrl.getSymbolInfoOne);
-        backAlways.isRun(true);
-        backAlways.post(new RequestCallBackDefaultImpl(this,handler){
+        alwaysOneThread = new OkhttBackAlwaysOneThread(reDto.convertToJson(), LocalUrl.baseUrl+ LocalUrl.getSymbolInfoOne);
+        alwaysOneThread.post(new RequestCallBackDefaultImpl(this){
             @Override
             public void success(String data) {
                 super.success(data);
@@ -347,15 +375,15 @@ public class SymbolTransactionActivity extends BaseActivity implements View.OnCl
                 message.obj = data;
                 handler.sendMessage(message);
             }
-        },new ThreadPoolExecutor(10, 30, 1, TimeUnit.SECONDS, new LinkedBlockingDeque<Runnable>(128)));
+        });
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (backAlways!=null){
-            backAlways.isRun(false);
-            backAlways.aliveThread(false);
+        if (alwaysOneThread!=null){
+            alwaysOneThread.isRun(false);
+            alwaysOneThread.aliveThread(false);
         }
 
     }
@@ -384,18 +412,29 @@ public class SymbolTransactionActivity extends BaseActivity implements View.OnCl
 
     //请求symbol 列表
     private void symbolListShow() {
-        BaseReqDTO reqDTO = new BaseReqDTO();
-        reqDTO.setLogin_token(SpOperate.getString(this,UserFiled.token));
-        OkhttBack okhttBack = new OkhttBack(reqDTO.convertToJson(),LocalUrl.baseUrl+LocalUrl.getSymbolUse);
-        okhttBack.post(new RequestCallBackToastImpl(this){
-            @Override
-            public void success(String data) {
-                super.success(data);
-                Message message = Message.obtain();
-                message.what=4;
-                message.obj = data;
-                handler.sendMessage(message);
-            }
-        });
+        final Message message = Message.obtain();
+        message.what = 4;
+
+        //获取本地存储的symbol 若不存在 则请求存储在本地
+        String symbolListJson = SpOperate.getString(this, UserFiled.SYMBOL_LIST);
+        if (symbolListJson.equals("")) {
+            SymbolListUtil.symbolListSave(this);
+        } else {
+            message.obj = symbolListJson;
+        }
+        handler.sendMessage(message);
+//        BaseReqDTO reqDTO = new BaseReqDTO();
+//        reqDTO.setLogin_token(SpOperate.getString(this,UserFiled.token));
+//        OkhttBack okhttBack = new OkhttBack(reqDTO.convertToJson(),LocalUrl.baseUrl+LocalUrl.getSymbolUse);
+//        okhttBack.post(new RequestCallBackToastImpl(this){
+//            @Override
+//            public void success(String data) {
+//                super.success(data);
+//                Message message = Message.obtain();
+//                message.what=4;
+//                message.obj = data;
+//                handler.sendMessage(message);
+//            }
+//        });
     }
 }

@@ -1,12 +1,11 @@
 package activity.commt4mtmandroid.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.webkit.WebView;
 
-import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.utils.UserFiled;
+import activity.commt4mtmandroid.R;
 
 public class NewsContentVebActivity extends BaseActivity {
 

@@ -7,13 +7,13 @@ import android.icu.math.BigDecimal;
 import android.os.Handler;
 import android.view.View;
 
-import activity.commt4mtmandroid.BR;
 import activity.commt4mtmandroid.bean.reqDTO.ChangeOrderReqDTO;
 import activity.commt4mtmandroid.utils.LocalUrl;
 import activity.commt4mtmandroid.utils.OkhttBack;
 import activity.commt4mtmandroid.utils.RequestCallBackToastImpl;
 import activity.commt4mtmandroid.utils.SpOperate;
 import activity.commt4mtmandroid.utils.UserFiled;
+import activity.commt4mtmandroid.BR;
 
 /**
  * Created by Administrator on 2017/11/14.

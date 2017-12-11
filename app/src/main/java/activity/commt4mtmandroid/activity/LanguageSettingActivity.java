@@ -1,28 +1,18 @@
 package activity.commt4mtmandroid.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.util.Locale;
-
+import activity.commt4mtmandroid.utils.UserFiled;
 import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.utils.SpOperate;
-import activity.commt4mtmandroid.utils.UserFiled;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class LanguageSettingActivity extends BaseActivity implements View.OnClickListener {
@@ -44,7 +34,7 @@ public class LanguageSettingActivity extends BaseActivity implements View.OnClic
     @Override
     protected void init() {
         super.init();
-        SharedPreferences sharedPreferences = getSharedPreferences(UserFiled.UserAbout, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(UserFiled.UserAbout, MODE_PRIVATE);
         language = sharedPreferences.getString(UserFiled.Language, UserFiled.Chinese);
         nowLanguage = sharedPreferences.getString(UserFiled.Language, UserFiled.Chinese);
     }

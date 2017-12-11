@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,16 +14,16 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
 
-import activity.commt4mtmandroid.R;
-import activity.commt4mtmandroid.bean.reqDTO.MessageCodeReqDTO;
 import activity.commt4mtmandroid.bean.reqDTO.UserRegistReqDTO;
-import activity.commt4mtmandroid.bean.respDTO.MessageCodeRespDTO;
 import activity.commt4mtmandroid.bean.respDTO.UserRegestRespDTO;
 import activity.commt4mtmandroid.utils.LocalUrl;
 import activity.commt4mtmandroid.utils.OkhttBack;
 import activity.commt4mtmandroid.utils.RequestCallBackToastImpl;
 import activity.commt4mtmandroid.utils.UserFiled;
 import activity.commt4mtmandroid.view.MyDialog;
+import activity.commt4mtmandroid.R;
+import activity.commt4mtmandroid.bean.reqDTO.MessageCodeReqDTO;
+import activity.commt4mtmandroid.bean.respDTO.MessageCodeRespDTO;
 
 public class UserRegestActivity extends BaseActivity implements View.OnClickListener {
     private Handler handler = new Handler(new Handler.Callback() {

@@ -14,9 +14,9 @@ import com.igexin.sdk.message.GTTransmitMessage;
 import activity.commt4mtmandroid.bean.reqDTO.GetuiCidReqDTO;
 import activity.commt4mtmandroid.utils.LocalUrl;
 import activity.commt4mtmandroid.utils.OkhttBack;
+import activity.commt4mtmandroid.utils.UserFiled;
 import activity.commt4mtmandroid.utils.RequestCallBackDefaultImpl;
 import activity.commt4mtmandroid.utils.SpOperate;
-import activity.commt4mtmandroid.utils.UserFiled;
 
 /**
  * 继承 GTIntentService 接收来自个推的消息, 所有消息在线程中回调, 如果注册了该服务, 则务必要在 AndroidManifest中声明, 否则无法接受消息<br>
@@ -43,7 +43,7 @@ public class MT4IntentService extends GTIntentService {
     @Override
     public void onReceiveClientId(Context context, String clientid) {
         //存储连接个推成功后得到的ID
-        SpOperate.setString(context,UserFiled.GETUIID,clientid);
+        SpOperate.setString(context, UserFiled.GETUIID,clientid);
 
         GetuiCidReqDTO reqDTO = new GetuiCidReqDTO();
         reqDTO.setId(SpOperate.getString(context, UserFiled.ID));

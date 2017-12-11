@@ -1,7 +1,6 @@
 package activity.commt4mtmandroid.adapt;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +10,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.utils.UserFiled;
+import activity.commt4mtmandroid.R;
 
 /**
  * Created by Administrator on 2017/10/31.

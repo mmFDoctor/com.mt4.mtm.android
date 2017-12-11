@@ -1,13 +1,13 @@
 package activity.commt4mtmandroid.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import activity.commt4mtmandroid.R;
+
 import activity.commt4mtmandroid.utils.UserFiled;
+import activity.commt4mtmandroid.R;
 
 public class AccountTypeActivity extends BaseActivity implements View.OnClickListener {
 
@@ -47,13 +47,13 @@ public class AccountTypeActivity extends BaseActivity implements View.OnClickLis
             case R.id.rl_forex_usd:
                 Intent intent =  new Intent();
                 intent.putExtra(UserFiled.type,"forex-usd");
-                setResult( Activity.RESULT_OK,intent);
+                setResult(RESULT_OK,intent);
                 finish();
                 break;
             case R.id.rl_advanced:
                 Intent intent1 =  new Intent();
                 intent1.putExtra(UserFiled.type,"advanced");
-                setResult( Activity.RESULT_OK,intent1);
+                setResult(RESULT_OK,intent1);
                 finish();
                 break;
         }

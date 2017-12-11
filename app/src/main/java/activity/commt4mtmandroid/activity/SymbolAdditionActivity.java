@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -15,18 +14,18 @@ import com.alibaba.fastjson.JSONObject;
 
 import java.util.List;
 
-import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.adapt.SymbolRecyAdapt;
 import activity.commt4mtmandroid.bean.reqDTO.BaseReqDTO;
 import activity.commt4mtmandroid.bean.reqDTO.SymbolAddReqDTO;
-import activity.commt4mtmandroid.bean.respDTO.SymbolListRespDTO;
 import activity.commt4mtmandroid.utils.LocalUrl;
 import activity.commt4mtmandroid.utils.OkhttBack;
 import activity.commt4mtmandroid.utils.RequestCallBackDefaultImpl;
 import activity.commt4mtmandroid.utils.RequestCallBackToastImpl;
-import activity.commt4mtmandroid.utils.SpOperate;
 import activity.commt4mtmandroid.utils.SymbolListUtil;
 import activity.commt4mtmandroid.utils.UserFiled;
+import activity.commt4mtmandroid.R;
+import activity.commt4mtmandroid.bean.respDTO.SymbolListRespDTO;
+import activity.commt4mtmandroid.utils.SpOperate;
 
 public class SymbolAdditionActivity extends BaseActivity implements View.OnClickListener {
 

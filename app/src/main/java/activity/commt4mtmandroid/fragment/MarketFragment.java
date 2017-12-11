@@ -2,7 +2,6 @@ package activity.commt4mtmandroid.fragment;
 
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
@@ -19,20 +18,20 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 import java.util.List;
 
-import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.activity.MyAdditionSymbolActivity;
+import activity.commt4mtmandroid.bean.reqDTO.BaseReqDTO;
+import activity.commt4mtmandroid.utils.LocalUrl;
+import activity.commt4mtmandroid.utils.UserFiled;
+import activity.commt4mtmandroid.vo.SymbolTransctionDetailsBean;
+import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.activity.SymbolAdditionActivity;
 import activity.commt4mtmandroid.adapt.MarketAdapt;
 import activity.commt4mtmandroid.bean.evnetBusEntity.IsForegroundControlEntity;
 import activity.commt4mtmandroid.bean.evnetBusEntity.SymbolChangeBean;
-import activity.commt4mtmandroid.bean.reqDTO.BaseReqDTO;
 import activity.commt4mtmandroid.bean.respDTO.MarketRespDTO;
-import activity.commt4mtmandroid.utils.LocalUrl;
 import activity.commt4mtmandroid.utils.OkhttBackAlwaysOneThread;
 import activity.commt4mtmandroid.utils.RequestCallBackDefaultImpl;
 import activity.commt4mtmandroid.utils.SpOperate;
-import activity.commt4mtmandroid.utils.UserFiled;
-import activity.commt4mtmandroid.vo.SymbolTransctionDetailsBean;
 
 /**
  * Created by Administrator on 2017/9/25.
@@ -53,7 +52,7 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
                     if (marketRespDTO.getData().getInfolist().size()>0&&!hadFirstSymbol){
                         hadFirstSymbol = true;
                         //存入列表的第一个symbol 用于图标绘制
-                        SpOperate.setString(mAtivity,UserFiled.FIRSTSYMBOL,marketRespDTO.getData().getInfolist().get(0).getSymbol());
+                        SpOperate.setString(mAtivity, UserFiled.FIRSTSYMBOL,marketRespDTO.getData().getInfolist().get(0).getSymbol());
                         // TODO: 2017/12/5   第一次请求成功后，存储symbol 列表的第一个symbol的详细数据 用于交易切换
                         MarketRespDTO.DataBean.InfolistBean infolistBean = marketRespDTO.getData().getInfolist().get(0);
                         SymbolTransctionDetailsBean transctionDetailsBean = new SymbolTransctionDetailsBean();

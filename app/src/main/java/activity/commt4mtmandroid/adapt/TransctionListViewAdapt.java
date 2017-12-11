@@ -8,26 +8,21 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.PopupMenu;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.aakira.expandablelayout.ExpandableLinearLayout;
 
 import java.util.List;
 
-import activity.commt4mtmandroid.R;
 import activity.commt4mtmandroid.activity.CloseOutActivity;
 import activity.commt4mtmandroid.activity.OrderModificationActivity;
-import activity.commt4mtmandroid.activity.SymbolDetailsActivity;
 import activity.commt4mtmandroid.activity.SymbolTransactionActivity;
 import activity.commt4mtmandroid.activity.TransctionModificationActivity;
 import activity.commt4mtmandroid.bean.reqDTO.CloseOutReqDTO;
@@ -37,6 +32,7 @@ import activity.commt4mtmandroid.utils.OkhttBack;
 import activity.commt4mtmandroid.utils.RequestCallBackToastImpl;
 import activity.commt4mtmandroid.utils.SpOperate;
 import activity.commt4mtmandroid.utils.UserFiled;
+import activity.commt4mtmandroid.R;
 
 /**
  * Created by Administrator on 2017/10/19.
@@ -275,9 +271,9 @@ public class TransctionListViewAdapt extends BaseAdapter {
                         Intent intent = new Intent(context, OrderModificationActivity.class);
                         intent.putExtra(UserFiled.volume, footData.get(position - bodyData.size() - 1).getVolume());
                         intent.putExtra(UserFiled.price, footData.get(position - bodyData.size() - 1).getNow_price());
-                        intent.putExtra(UserFiled.SL, footData.get(position - bodyData.size() - 1).getStoploss().equals("-")?"0"
+                        intent.putExtra(UserFiled.SL, footData.get(position - bodyData.size() - 1).getStoploss().equals("-")?"0.0000"
                                 :footData.get(position - bodyData.size() - 1).getStoploss());   //后台数据0时 默认返回-,判断为- 时 转换为0
-                        intent.putExtra(UserFiled.TP, footData.get(position - bodyData.size() - 1).getTakeprofit().equals("-")?"0"
+                        intent.putExtra(UserFiled.TP, footData.get(position - bodyData.size() - 1).getTakeprofit().equals("-")?"0.0000"
                                 :footData.get(position - bodyData.size() - 1).getTakeprofit());  //后台数据0 时 默认返回-,判断为- 时 转换为0
                         intent.putExtra(UserFiled.ID, footData.get(position - bodyData.size() - 1).getId());
                         intent.putExtra(UserFiled.DIGITS, footData.get(position - bodyData.size() - 1).getDigits());
@@ -394,8 +390,8 @@ public class TransctionListViewAdapt extends BaseAdapter {
                             intent1.putExtra(UserFiled.descrip, "sell " + bodyData.get(position).getVolume()
                                     + " " + bodyData.get(position).getSymbol() + " at " + bodyData.get(position).getPrice());
                         intent1.putExtra(UserFiled.volume, bodyData.get(position).getVolume());
-                        intent1.putExtra(UserFiled.SL, bodyData.get(position).getStoploss());
-                        intent1.putExtra(UserFiled.TP, bodyData.get(position).getTakeprofit());
+                        intent1.putExtra(UserFiled.SL, bodyData.get(position).getStoploss().equals("-")?"0.0000":bodyData.get(position).getStoploss());
+                        intent1.putExtra(UserFiled.TP, bodyData.get(position).getTakeprofit().equals("-")?"0.0000":bodyData.get(position).getTakeprofit());
                         intent1.putExtra(UserFiled.SYMBOL, bodyData.get(position).getSymbol());
                         intent1.putExtra(UserFiled.DIGITS, bodyData.get(position).getDigits());
                         intent1.putExtra(UserFiled.type, bodyData.get(position).getCommand().equals("0") ? "buy" : "sell");

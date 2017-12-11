@@ -1,8 +1,6 @@
 package activity.commt4mtmandroid.utils;
 
 
-import android.util.Log;
-
 import com.alibaba.fastjson.JSONObject;
 
 import java.io.IOException;
